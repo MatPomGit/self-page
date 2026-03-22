@@ -1,0 +1,107 @@
+name: Utwórz nowe issues dla dalszego rozwoju
+
+on:
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  create-issues:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Issue 1 – Sekcja kontaktowa z e-mailem i linkami akademickimi"
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "Dodaj sekcję kontaktową z adresem e-mail i linkami akademickimi",
+              body: `## Opis\n\nStrona nie zawiera żadnych bezpośrednich danych kontaktowych poza adresem pocztowym w stopce.\n\n## Brakuje:\n- Klikalnego adresu e-mail (\`mailto:\`)\n- Linku do profilu ORCID\n- Linku do profilu ResearchGate\n- Linku do Google Scholar\n- Linku do LinkedIn\n\n## Proponowane rozwiązanie\n\nDodać nową sekcję "Kontakt" lub rozszerzyć stopkę o ikony/linki do profili akademickich i klikalny adres e-mail.\n\n## Priorytet\n\n🔴 Wysoki – brak możliwości kontaktu to istotna luka dla wizytówki naukowej.`,
+              labels: ["enhancement"]
+            });
+
+      - name: "Issue 2 – Lista publikacji naukowych"
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "Dodaj sekcję z listą publikacji naukowych",
+              body: `## Opis\n\nStrona podaje jedynie statystykę (21 publikacji recenzowanych), ale nie zawiera żadnej listy tytułów, czasopism ani linków do prac.\n\n## Proponowane rozwiązanie\n\nDodać sekcję "Publikacje" zawierającą:\n- Pełne dane bibliograficzne (autorzy, tytuł, czasopismo, rok, DOI)\n- Linki do pełnych tekstów lub abstraktów\n- Możliwość filtrowania po roku lub tematyce\n- Import z ORCID lub BibTeX\n\n## Dodatkowe informacje\n\nCzasopisma i konferencje mogą być oznaczone jako JCR, Scopus, itp.\n\n## Priorytet\n\n🔴 Wysoki – lista publikacji to kluczowy element wizytówki naukowej.`,
+              labels: ["enhancement"]
+            });
+
+      - name: "Issue 3 – Linki do profili akademickich (ORCID, ResearchGate, Scholar)"
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "Dodaj linki do profili akademickich (ORCID, ResearchGate, Google Scholar)",
+              body: `## Opis\n\nStrona nie zawiera linków do zewnętrznych profili akademickich, które są standardem na stronach naukowców.\n\n## Proponowane rozwiązanie\n\nDodać ikony/linki do:\n- **ORCID** – unikalny identyfikator naukowca\n- **ResearchGate** – społeczność akademicka\n- **Google Scholar** – indeksowanie cytowań\n- **Scopus** / **Web of Science** – profile autora\n- **LinkedIn** – profil zawodowy\n\nLinki mogą być umieszczone w sekcji hero, about lub stopce.\n\n## Priorytet\n\n🟡 Średni – zwiększa wiarygodność i widoczność profilu naukowego.`,
+              labels: ["enhancement"]
+            });
+
+      - name: "Issue 4 – Animowany licznik statystyk"
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "Dodaj animowany licznik dla statystyk (publikacje, patenty, projekty)",
+              body: `## Opis\n\nSekcja "Projekty & Osiągnięcia" wyświetla statyczne liczby (21 publikacji, 2 patenty, 11 projektów). Animowany licznik zwiększyłby atrakcyjność wizualną strony.\n\n## Proponowane rozwiązanie\n\nZaimplementować efekt liczenia od 0 do wartości docelowej (Counter Animation) z wykorzystaniem Intersection Observer, który uruchamia animację gdy sekcja pojawi się w widoku.\n\n## Priorytet\n\n🟢 Niski – efekt wizualny, który poprawia odbiór estetyczny.`,
+              labels: ["enhancement", "UI/UX"]
+            });
+
+      - name: "Issue 5 – Sekcja Timeline / CV"
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "Dodaj sekcję Timeline / Ścieżka kariery naukowej",
+              body: `## Opis\n\nStrona nie zawiera informacji o przebiegu kariery naukowej autora (wykształcenie, stanowiska, ważne wydarzenia).\n\n## Proponowane rozwiązanie\n\nDodać sekcję "Ścieżka kariery" w formie osi czasu (Timeline) zawierającej:\n- Stopień doktora (WAT, Instytut Optoelektroniki)\n- Stanowisko adiunkta na Politechnice Rzeszowskiej\n- Ważne projekty badawcze\n- Staże, konferencje, nagrody\n\n## Priorytet\n\n🟡 Średni – standardowy element akademickiej wizytówki.`,
+              labels: ["enhancement", "new-section"]
+            });
+
+      - name: "Issue 6 – Wsparcie dla języka angielskiego"
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "Dodaj wersję anglojęzyczną strony (i18n)",
+              body: `## Opis\n\nStrona jest dostępna wyłącznie w języku polskim. W środowisku naukowym (publikacje, konferencje, współpraca międzynarodowa) wersja angielska jest ważnym wymogiem.\n\n## Proponowane rozwiązanie\n\nDodać przełącznik języka PL/EN i przetłumaczyć treść na angielski. Możliwe podejścia:\n- Prosty przełącznik JS zmieniający atrybuty \`data-pl\` / \`data-en\` na elementach\n- Osobny plik \`index.en.html\`\n- Biblioteka i18n\n\n## Priorytet\n\n🔴 Wysoki – niezbędne dla widoczności w środowisku międzynarodowym.`,
+              labels: ["enhancement", "i18n"]
+            });
+
+      - name: "Issue 7 – Tryb jasny (light mode)"
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "Dodaj możliwość przełączania trybu ciemnego/jasnego (dark/light mode)",
+              body: `## Opis\n\nStrona ma stały ciemny motyw kolorystyczny. Niektórzy użytkownicy preferują jasny motyw, szczególnie przy wydruku lub w jasnych warunkach.\n\n## Proponowane rozwiązanie\n\n- Dodać przycisk przełączania dark/light mode w nawigacji\n- Zdefiniować CSS variables dla obu motywów\n- Zapamiętać preferencję użytkownika w \`localStorage\`\n- Respektować systemową preferencję (\`prefers-color-scheme\`)\n\n## Priorytet\n\n🟢 Niski – poprawa dostępności i UX.`,
+              labels: ["enhancement", "accessibility", "UI/UX"]
+            });
+
+      - name: "Issue 8 – Optymalizacja SEO i dostępności"
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "Optymalizacja SEO: sitemap.xml, robots.txt, canonical URL, structured data",
+              body: `## Opis\n\nStrona nie zawiera kilku ważnych elementów SEO poza metatagami.\n\n## Brakuje:\n- \`sitemap.xml\` – mapowanie struktury strony dla robotów\n- \`robots.txt\` – instrukcje dla crawlerów\n- Canonical URL (\`<link rel="canonical">\`)\n- Structured data (JSON-LD schema.org dla \`Person\`)\n- \`manifest.json\` / PWA support\n\n## Proponowane rozwiązanie\n\nDodać wymienione pliki i wzbogacić \`<head>\` o structured data dla lepszego indeksowania w Google Scholar i wyszukiwarkach.\n\n## Priorytet\n\n🟡 Średni – zwiększa widoczność strony w wyszukiwarkach.`,
+              labels: ["enhancement", "SEO"]
+            });
