@@ -1231,7 +1231,7 @@
         H = canvas.height = canvas.offsetHeight;
       }
 
-      window.addEventListener('resize', () => { resize(); initParticles(); });
+      window.addEventListener('resize', () => { resize(); initParticles(); initGalaxies(); });
       resize();
 
       /* Mouse tracking */
@@ -1253,6 +1253,119 @@
         mouse.x = t.clientX - rect.left;
         mouse.y = t.clientY - rect.top;
       }, { passive: true });
+
+      /* ── Galaxy constructor ──────────────────────────────── */
+      function Galaxy() {
+        this.init(true);
+      }
+
+      Galaxy.prototype.init = function (scatter) {
+        this.x = scatter ? Math.random() * W : (Math.random() < 0.5 ? -80 : W + 80);
+        this.y = scatter ? Math.random() * H : Math.random() * H;
+        this.angle = Math.random() * Math.PI * 2;
+        var spd = (Math.random() * 0.0004 + 0.00015) * (Math.random() < 0.5 ? 1 : -1);
+        this.rotSpeed = spd;
+        this.baseRotSpeed = spd;
+        this.size = Math.random() * 55 + 38;
+        this.numArms = Math.floor(Math.random() * 3) + 2;
+        this.armTurns = Math.random() * 1.2 + 0.9;
+        this.vx = (Math.random() - 0.5) * 0.12;
+        this.vy = (Math.random() - 0.5) * 0.12;
+        var palette = [
+          [6, 182, 212],
+          [20, 184, 166],
+          [124, 58, 237],
+        ];
+        this.rgb = palette[Math.floor(Math.random() * palette.length)];
+        this.stars = [];
+        this.buildStars();
+      };
+
+      Galaxy.prototype.buildStars = function () {
+        this.stars = [];
+        var perArm = 55;
+        for (var a = 0; a < this.numArms; a++) {
+          var armOff = (Math.PI * 2 / this.numArms) * a;
+          for (var i = 0; i < perArm; i++) {
+            var t   = i / perArm;
+            var spA = armOff + t * this.armTurns * Math.PI * 2;
+            var rad = t * this.size;
+            var jitter = (Math.random() - 0.5) * this.size * 0.18;
+            var jA     = Math.random() * Math.PI * 2;
+            this.stars.push({
+              x: rad * Math.cos(spA) + jitter * Math.cos(jA),
+              y: rad * Math.sin(spA) + jitter * Math.sin(jA),
+              r: Math.random() * 1.4 + 0.3,
+              a: (1 - t * 0.65) * (Math.random() * 0.45 + 0.15),
+            });
+          }
+        }
+      };
+
+      Galaxy.prototype.update = function () {
+        var dx   = this.x - mouse.x;
+        var dy   = this.y - mouse.y;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        var influenceR = this.size * 2.8;
+
+        if (dist < influenceR && dist > 0) {
+          var f = (influenceR - dist) / influenceR;
+          this.rotSpeed = this.baseRotSpeed + Math.sign(this.baseRotSpeed) * f * 0.012;
+          this.vx += (dx / dist) * f * 0.045;
+          this.vy += (dy / dist) * f * 0.045;
+        } else {
+          this.rotSpeed += (this.baseRotSpeed - this.rotSpeed) * 0.05;
+        }
+
+        this.angle += this.rotSpeed;
+        this.vx *= 0.97;
+        this.vy *= 0.97;
+        this.x  += this.vx;
+        this.y  += this.vy;
+
+        var pad = this.size + 20;
+        if (this.x < -pad)  this.x = W + pad;
+        if (this.x > W + pad) this.x = -pad;
+        if (this.y < -pad)  this.y = H + pad;
+        if (this.y > H + pad) this.y = -pad;
+      };
+
+      Galaxy.prototype.draw = function () {
+        var r = this.rgb[0], g = this.rgb[1], b = this.rgb[2];
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.angle);
+
+        var grad = ctx.createRadialGradient(0, 0, 0, 0, 0, this.size * 0.38);
+        grad.addColorStop(0,   'rgba(' + r + ',' + g + ',' + b + ',0.38)');
+        grad.addColorStop(0.5, 'rgba(' + r + ',' + g + ',' + b + ',0.07)');
+        grad.addColorStop(1,   'rgba(' + r + ',' + g + ',' + b + ',0)');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(0, 0, this.size * 0.38, 0, Math.PI * 2);
+        ctx.fill();
+
+        for (var i = 0; i < this.stars.length; i++) {
+          var s = this.stars[i];
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(' + r + ',' + g + ',' + b + ',' + s.a + ')';
+          ctx.fill();
+        }
+
+        ctx.restore();
+      };
+
+      var galaxies = [];
+      var PIXELS_PER_GALAXY = 130000; /* viewport pixels per galaxy; controls density */
+
+      function initGalaxies() {
+        var count = Math.min(Math.max(Math.floor(W * H / PIXELS_PER_GALAXY), 3), 6);
+        galaxies = [];
+        for (var i = 0; i < count; i++) {
+          galaxies.push(new Galaxy());
+        }
+      }
 
       /* Particle constructor */
       function Particle() {
@@ -1443,6 +1556,7 @@
         ctx.fillRect(0, 0, W, H);
 
         drawGeoShapes();
+        galaxies.forEach(g => { g.update(); g.draw(); });
         drawConnections();
         particles.forEach(p => { p.update(); p.draw(); });
 
@@ -1450,6 +1564,7 @@
       }
 
       initParticles();
+      initGalaxies();
       render();
     })();
 
