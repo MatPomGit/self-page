@@ -1,0 +1,5 @@
+127.0.0.1 - - [22/Mar/2026 17:19:19] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [22/Mar/2026 17:19:19] "GET /shattering-text.css HTTP/1.1" 200 -
+127.0.0.1 - - [22/Mar/2026 17:19:19] "GET /scroll-animations.css HTTP/1.1" 200 -
+127.0.0.1 - - [22/Mar/2026 17:19:19] "GET /shattering-text.js HTTP/1.1" 200 -
+127.0.0.1 - - [22/Mar/2026 17:19:19] "GET /scroll-animations.js HTTP/1.1" 200 -

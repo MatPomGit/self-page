@@ -19,6 +19,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="shattering-text.css" />
+  <link rel="stylesheet" href="scroll-animations.css" />
 
   <style>
     /* ==========================================
@@ -771,6 +772,9 @@
 </head>
 <body>
 
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
   <!-- ==========================================
        NAVIGATION
   ========================================== -->
@@ -1066,19 +1070,19 @@
       <!-- Stats -->
       <div class="stats-row">
         <div class="stat-card fade-in" style="transition-delay:.1s">
-          <div class="stat-number">21</div>
+          <div class="stat-number" data-count="21">21</div>
           <div class="stat-label">Publikacje recenzowane</div>
         </div>
         <div class="stat-card fade-in" style="transition-delay:.15s">
-          <div class="stat-number">2</div>
+          <div class="stat-number" data-count="2">2</div>
           <div class="stat-label">Patenty USA</div>
         </div>
         <div class="stat-card fade-in" style="transition-delay:.2s">
-          <div class="stat-number">11</div>
+          <div class="stat-number" data-count="11">11</div>
           <div class="stat-label">Projekty R&amp;D</div>
         </div>
         <div class="stat-card fade-in" style="transition-delay:.25s">
-          <div class="stat-number">2</div>
+          <div class="stat-number" data-count="2">2</div>
           <div class="stat-label">Projekty jako kierownik</div>
         </div>
       </div>
@@ -1507,5 +1511,6 @@
     })();
   </script>
   <script src="shattering-text.js"></script>
+  <script src="scroll-animations.js"></script>
 </body>
 </html>
