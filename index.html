@@ -768,6 +768,115 @@
       text-align: center;
       margin-top: 1.5rem;
     }
+
+    /* ==========================================
+       LANGUAGE TOGGLE
+    ========================================== */
+    .lang-toggle {
+      background: none;
+      border: 1px solid var(--clr-border);
+      color: var(--clr-muted);
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      padding: 0.28rem 0.65rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: color 0.25s, border-color 0.25s, background 0.25s;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle:hover {
+      color: var(--clr-cyan);
+      border-color: var(--clr-cyan);
+      background: rgba(6, 182, 212, 0.06);
+    }
+
+    /* ==========================================
+       MATERIALS
+    ========================================== */
+    #materials {
+      padding: var(--section-pad);
+      background: var(--clr-surface);
+    }
+
+    .materials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.4rem;
+      margin-top: 2rem;
+    }
+
+    .material-card {
+      background: var(--clr-surface2);
+      border: 1px solid var(--clr-border);
+      border-radius: 16px;
+      padding: 1.75rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .material-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(6,182,212,0.05) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .material-card:hover {
+      border-color: var(--clr-cyan);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 35px rgba(6,182,212,0.1);
+    }
+
+    .material-card:hover::before { opacity: 1; }
+
+    .material-icon {
+      width: 42px;
+      height: 42px;
+      margin-bottom: 1rem;
+    }
+
+    .material-tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--clr-teal);
+      margin-bottom: 0.5rem;
+    }
+
+    .material-card h3 {
+      font-family: var(--font-head);
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      line-height: 1.4;
+    }
+
+    .material-card p {
+      font-size: 0.82rem;
+      color: var(--clr-muted);
+      line-height: 1.6;
+    }
+
+    .material-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: 0.9rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--clr-cyan);
+      text-decoration: none;
+      transition: gap 0.2s;
+    }
+
+    .material-link:hover { gap: 0.55rem; }
   </style>
 </head>
 <body>
@@ -784,12 +893,14 @@
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links" id="navLinks" role="list">
-      <li><a href="#about">O mnie</a></li>
-      <li><a href="#interests">Zainteresowania</a></li>
-      <li><a href="#research">Badania</a></li>
-      <li><a href="#projects">Projekty</a></li>
-      <li><a href="#clinical">Aplikacje kliniczne</a></li>
+      <li><a href="#about" data-i18n="nav.about">O mnie</a></li>
+      <li><a href="#interests" data-i18n="nav.interests">Zainteresowania</a></li>
+      <li><a href="#research" data-i18n="nav.research">Badania</a></li>
+      <li><a href="#projects" data-i18n="nav.projects">Projekty</a></li>
+      <li><a href="#clinical" data-i18n="nav.clinical">Aplikacje kliniczne</a></li>
+      <li><a href="#materials" data-i18n="nav.materials">Materiały</a></li>
     </ul>
+    <button class="lang-toggle" id="langToggle" aria-label="Switch language / Zmień język">EN</button>
   </nav>
 
   <!-- ==========================================
@@ -799,27 +910,27 @@
     <canvas id="hero-canvas" aria-hidden="true"></canvas>
 
     <div class="hero-content container">
-      <div class="hero-badge fade-in">Politechnika Rzeszowska · Adiunkt</div>
+      <div class="hero-badge fade-in" data-i18n="hero.badge">Politechnika Rzeszowska · Adiunkt</div>
 
       <h1 class="hero-name">
         <span class="gradient-text">dr inż.</span><br>Mateusz Pomianek
       </h1>
 
-      <p class="hero-title fade-in" style="transition-delay:.2s">
+      <p class="hero-title fade-in" style="transition-delay:.2s" data-i18n="hero.subtitle">
         Informatyka afektywna &nbsp;·&nbsp; XR/AI &nbsp;·&nbsp; Wizja komputerowa
       </p>
 
       <div class="hero-tags fade-in" style="transition-delay:.3s">
-        <span class="tag">Informatyka afektywna</span>
-        <span class="tag">Wizja komputerowa</span>
-        <span class="tag">Interakcja człowiek–komputer</span>
-        <span class="tag">Śledzenie wzroku</span>
+        <span class="tag" data-i18n="hero.tag1">Informatyka afektywna</span>
+        <span class="tag" data-i18n="hero.tag2">Wizja komputerowa</span>
+        <span class="tag" data-i18n="hero.tag3">Interakcja człowiek–komputer</span>
+        <span class="tag" data-i18n="hero.tag4">Śledzenie wzroku</span>
         <span class="tag">VR / AR / MR</span>
         <span class="tag">AI &amp; NUI</span>
       </div>
 
       <a href="#about" class="hero-cta fade-in" style="transition-delay:.4s">
-        Poznaj mój profil
+        <span data-i18n="hero.cta">Poznaj mój profil</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
     </div>
@@ -834,17 +945,17 @@
     <div class="container">
       <div class="about-grid">
         <div class="about-text fade-in">
-          <p class="section-label">O mnie</p>
-          <h2 class="section-title" id="about-title">Naukowiec<br><span class="gradient-text">i inżynier</span></h2>
+          <p class="section-label" data-i18n="about.label">O mnie</p>
+          <h2 class="section-title" id="about-title" data-i18n="about.title">Naukowiec<br><span class="gradient-text">i inżynier</span></h2>
           <div class="divider"></div>
-          <p>
+          <p data-i18n="about.p1">
             Jest naukowcem i inżynierem specjalizującym się w przetwarzaniu multispektralnej
             informacji obrazowej oraz projektowaniu interaktywnych systemów opartych na naturalnej
             interakcji człowieka z komputerem. Łączy optoelektronikę, informatykę afektywną,
             biometrię i psychologię.
           </p>
           <br>
-          <p>
+          <p data-i18n="about.p2">
             Pracuje jako adiunkt w Katedrze Informatyki i Automatyki Politechniki Rzeszowskiej.
             Stopień doktora uzyskał w Instytucie Optoelektroniki Wojskowej Akademii Technicznej.
             W swojej pracy kieruje się zasadami Europejskiej Karty Naukowca.
@@ -893,8 +1004,8 @@
   ========================================== -->
   <section id="interests" aria-labelledby="interests-title">
     <div class="container">
-      <p class="section-label fade-in">Specjalizacje</p>
-      <h2 class="section-title fade-in" style="transition-delay:.05s" id="interests-title">
+      <p class="section-label fade-in" data-i18n="interests.label">Specjalizacje</p>
+      <h2 class="section-title fade-in" style="transition-delay:.05s" id="interests-title" data-i18n="interests.title">
         Zainteresowania<br><span class="gradient-text">naukowe</span>
       </h2>
       <div class="divider fade-in" style="transition-delay:.1s"></div>
@@ -912,8 +1023,8 @@
             <line x1="30" y1="20" x2="38" y2="20" stroke="rgba(6,182,212,0.5)" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
           <div>
-            <h3>Informatyka afektywna</h3>
-            <p>Rozpoznawanie emocji i stanów psychofizycznych człowieka przez systemy komputerowe.</p>
+            <h3 data-i18n="interests.card1.title">Informatyka afektywna</h3>
+            <p data-i18n="interests.card1.desc">Rozpoznawanie emocji i stanów psychofizycznych człowieka przez systemy komputerowe.</p>
           </div>
         </article>
 
@@ -926,8 +1037,8 @@
             <line x1="36" y1="10" x2="26" y2="20" stroke="rgba(20,184,166,0.4)" stroke-width="1"/>
           </svg>
           <div>
-            <h3>Wizja komputerowa</h3>
-            <p>Analiza i przetwarzanie obrazów, wykrywanie obiektów, segmentacja scen.</p>
+            <h3 data-i18n="interests.card2.title">Wizja komputerowa</h3>
+            <p data-i18n="interests.card2.desc">Analiza i przetwarzanie obrazów, wykrywanie obiektów, segmentacja scen.</p>
           </div>
         </article>
 
@@ -938,8 +1049,8 @@
             <circle cx="20" cy="22" r="4" fill="rgba(6,182,212,0.2)" stroke="rgba(6,182,212,0.8)" stroke-width="1.5"/>
           </svg>
           <div>
-            <h3>Interakcja człowiek–komputer</h3>
-            <p>Naturalne interfejsy użytkownika, ergonomia systemów, badania użyteczności.</p>
+            <h3 data-i18n="interests.card3.title">Interakcja człowiek–komputer</h3>
+            <p data-i18n="interests.card3.desc">Naturalne interfejsy użytkownika, ergonomia systemów, badania użyteczności.</p>
           </div>
         </article>
 
@@ -954,8 +1065,8 @@
             <line x1="20" y1="20" x2="8"  y2="14" stroke="rgba(20,184,166,0.35)" stroke-width="1"/>
           </svg>
           <div>
-            <h3>Śledzenie wzroku</h3>
-            <p>Eye-tracking, MEMS gaze estimation, analiza fiksacji i sakkad.</p>
+            <h3 data-i18n="interests.card4.title">Śledzenie wzroku</h3>
+            <p data-i18n="interests.card4.desc">Eye-tracking, MEMS gaze estimation, analiza fiksacji i sakkad.</p>
           </div>
         </article>
 
@@ -969,8 +1080,8 @@
             <line x1="8"  y1="34" x2="32" y2="34" stroke="rgba(6,182,212,0.5)" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
           <div>
-            <h3>Systemy VR / AR / MR</h3>
-            <p>Mixed reality, varifocal HMD, kalibracja, aplikacje medyczne i szkoleniowe.</p>
+            <h3 data-i18n="interests.card5.title">Systemy VR / AR / MR</h3>
+            <p data-i18n="interests.card5.desc">Mixed reality, varifocal HMD, kalibracja, aplikacje medyczne i szkoleniowe.</p>
           </div>
         </article>
 
@@ -985,8 +1096,8 @@
             <line x1="8"  y1="30" x2="32" y2="30" stroke="rgba(20,184,166,0.25)" stroke-width="1" stroke-dasharray="3 2"/>
           </svg>
           <div>
-            <h3>AI w NUI</h3>
-            <p>Uczenie maszynowe w naturalnych interfejsach użytkownika, inteligentne systemy interpretujące sygnały.</p>
+            <h3 data-i18n="interests.card6.title">AI w NUI</h3>
+            <p data-i18n="interests.card6.desc">Uczenie maszynowe w naturalnych interfejsach użytkownika, inteligentne systemy interpretujące sygnały.</p>
           </div>
         </article>
 
@@ -999,8 +1110,8 @@
   ========================================== -->
   <section id="research" aria-labelledby="research-title">
     <div class="container">
-      <p class="section-label fade-in">Obszary badań</p>
-      <h2 class="section-title fade-in" style="transition-delay:.05s" id="research-title">
+      <p class="section-label fade-in" data-i18n="research.label">Obszary badań</p>
+      <h2 class="section-title fade-in" style="transition-delay:.05s" id="research-title" data-i18n="research.title">
         Badania &amp;<br><span class="gradient-text">technologie</span>
       </h2>
       <div class="divider fade-in" style="transition-delay:.1s"></div>
@@ -1021,11 +1132,11 @@
             <h3 class="gradient-text">Hardware</h3>
           </div>
           <ul class="research-list">
-            <li>Optoelektroniczne systemy wizualizacji, symulacji i pomiaru</li>
-            <li>Śledzenie ruchu, wzroku i gestów</li>
-            <li>Rozpoznawanie emocji i stanów afektywnych</li>
-            <li>Prototypowanie: CAD, modelowanie 3D, fotogrametria, skanowanie 3D</li>
-            <li>Pomiary techniczne, cyfrowe bliźniaki, in-silico</li>
+            <li data-i18n="research.hw1">Optoelektroniczne systemy wizualizacji, symulacji i pomiaru</li>
+            <li data-i18n="research.hw2">Śledzenie ruchu, wzroku i gestów</li>
+            <li data-i18n="research.hw3">Rozpoznawanie emocji i stanów afektywnych</li>
+            <li data-i18n="research.hw4">Prototypowanie: CAD, modelowanie 3D, fotogrametria, skanowanie 3D</li>
+            <li data-i18n="research.hw5">Pomiary techniczne, cyfrowe bliźniaki, in-silico</li>
           </ul>
         </div>
 
@@ -1045,11 +1156,11 @@
             <h3 class="gradient-text">Software</h3>
           </div>
           <ul class="research-list">
-            <li>Analiza obrazu i widzenie komputerowe</li>
-            <li>Uczenie maszynowe i sieci neuronowe</li>
-            <li>Mixed Reality – MR / AR / VR</li>
-            <li>Interaktywne aplikacje, symulacje i gry</li>
-            <li>Inteligentne systemy interpretujące sygnały użytkownika</li>
+            <li data-i18n="research.sw1">Analiza obrazu i widzenie komputerowe</li>
+            <li data-i18n="research.sw2">Uczenie maszynowe i sieci neuronowe</li>
+            <li data-i18n="research.sw3">Mixed Reality – MR / AR / VR</li>
+            <li data-i18n="research.sw4">Interaktywne aplikacje, symulacje i gry</li>
+            <li data-i18n="research.sw5">Inteligentne systemy interpretujące sygnały użytkownika</li>
           </ul>
         </div>
       </div>
@@ -1061,8 +1172,8 @@
   ========================================== -->
   <section id="projects" aria-labelledby="projects-title">
     <div class="container">
-      <p class="section-label fade-in">Dorobek naukowy</p>
-      <h2 class="section-title fade-in" style="transition-delay:.05s" id="projects-title">
+      <p class="section-label fade-in" data-i18n="projects.label">Dorobek naukowy</p>
+      <h2 class="section-title fade-in" style="transition-delay:.05s" id="projects-title" data-i18n="projects.title">
         Projekty &amp;<br><span class="gradient-text">osiągnięcia</span>
       </h2>
       <div class="divider fade-in" style="transition-delay:.1s"></div>
@@ -1071,19 +1182,19 @@
       <div class="stats-row">
         <div class="stat-card fade-in" style="transition-delay:.1s">
           <div class="stat-number" data-count="21">21</div>
-          <div class="stat-label">Publikacje recenzowane</div>
+          <div class="stat-label" data-i18n="projects.stat1">Publikacje recenzowane</div>
         </div>
         <div class="stat-card fade-in" style="transition-delay:.15s">
           <div class="stat-number" data-count="2">2</div>
-          <div class="stat-label">Patenty USA</div>
+          <div class="stat-label" data-i18n="projects.stat2">Patenty USA</div>
         </div>
         <div class="stat-card fade-in" style="transition-delay:.2s">
           <div class="stat-number" data-count="11">11</div>
-          <div class="stat-label">Projekty R&amp;D</div>
+          <div class="stat-label" data-i18n="projects.stat3">Projekty R&amp;D</div>
         </div>
         <div class="stat-card fade-in" style="transition-delay:.25s">
           <div class="stat-number" data-count="2">2</div>
-          <div class="stat-label">Projekty jako kierownik</div>
+          <div class="stat-label" data-i18n="projects.stat4">Projekty jako kierownik</div>
         </div>
       </div>
 
@@ -1093,37 +1204,37 @@
         <article class="project-card fade-in" style="transition-delay:.1s">
           <p class="project-tag">Eye-tracking</p>
           <h3>MEMS Eye-Tracking</h3>
-          <p>Opracowanie miniaturowych systemów śledzenia wzroku opartych na mikroelektrycznych układach mechanicznych (MEMS).</p>
+          <p data-i18n="projects.card1.desc">Opracowanie miniaturowych systemów śledzenia wzroku opartych na mikroelektrycznych układach mechanicznych (MEMS).</p>
         </article>
 
         <article class="project-card fade-in" style="transition-delay:.15s">
           <p class="project-tag">XR Hardware</p>
           <h3>Varifocal HMD Calibration</h3>
-          <p>Metody kalibracji wyświetlaczy nagłownych o zmiennej ogniskowej dla aplikacji rozszerzonej i wirtualnej rzeczywistości.</p>
+          <p data-i18n="projects.card2.desc">Metody kalibracji wyświetlaczy nagłownych o zmiennej ogniskowej dla aplikacji rozszerzonej i wirtualnej rzeczywistości.</p>
         </article>
 
         <article class="project-card fade-in" style="transition-delay:.2s">
           <p class="project-tag">Digital Twin</p>
           <h3>Digital Twin Validation</h3>
-          <p>Walidacja cyfrowych bliźniaków w środowiskach przemysłowych i medycznych, pomiary in-silico.</p>
+          <p data-i18n="projects.card3.desc">Walidacja cyfrowych bliźniaków w środowiskach przemysłowych i medycznych, pomiary in-silico.</p>
         </article>
 
         <article class="project-card fade-in" style="transition-delay:.25s">
-          <p class="project-tag">Medycyna</p>
+          <p class="project-tag" data-i18n="projects.card4.tag">Medycyna</p>
           <h3>VR Pipelines for Medical Data</h3>
-          <p>Pipeliny VR do wizualizacji i analizy danych medycznych w diagnostyce i edukacji.</p>
+          <p data-i18n="projects.card4.desc">Pipeliny VR do wizualizacji i analizy danych medycznych w diagnostyce i edukacji.</p>
         </article>
 
         <article class="project-card fade-in" style="transition-delay:.3s">
-          <p class="project-tag">Robotyka</p>
-          <h3>Kognitywna Robotyka Humanoidalna</h3>
-          <p>Percepcyjne i kognitywne architektury robotów humanoidalnych do zastosowań terapeutycznych i badawczych.</p>
+          <p class="project-tag" data-i18n="projects.card5.tag">Robotyka</p>
+          <h3 data-i18n="projects.card5.title">Kognitywna Robotyka Humanoidalna</h3>
+          <p data-i18n="projects.card5.desc">Percepcyjne i kognitywne architektury robotów humanoidalnych do zastosowań terapeutycznych i badawczych.</p>
         </article>
 
         <article class="project-card fade-in" style="transition-delay:.35s">
-          <p class="project-tag">AI / Biometria</p>
-          <h3>Optoelektronika &amp; Biometria</h3>
-          <p>Multispektralna analiza obrazu, systemy biometryczne, przetwarzanie sygnałów afektywnych.</p>
+          <p class="project-tag" data-i18n="projects.card6.tag">AI / Biometria</p>
+          <h3 data-i18n="projects.card6.title">Optoelektronika &amp; Biometria</h3>
+          <p data-i18n="projects.card6.desc">Multispektralna analiza obrazu, systemy biometryczne, przetwarzanie sygnałów afektywnych.</p>
         </article>
 
       </div>
@@ -1135,8 +1246,8 @@
   ========================================== -->
   <section id="clinical" aria-labelledby="clinical-title">
     <div class="clinical-inner container">
-      <p class="section-label fade-in">Medycyna &amp; Neuronauka</p>
-      <h2 class="section-title fade-in" style="transition-delay:.05s" id="clinical-title">
+      <p class="section-label fade-in" data-i18n="clinical.label">Medycyna &amp; Neuronauka</p>
+      <h2 class="section-title fade-in" style="transition-delay:.05s" id="clinical-title" data-i18n="clinical.title">
         Aplikacje kliniczne<br><span class="gradient-text">i neuropsychologiczne</span>
       </h2>
       <div class="divider fade-in" style="transition-delay:.1s"></div>
@@ -1149,8 +1260,8 @@
             <path d="M12 21 Q16 13 21 21 Q26 29 30 21" stroke="rgba(6,182,212,0.7)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
             <circle cx="21" cy="21" r="3" fill="rgba(6,182,212,0.3)" stroke="rgba(6,182,212,0.8)" stroke-width="1.5"/>
           </svg>
-          <h3>Biomarkery okulistyczne</h3>
-          <p>Modelowanie biomarkerów okulistycznych i behawioralnych z wykorzystaniem AI do wczesnej diagnostyki.</p>
+          <h3 data-i18n="clinical.card1.title">Biomarkery okulistyczne</h3>
+          <p data-i18n="clinical.card1.desc">Modelowanie biomarkerów okulistycznych i behawioralnych z wykorzystaniem AI do wczesnej diagnostyki.</p>
         </article>
 
         <article class="clinical-card fade-in" style="transition-delay:.15s">
@@ -1158,8 +1269,8 @@
             <rect x="8" y="8" width="26" height="26" rx="4" stroke="rgba(20,184,166,0.5)" stroke-width="1.5"/>
             <path d="M14 21 L18 17 L22 25 L26 19 L28 21" stroke="rgba(20,184,166,0.8)" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          <h3>Diagnostyka wspomagana AI</h3>
-          <p>Systemy decyzji klinicznych wykorzystujące uczenie maszynowe do analizy danych pacjentów.</p>
+          <h3 data-i18n="clinical.card2.title">Diagnostyka wspomagana AI</h3>
+          <p data-i18n="clinical.card2.desc">Systemy decyzji klinicznych wykorzystujące uczenie maszynowe do analizy danych pacjentów.</p>
         </article>
 
         <article class="clinical-card fade-in" style="transition-delay:.2s">
@@ -1170,8 +1281,8 @@
             <line x1="32" y1="6"  x2="36" y2="12" stroke="rgba(6,182,212,0.4)" stroke-width="1.3" stroke-linecap="round"/>
             <circle cx="21" cy="22" r="3" fill="rgba(6,182,212,0.2)" stroke="rgba(6,182,212,0.6)" stroke-width="1.2"/>
           </svg>
-          <h3>Rehabilitacja XR</h3>
-          <p>Terapia z wykorzystaniem rozszerzonej i wirtualnej rzeczywistości w neurorehabilitacji.</p>
+          <h3 data-i18n="clinical.card3.title">Rehabilitacja XR</h3>
+          <p data-i18n="clinical.card3.desc">Terapia z wykorzystaniem rozszerzonej i wirtualnej rzeczywistości w neurorehabilitacji.</p>
         </article>
 
         <article class="clinical-card fade-in" style="transition-delay:.25s">
@@ -1181,8 +1292,123 @@
             <line x1="21" y1="26" x2="21" y2="32" stroke="rgba(20,184,166,0.4)" stroke-width="1.5" stroke-linecap="round"/>
             <line x1="16" y1="30" x2="26" y2="30" stroke="rgba(20,184,166,0.4)" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
-          <h3>Robotyka kognitywna</h3>
-          <p>Humanoidalne roboty z percepcyjnymi architekturami kognitywnymi do terapii i badań neuropsychologicznych.</p>
+          <h3 data-i18n="clinical.card4.title">Robotyka kognitywna</h3>
+          <p data-i18n="clinical.card4.desc">Humanoidalne roboty z percepcyjnymi architekturami kognitywnymi do terapii i badań neuropsychologicznych.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       MATERIALS
+  ========================================== -->
+  <section id="materials" aria-labelledby="materials-title">
+    <div class="container">
+      <p class="section-label fade-in" data-i18n="materials.label">Dydaktyka</p>
+      <h2 class="section-title fade-in" style="transition-delay:.05s" id="materials-title" data-i18n="materials.title">
+        Materiały<br><span class="gradient-text">dydaktyczne</span>
+      </h2>
+      <div class="divider fade-in" style="transition-delay:.1s"></div>
+
+      <div class="materials-grid">
+
+        <article class="material-card fade-in" style="transition-delay:.1s">
+          <svg class="material-icon" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="7" y="5" width="28" height="32" rx="3" stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+            <line x1="13" y1="13" x2="29" y2="13" stroke="rgba(6,182,212,0.5)" stroke-width="1.2" stroke-linecap="round"/>
+            <line x1="13" y1="18" x2="29" y2="18" stroke="rgba(6,182,212,0.4)" stroke-width="1.2" stroke-linecap="round"/>
+            <line x1="13" y1="23" x2="22" y2="23" stroke="rgba(6,182,212,0.3)" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+          <p class="material-tag" data-i18n="materials.card1.tag">Wykłady</p>
+          <h3 data-i18n="materials.card1.title">Grafika komputerowa</h3>
+          <p data-i18n="materials.card1.desc">Slajdy wykładowe, animacje i ćwiczenia z zakresu grafiki rastrowej, wektorowej i renderowania 3D.</p>
+          <a href="#materials" class="material-link" data-i18n="materials.link">
+            Przejdź do materiałów
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </article>
+
+        <article class="material-card fade-in" style="transition-delay:.15s">
+          <svg class="material-icon" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="5" y="9" width="32" height="22" rx="3" stroke="rgba(20,184,166,0.5)" stroke-width="1.5"/>
+            <path d="M14 20 L18 16 L22 24 L26 18 L28 20" stroke="rgba(20,184,166,0.8)" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="5" y1="14" x2="37" y2="14" stroke="rgba(20,184,166,0.3)" stroke-width="1"/>
+          </svg>
+          <p class="material-tag" data-i18n="materials.card2.tag">Laboratoria</p>
+          <h3 data-i18n="materials.card2.title">Przetwarzanie obrazów</h3>
+          <p data-i18n="materials.card2.desc">Instrukcje laboratoryjne i zestawy zadań z filtracji, segmentacji i analizy obrazów cyfrowych.</p>
+          <a href="#materials" class="material-link" data-i18n="materials.link">
+            Przejdź do materiałów
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </article>
+
+        <article class="material-card fade-in" style="transition-delay:.2s">
+          <svg class="material-icon" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="8" y="6" width="26" height="20" rx="2" stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+            <rect x="12" y="10" width="18" height="12" rx="1" fill="rgba(6,182,212,0.07)" stroke="rgba(6,182,212,0.35)" stroke-width="1"/>
+            <line x1="14" y1="30" x2="10" y2="36" stroke="rgba(6,182,212,0.4)" stroke-width="1.3" stroke-linecap="round"/>
+            <line x1="28" y1="30" x2="32" y2="36" stroke="rgba(6,182,212,0.4)" stroke-width="1.3" stroke-linecap="round"/>
+            <line x1="10" y1="36" x2="32" y2="36" stroke="rgba(6,182,212,0.4)" stroke-width="1.3" stroke-linecap="round"/>
+          </svg>
+          <p class="material-tag" data-i18n="materials.card3.tag">Wykłady</p>
+          <h3 data-i18n="materials.card3.title">Systemy wbudowane</h3>
+          <p data-i18n="materials.card3.desc">Materiały do przedmiotu systemy wbudowane: mikrokontrolery, programowanie niskopoziomowe, interfejsy.</p>
+          <a href="#materials" class="material-link" data-i18n="materials.link">
+            Przejdź do materiałów
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </article>
+
+        <article class="material-card fade-in" style="transition-delay:.25s">
+          <svg class="material-icon" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="21" cy="18" r="9" stroke="rgba(20,184,166,0.5)" stroke-width="1.5"/>
+            <path d="M12 36 Q14 28 21 28 Q28 28 30 36" stroke="rgba(20,184,166,0.45)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <line x1="21" y1="9" x2="21" y2="4" stroke="rgba(20,184,166,0.4)" stroke-width="1.3" stroke-linecap="round"/>
+            <line x1="28" y1="11" x2="32" y2="7" stroke="rgba(20,184,166,0.4)" stroke-width="1.3" stroke-linecap="round"/>
+            <line x1="30" y1="18" x2="35" y2="18" stroke="rgba(20,184,166,0.4)" stroke-width="1.3" stroke-linecap="round"/>
+          </svg>
+          <p class="material-tag" data-i18n="materials.card4.tag">Projekt</p>
+          <h3 data-i18n="materials.card4.title">Interakcja człowiek–komputer</h3>
+          <p data-i18n="materials.card4.desc">Wytyczne projektowe, szablony badań UX i przykłady prototypów interfejsów użytkownika.</p>
+          <a href="#materials" class="material-link" data-i18n="materials.link">
+            Przejdź do materiałów
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </article>
+
+        <article class="material-card fade-in" style="transition-delay:.3s">
+          <svg class="material-icon" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="6" y="6" width="30" height="30" rx="4" stroke="rgba(6,182,212,0.4)" stroke-width="1.5"/>
+            <circle cx="21" cy="21" r="7" fill="rgba(6,182,212,0.08)" stroke="rgba(6,182,212,0.6)" stroke-width="1.5"/>
+            <line x1="21" y1="6"  x2="21" y2="14" stroke="rgba(6,182,212,0.35)" stroke-width="1.2" stroke-linecap="round"/>
+            <line x1="21" y1="28" x2="21" y2="36" stroke="rgba(6,182,212,0.35)" stroke-width="1.2" stroke-linecap="round"/>
+            <line x1="6"  y1="21" x2="14" y2="21" stroke="rgba(6,182,212,0.35)" stroke-width="1.2" stroke-linecap="round"/>
+            <line x1="28" y1="21" x2="36" y2="21" stroke="rgba(6,182,212,0.35)" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+          <p class="material-tag" data-i18n="materials.card5.tag">Laboratoria</p>
+          <h3 data-i18n="materials.card5.title">Uczenie maszynowe</h3>
+          <p data-i18n="materials.card5.desc">Notebooki Jupyter, zbiory danych i przewodniki po algorytmach ML stosowanych w zadaniach wizji i biometrii.</p>
+          <a href="#materials" class="material-link" data-i18n="materials.link">
+            Przejdź do materiałów
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </article>
+
+        <article class="material-card fade-in" style="transition-delay:.35s">
+          <svg class="material-icon" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <polygon points="21,5 37,33 5,33" fill="rgba(20,184,166,0.07)" stroke="rgba(20,184,166,0.5)" stroke-width="1.5" stroke-linejoin="round"/>
+            <line x1="21" y1="14" x2="21" y2="24" stroke="rgba(20,184,166,0.7)" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="21" cy="28" r="1.5" fill="rgba(20,184,166,0.8)"/>
+          </svg>
+          <p class="material-tag" data-i18n="materials.card6.tag">Projekt</p>
+          <h3 data-i18n="materials.card6.title">Projekt inżynierski</h3>
+          <p data-i18n="materials.card6.desc">Wymagania, szablony dokumentacji i przykładowe prace dyplomowe z zakresu informatyki i automatyki.</p>
+          <a href="#materials" class="material-link" data-i18n="materials.link">
+            Przejdź do materiałów
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
         </article>
 
       </div>
@@ -1196,7 +1422,7 @@
     <div class="footer-inner">
       <div>
         <p class="footer-brand">dr inż. <span>Mateusz Pomianek</span></p>
-        <p class="footer-info">
+        <p class="footer-info" data-i18n="footer.dept">
           Katedra Informatyki i Automatyki<br>
           Politechnika Rzeszowska im. I. Łukasiewicza
         </p>
@@ -1204,11 +1430,11 @@
 
       <div class="footer-info" style="text-align:right">
         <p>al. Powstańców Warszawy 12</p>
-        <p>35-959 Rzeszów, Polska</p>
+        <p data-i18n="footer.city">35-959 Rzeszów, Polska</p>
         <p style="margin-top:.4rem; color: var(--clr-cyan);"><a href="https://prz.edu.pl" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">prz.edu.pl</a></p>
       </div>
     </div>
-    <p class="footer-copy">© 2025 dr inż. Mateusz Pomianek · Politechnika Rzeszowska</p>
+    <p class="footer-copy" data-i18n="footer.copy">© 2025 dr inż. Mateusz Pomianek · Politechnika Rzeszowska</p>
   </footer>
 
   <!-- ==========================================
@@ -1512,5 +1738,271 @@
   </script>
   <script src="shattering-text.js"></script>
   <script src="scroll-animations.js"></script>
+
+  <!-- ==========================================
+       LANGUAGE SWITCHING (PL / EN)
+  ========================================== -->
+  <script>
+    (function () {
+      /* ── Translations dictionary ─────────────── */
+      const T = {
+        pl: {
+          'page.title': 'dr inż. Mateusz Pomianek – Wizytówka naukowa',
+          /* NAV */
+          'nav.about':    'O mnie',
+          'nav.interests':'Zainteresowania',
+          'nav.research': 'Badania',
+          'nav.projects': 'Projekty',
+          'nav.clinical': 'Aplikacje kliniczne',
+          'nav.materials':'Materiały',
+          /* HERO */
+          'hero.badge':   'Politechnika Rzeszowska · Adiunkt',
+          'hero.subtitle':'Informatyka afektywna &nbsp;·&nbsp; XR/AI &nbsp;·&nbsp; Wizja komputerowa',
+          'hero.tag1':    'Informatyka afektywna',
+          'hero.tag2':    'Wizja komputerowa',
+          'hero.tag3':    'Interakcja człowiek–komputer',
+          'hero.tag4':    'Śledzenie wzroku',
+          'hero.cta':     'Poznaj mój profil',
+          /* ABOUT */
+          'about.label':  'O mnie',
+          'about.title':  'Naukowiec<br><span class="gradient-text">i inżynier</span>',
+          'about.p1':     'Jest naukowcem i inżynierem specjalizującym się w przetwarzaniu multispektralnej informacji obrazowej oraz projektowaniu interaktywnych systemów opartych na naturalnej interakcji człowieka z komputerem. Łączy optoelektronikę, informatykę afektywną, biometrię i psychologię.',
+          'about.p2':     'Pracuje jako adiunkt w Katedrze Informatyki i Automatyki Politechniki Rzeszowskiej. Stopień doktora uzyskał w Instytucie Optoelektroniki Wojskowej Akademii Technicznej. W swojej pracy kieruje się zasadami Europejskiej Karty Naukowca.',
+          /* INTERESTS */
+          'interests.label': 'Specjalizacje',
+          'interests.title': 'Zainteresowania<br><span class="gradient-text">naukowe</span>',
+          'interests.card1.title': 'Informatyka afektywna',
+          'interests.card1.desc':  'Rozpoznawanie emocji i stanów psychofizycznych człowieka przez systemy komputerowe.',
+          'interests.card2.title': 'Wizja komputerowa',
+          'interests.card2.desc':  'Analiza i przetwarzanie obrazów, wykrywanie obiektów, segmentacja scen.',
+          'interests.card3.title': 'Interakcja człowiek–komputer',
+          'interests.card3.desc':  'Naturalne interfejsy użytkownika, ergonomia systemów, badania użyteczności.',
+          'interests.card4.title': 'Śledzenie wzroku',
+          'interests.card4.desc':  'Eye-tracking, MEMS gaze estimation, analiza fiksacji i sakkad.',
+          'interests.card5.title': 'Systemy VR / AR / MR',
+          'interests.card5.desc':  'Mixed reality, varifocal HMD, kalibracja, aplikacje medyczne i szkoleniowe.',
+          'interests.card6.title': 'AI w NUI',
+          'interests.card6.desc':  'Uczenie maszynowe w naturalnych interfejsach użytkownika, inteligentne systemy interpretujące sygnały.',
+          /* RESEARCH */
+          'research.label': 'Obszary badań',
+          'research.title': 'Badania &amp;<br><span class="gradient-text">technologie</span>',
+          'research.hw1': 'Optoelektroniczne systemy wizualizacji, symulacji i pomiaru',
+          'research.hw2': 'Śledzenie ruchu, wzroku i gestów',
+          'research.hw3': 'Rozpoznawanie emocji i stanów afektywnych',
+          'research.hw4': 'Prototypowanie: CAD, modelowanie 3D, fotogrametria, skanowanie 3D',
+          'research.hw5': 'Pomiary techniczne, cyfrowe bliźniaki, in-silico',
+          'research.sw1': 'Analiza obrazu i widzenie komputerowe',
+          'research.sw2': 'Uczenie maszynowe i sieci neuronowe',
+          'research.sw3': 'Mixed Reality – MR / AR / VR',
+          'research.sw4': 'Interaktywne aplikacje, symulacje i gry',
+          'research.sw5': 'Inteligentne systemy interpretujące sygnały użytkownika',
+          /* PROJECTS */
+          'projects.label': 'Dorobek naukowy',
+          'projects.title': 'Projekty &amp;<br><span class="gradient-text">osiągnięcia</span>',
+          'projects.stat1': 'Publikacje recenzowane',
+          'projects.stat2': 'Patenty USA',
+          'projects.stat3': 'Projekty R&amp;D',
+          'projects.stat4': 'Projekty jako kierownik',
+          'projects.card1.desc': 'Opracowanie miniaturowych systemów śledzenia wzroku opartych na mikroelektrycznych układach mechanicznych (MEMS).',
+          'projects.card2.desc': 'Metody kalibracji wyświetlaczy nagłownych o zmiennej ogniskowej dla aplikacji rozszerzonej i wirtualnej rzeczywistości.',
+          'projects.card3.desc': 'Walidacja cyfrowych bliźniaków w środowiskach przemysłowych i medycznych, pomiary in-silico.',
+          'projects.card4.tag':  'Medycyna',
+          'projects.card4.desc': 'Pipeliny VR do wizualizacji i analizy danych medycznych w diagnostyce i edukacji.',
+          'projects.card5.tag':  'Robotyka',
+          'projects.card5.title':'Kognitywna Robotyka Humanoidalna',
+          'projects.card5.desc': 'Percepcyjne i kognitywne architektury robotów humanoidalnych do zastosowań terapeutycznych i badawczych.',
+          'projects.card6.tag':  'AI / Biometria',
+          'projects.card6.title':'Optoelektronika &amp; Biometria',
+          'projects.card6.desc': 'Multispektralna analiza obrazu, systemy biometryczne, przetwarzanie sygnałów afektywnych.',
+          /* CLINICAL */
+          'clinical.label': 'Medycyna &amp; Neuronauka',
+          'clinical.title': 'Aplikacje kliniczne<br><span class="gradient-text">i neuropsychologiczne</span>',
+          'clinical.card1.title': 'Biomarkery okulistyczne',
+          'clinical.card1.desc':  'Modelowanie biomarkerów okulistycznych i behawioralnych z wykorzystaniem AI do wczesnej diagnostyki.',
+          'clinical.card2.title': 'Diagnostyka wspomagana AI',
+          'clinical.card2.desc':  'Systemy decyzji klinicznych wykorzystujące uczenie maszynowe do analizy danych pacjentów.',
+          'clinical.card3.title': 'Rehabilitacja XR',
+          'clinical.card3.desc':  'Terapia z wykorzystaniem rozszerzonej i wirtualnej rzeczywistości w neurorehabilitacji.',
+          'clinical.card4.title': 'Robotyka kognitywna',
+          'clinical.card4.desc':  'Humanoidalne roboty z percepcyjnymi architekturami kognitywnymi do terapii i badań neuropsychologicznych.',
+          /* MATERIALS */
+          'materials.label': 'Dydaktyka',
+          'materials.title': 'Materiały<br><span class="gradient-text">dydaktyczne</span>',
+          'materials.link':         'Przejdź do materiałów',
+          'materials.card1.tag':    'Wykłady',
+          'materials.card1.title':  'Grafika komputerowa',
+          'materials.card1.desc':   'Slajdy wykładowe, animacje i ćwiczenia z zakresu grafiki rastrowej, wektorowej i renderowania 3D.',
+          'materials.card2.tag':    'Laboratoria',
+          'materials.card2.title':  'Przetwarzanie obrazów',
+          'materials.card2.desc':   'Instrukcje laboratoryjne i zestawy zadań z filtracji, segmentacji i analizy obrazów cyfrowych.',
+          'materials.card3.tag':    'Wykłady',
+          'materials.card3.title':  'Systemy wbudowane',
+          'materials.card3.desc':   'Materiały do przedmiotu systemy wbudowane: mikrokontrolery, programowanie niskopoziomowe, interfejsy.',
+          'materials.card4.tag':    'Projekt',
+          'materials.card4.title':  'Interakcja człowiek–komputer',
+          'materials.card4.desc':   'Wytyczne projektowe, szablony badań UX i przykłady prototypów interfejsów użytkownika.',
+          'materials.card5.tag':    'Laboratoria',
+          'materials.card5.title':  'Uczenie maszynowe',
+          'materials.card5.desc':   'Notebooki Jupyter, zbiory danych i przewodniki po algorytmach ML stosowanych w zadaniach wizji i biometrii.',
+          'materials.card6.tag':    'Projekt',
+          'materials.card6.title':  'Projekt inżynierski',
+          'materials.card6.desc':   'Wymagania, szablony dokumentacji i przykładowe prace dyplomowe z zakresu informatyki i automatyki.',
+          /* FOOTER */
+          'footer.dept': 'Katedra Informatyki i Automatyki<br>Politechnika Rzeszowska im. I. Łukasiewicza',
+          'footer.city': '35-959 Rzeszów, Polska',
+          'footer.copy': '© 2025 dr inż. Mateusz Pomianek · Politechnika Rzeszowska',
+        },
+        en: {
+          'page.title': 'dr inż. Mateusz Pomianek – Academic Profile',
+          /* NAV */
+          'nav.about':    'About',
+          'nav.interests':'Interests',
+          'nav.research': 'Research',
+          'nav.projects': 'Projects',
+          'nav.clinical': 'Clinical Apps',
+          'nav.materials':'Materials',
+          /* HERO */
+          'hero.badge':   'Rzeszów University of Technology · Associate Professor',
+          'hero.subtitle':'Affective Computing &nbsp;·&nbsp; XR/AI &nbsp;·&nbsp; Computer Vision',
+          'hero.tag1':    'Affective Computing',
+          'hero.tag2':    'Computer Vision',
+          'hero.tag3':    'Human–Computer Interaction',
+          'hero.tag4':    'Eye Tracking',
+          'hero.cta':     'Explore my profile',
+          /* ABOUT */
+          'about.label':  'About Me',
+          'about.title':  'Scientist<br><span class="gradient-text">&amp; Engineer</span>',
+          'about.p1':     'A researcher and engineer specialising in multispectral image processing and the design of interactive systems based on natural human–computer interaction. Combines optoelectronics, affective computing, biometrics and psychology.',
+          'about.p2':     'Works as an Associate Professor in the Department of Computer Science and Automation at Rzeszów University of Technology. Obtained a doctorate at the Institute of Optoelectronics of the Military University of Technology. His work is guided by the European Charter for Researchers.',
+          /* INTERESTS */
+          'interests.label': 'Specialisations',
+          'interests.title': 'Research<br><span class="gradient-text">interests</span>',
+          'interests.card1.title': 'Affective Computing',
+          'interests.card1.desc':  'Recognition of human emotions and psychophysical states by computer systems.',
+          'interests.card2.title': 'Computer Vision',
+          'interests.card2.desc':  'Image analysis and processing, object detection, scene segmentation.',
+          'interests.card3.title': 'Human–Computer Interaction',
+          'interests.card3.desc':  'Natural user interfaces, systems ergonomics, usability research.',
+          'interests.card4.title': 'Eye Tracking',
+          'interests.card4.desc':  'Eye-tracking, MEMS gaze estimation, fixation and saccade analysis.',
+          'interests.card5.title': 'VR / AR / MR Systems',
+          'interests.card5.desc':  'Mixed reality, varifocal HMD, calibration, medical and training applications.',
+          'interests.card6.title': 'AI in NUI',
+          'interests.card6.desc':  'Machine learning in natural user interfaces, intelligent systems interpreting user signals.',
+          /* RESEARCH */
+          'research.label': 'Research areas',
+          'research.title': 'Research &amp;<br><span class="gradient-text">technologies</span>',
+          'research.hw1': 'Optoelectronic visualisation, simulation and measurement systems',
+          'research.hw2': 'Motion, gaze and gesture tracking',
+          'research.hw3': 'Emotion and affective state recognition',
+          'research.hw4': 'Prototyping: CAD, 3D modelling, photogrammetry, 3D scanning',
+          'research.hw5': 'Technical measurements, digital twins, in-silico',
+          'research.sw1': 'Image analysis and computer vision',
+          'research.sw2': 'Machine learning and neural networks',
+          'research.sw3': 'Mixed Reality – MR / AR / VR',
+          'research.sw4': 'Interactive applications, simulations and games',
+          'research.sw5': 'Intelligent systems interpreting user signals',
+          /* PROJECTS */
+          'projects.label': 'Academic output',
+          'projects.title': 'Projects &amp;<br><span class="gradient-text">achievements</span>',
+          'projects.stat1': 'Peer-reviewed publications',
+          'projects.stat2': 'US Patents',
+          'projects.stat3': 'R&amp;D Projects',
+          'projects.stat4': 'Projects as PI',
+          'projects.card1.desc': 'Development of miniature eye-tracking systems based on micro-electro-mechanical systems (MEMS).',
+          'projects.card2.desc': 'Calibration methods for varifocal head-mounted displays for augmented and virtual reality applications.',
+          'projects.card3.desc': 'Validation of digital twins in industrial and medical environments, in-silico measurements.',
+          'projects.card4.tag':  'Medicine',
+          'projects.card4.desc': 'VR pipelines for visualisation and analysis of medical data in diagnostics and education.',
+          'projects.card5.tag':  'Robotics',
+          'projects.card5.title':'Cognitive Humanoid Robotics',
+          'projects.card5.desc': 'Perceptual and cognitive architectures for humanoid robots for therapeutic and research applications.',
+          'projects.card6.tag':  'AI / Biometrics',
+          'projects.card6.title':'Optoelectronics &amp; Biometrics',
+          'projects.card6.desc': 'Multispectral image analysis, biometric systems, affective signal processing.',
+          /* CLINICAL */
+          'clinical.label': 'Medicine &amp; Neuroscience',
+          'clinical.title': 'Clinical<br><span class="gradient-text">applications</span>',
+          'clinical.card1.title': 'Ophthalmic biomarkers',
+          'clinical.card1.desc':  'Modelling ophthalmic and behavioural biomarkers using AI for early diagnostics.',
+          'clinical.card2.title': 'AI-assisted diagnostics',
+          'clinical.card2.desc':  'Clinical decision systems using machine learning to analyse patient data.',
+          'clinical.card3.title': 'XR Rehabilitation',
+          'clinical.card3.desc':  'Therapy using augmented and virtual reality in neurorehabilitation.',
+          'clinical.card4.title': 'Cognitive robotics',
+          'clinical.card4.desc':  'Humanoid robots with perceptual cognitive architectures for therapy and neuropsychological research.',
+          /* MATERIALS */
+          'materials.label': 'Teaching',
+          'materials.title': 'Teaching<br><span class="gradient-text">materials</span>',
+          'materials.link':         'Go to materials',
+          'materials.card1.tag':    'Lectures',
+          'materials.card1.title':  'Computer Graphics',
+          'materials.card1.desc':   'Lecture slides, animations and exercises covering raster graphics, vector graphics and 3D rendering.',
+          'materials.card2.tag':    'Labs',
+          'materials.card2.title':  'Image Processing',
+          'materials.card2.desc':   'Lab instructions and task sets on filtering, segmentation and digital image analysis.',
+          'materials.card3.tag':    'Lectures',
+          'materials.card3.title':  'Embedded Systems',
+          'materials.card3.desc':   'Course materials on embedded systems: microcontrollers, low-level programming and interfaces.',
+          'materials.card4.tag':    'Project',
+          'materials.card4.title':  'Human–Computer Interaction',
+          'materials.card4.desc':   'Design guidelines, UX research templates and example user interface prototypes.',
+          'materials.card5.tag':    'Labs',
+          'materials.card5.title':  'Machine Learning',
+          'materials.card5.desc':   'Jupyter notebooks, datasets and guides to ML algorithms used in vision and biometrics tasks.',
+          'materials.card6.tag':    'Project',
+          'materials.card6.title':  'Engineering Project',
+          'materials.card6.desc':   'Requirements, documentation templates and sample theses in computer science and automation.',
+          /* FOOTER */
+          'footer.dept': 'Department of Computer Science and Automation<br>Rzeszów University of Technology',
+          'footer.city': '35-959 Rzeszów, Poland',
+          'footer.copy': '© 2025 dr inż. Mateusz Pomianek · Rzeszów University of Technology',
+        }
+      };
+
+      /* ── Apply translations ──────────────────── */
+      function applyLang(lang) {
+        const dict = T[lang];
+        if (!dict) return;
+
+        /* Update page title */
+        if (dict['page.title']) document.title = dict['page.title'];
+
+        /* Update html lang attribute */
+        document.documentElement.lang = lang;
+
+        /* Update all data-i18n elements */
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.getAttribute('data-i18n');
+          if (!dict[key]) return;
+          /* Use innerHTML for entries that contain HTML tags */
+          el.innerHTML = dict[key];
+        });
+
+        /* Update toggle button label */
+        const btn = document.getElementById('langToggle');
+        if (btn) btn.textContent = lang === 'pl' ? 'EN' : 'PL';
+
+        /* Persist choice */
+        try { localStorage.setItem('lang', lang); } catch (e) { /* ignore */ }
+      }
+
+      /* ── Toggle handler ──────────────────────── */
+      const btn = document.getElementById('langToggle');
+      if (btn) {
+        btn.addEventListener('click', () => {
+          const current = document.documentElement.lang || 'pl';
+          applyLang(current === 'pl' ? 'en' : 'pl');
+        });
+      }
+
+      /* ── Restore saved language on load ─────── */
+      (function () {
+        let saved = 'pl';
+        try { saved = localStorage.getItem('lang') || 'pl'; } catch (e) { /* ignore */ }
+        if (saved !== 'pl') applyLang(saved);
+      })();
+    })();
+  </script>
 </body>
 </html>
