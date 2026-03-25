@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Psychoinformatyka – dr inż. Mateusz Pomianek</title>
-  <meta name="description" content="Przedmiot na styku psychologii i informatyki. Obejmuje modele poznawcze człowieka, interfejsy adaptacyjne, biometrię behawioralną, rozpoznawanie emocji i metodologię badań użytkownika." />
+  <title>Uzależnienia – aspekty psychologiczne – dr inż. Mateusz Pomianek</title>
+  <meta name="description" content="Artykuł o psychologicznych aspektach uzależnień. Omawia mechanizmy powstawania uzależnień, teorie psychologiczne, metody terapii oraz profilaktykę uzależnień behawioralnych i substancjalnych." />
   <meta name="author" content="dr inż. Mateusz Pomianek" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔬</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -228,6 +228,66 @@
       line-height: 1.55;
     }
 
+    /* ARTICLE CONTENT */
+    .article-section {
+      margin-bottom: 3rem;
+    }
+
+    .article-section h2 {
+      font-family: var(--font-head);
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--clr-text);
+    }
+
+    .article-section p {
+      font-size: 0.95rem;
+      color: var(--clr-muted);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .article-section ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 1rem;
+    }
+
+    .article-section ul li {
+      font-size: 0.95rem;
+      color: var(--clr-muted);
+      line-height: 1.7;
+      padding-left: 1.2rem;
+      position: relative;
+      margin-bottom: 0.4rem;
+    }
+
+    .article-section ul li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--clr-cyan);
+      font-weight: 700;
+    }
+
+    /* INFO BOX */
+    .info-box {
+      background: var(--clr-surface2);
+      border: 1px solid var(--clr-border);
+      border-left: 3px solid var(--clr-cyan);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .info-box p {
+      font-size: 0.9rem;
+      color: var(--clr-muted);
+      line-height: 1.7;
+      margin: 0;
+    }
+
     /* RESOURCES */
     .resources-section {
       background: var(--clr-surface2);
@@ -309,9 +369,9 @@
       <li><a href="publications.html">Publikacje</a></li>
       <li><a href="materials.html">Materiały</a></li>
     </ul>
-    <a href="materials.html" class="nav-back" aria-label="Powrót do materiałów">
+    <a href="psychoinformatyka.html" class="nav-back" aria-label="Powrót do psychoinformatyki">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="19 12 5 12"/><polyline points="12 5 5 12 12 19"/></svg>
-      Materiały
+      Psychoinformatyka
     </a>
   </nav>
 
@@ -322,11 +382,13 @@
         <span class="breadcrumb-sep">›</span>
         <a href="materials.html">Materiały</a>
         <span class="breadcrumb-sep">›</span>
-        <span>Psychologia &amp; IT</span>
+        <a href="psychoinformatyka.html">Psychoinformatyka</a>
+        <span class="breadcrumb-sep">›</span>
+        <span>Uzależnienia</span>
       </div>
-      <p class="section-label">Psychologia &amp; IT</p>
-      <h1>Psychoinformatyka –<br><span class="gradient-text">psychologia i IT</span></h1>
-      <p>Przedmiot na styku psychologii i informatyki. Obejmuje modele poznawcze człowieka, interfejsy adaptacyjne, biometrię behawioralną, rozpoznawanie emocji i metodologię badań użytkownika.</p>
+      <p class="section-label">Psychologia kliniczna</p>
+      <h1>Uzależnienia –<br><span class="gradient-text">aspekty psychologiczne</span></h1>
+      <p>Artykuł omawia mechanizmy powstawania uzależnień, teorie psychologiczne wyjaśniające ich podłoże, metody diagnostyki oraz współczesne podejścia terapeutyczne stosowane w leczeniu uzależnień behawioralnych i substancjalnych.</p>
     </div>
   </div>
 
@@ -334,49 +396,96 @@
     <div class="container">
 
       <div class="topics-section">
-        <div class="topics-section-title">Zakres tematyczny</div>
+        <div class="topics-section-title">Zagadnienia omawiane w artykule</div>
         <div class="topics-grid">
           <div class="topic-card">
             <p class="topic-num">Temat 01</p>
-            <h4>Modele poznawcze</h4>
-            <p>Pamięć, uwaga, percepcja – modele dla projektantów systemów.</p>
+            <h4>Definicja uzależnienia</h4>
+            <p>Kryteria diagnostyczne ICD-11 i DSM-5, typy uzależnień, różnica między nadużywaniem a uzależnieniem.</p>
           </div>
           <div class="topic-card">
             <p class="topic-num">Temat 02</p>
-            <h4>Psychologia interakcji</h4>
-            <p>Heurystyki Nielsena, prawo Fittsa, zasady Gestalt w UI.</p>
+            <h4>Mechanizmy neurobiologiczne</h4>
+            <p>Układ nagrody, dopamina, neuroplastyczność, tolerancja i zespół abstynencyjny.</p>
           </div>
           <div class="topic-card">
             <p class="topic-num">Temat 03</p>
-            <h4>Rozpoznawanie emocji</h4>
-            <p>Modele emocji, bazy danych afektywnych, metody rozpoznawania.</p>
+            <h4>Teorie psychologiczne</h4>
+            <p>Model uczenia się, teoria poznawczo-behawioralna, koncepcja przywiązania i samoleczenia.</p>
           </div>
           <div class="topic-card">
             <p class="topic-num">Temat 04</p>
-            <h4>Biometria behawioralna</h4>
-            <p>Śledzenie wzroku, dynamika pisania, ruchy myszy, chód.</p>
+            <h4>Czynniki ryzyka</h4>
+            <p>Predyspozycje genetyczne, cechy osobowości, środowisko rodzinne i społeczne, traumy.</p>
           </div>
           <div class="topic-card">
             <p class="topic-num">Temat 05</p>
-            <h4>Interfejsy adaptacyjne</h4>
-            <p>Systemy reagujące na stan użytkownika, personalizacja.</p>
+            <h4>Uzależnienia behawioralne</h4>
+            <p>Uzależnienie od internetu, gier, hazardu, zakupów i pracy – kryteria i konsekwencje.</p>
           </div>
           <div class="topic-card">
             <p class="topic-num">Temat 06</p>
-            <h4>Badania użytkownika</h4>
-            <p>Metody UX research: wywiady, testy użyteczności, ankiety.</p>
+            <h4>Diagnostyka psychologiczna</h4>
+            <p>Wywiad kliniczny, narzędzia przesiewowe, kwestionariusze i skale oceny nasilenia uzależnienia.</p>
           </div>
           <div class="topic-card">
             <p class="topic-num">Temat 07</p>
-            <h4>Neuroobrazowanie</h4>
-            <p>EEG, fMRI w badaniach interakcji człowiek-komputer.</p>
+            <h4>Metody terapii</h4>
+            <p>Terapia poznawczo-behawioralna, motywująca, podejście 12 kroków, terapia schematów.</p>
           </div>
           <div class="topic-card">
             <p class="topic-num">Temat 08</p>
-            <h4>Etyka i prywatność</h4>
-            <p>RODO, zbieranie danych biometrycznych, świadoma zgoda.</p>
+            <h4>Profilaktyka i nawroty</h4>
+            <p>Programy profilaktyczne, rozpoznawanie wyzwalaczy, strategie zapobiegania nawrotom.</p>
           </div>
         </div>
+      </div>
+
+      <div class="article-section">
+        <div class="divider"></div>
+        <h2>Czym jest uzależnienie?</h2>
+        <p>Uzależnienie to przewlekłe, nawracające zaburzenie mózgu charakteryzujące się kompulsywnym poszukiwaniem i przyjmowaniem substancji psychoaktywnej lub angażowaniem się w określone zachowanie, mimo negatywnych konsekwencji dla zdrowia, relacji i funkcjonowania społecznego. Współczesna psychologia traktuje uzależnienie jako zjawisko wielowymiarowe, obejmujące aspekty biologiczne, psychologiczne i społeczne.</p>
+        <div class="info-box">
+          <p>Według klasyfikacji ICD-11 (Międzynarodowej Klasyfikacji Chorób) uzależnienie od substancji rozpoznaje się, gdy u osoby przez okres co najmniej 12 miesięcy obserwuje się silną potrzebę przyjmowania substancji, trudności w kontrolowaniu jej przyjmowania oraz kontynuowanie używania mimo szkodliwych następstw.</p>
+        </div>
+        <p>Ważne jest odróżnienie uzależnienia od nadużywania substancji. Nadużywanie (szkodliwe używanie) odnosi się do wzorca przyjmowania substancji powodującego wymierne szkody zdrowotne lub psychologiczne, natomiast uzależnienie wiąże się z utratą kontroli, rozwojem tolerancji i objawów abstynencyjnych oraz z reorganizacją priorytetów życiowych wokół substancji lub zachowania.</p>
+      </div>
+
+      <div class="article-section">
+        <h2>Teorie psychologiczne uzależnień</h2>
+        <p>Na przestrzeni dziesięcioleci rozwinęło się kilka głównych podejść teoretycznych próbujących wyjaśnić mechanizmy leżące u podłoża uzależnień.</p>
+        <ul>
+          <li><strong>Model uczenia się</strong> – uzależnienie jako wyuczony wzorzec zachowania, utrwalony przez warunkowanie klasyczne (skojarzenie bodźców z efektami substancji) i instrumentalne (wzmocnienie pozytywne i negatywne).</li>
+          <li><strong>Teoria poznawczo-behawioralna</strong> – koncentruje się na dysfunkcyjnych przekonaniach dotyczących substancji lub zachowania oraz na deficytach w zakresie radzenia sobie ze stresem.</li>
+          <li><strong>Model przywiązania</strong> – uzależnienie jako próba regulacji emocji w następstwie zaburzonych wczesnych relacji z opiekunami i niezaspokojonych potrzeb emocjonalnych.</li>
+          <li><strong>Hipoteza samoleczenia</strong> – używanie substancji jako sposób radzenia sobie z bólem psychicznym, traumą, lękiem lub depresją.</li>
+          <li><strong>Model biopsychospołeczny</strong> – zintegrowane ujęcie uwzględniające wzajemne oddziaływanie czynników biologicznych, psychologicznych i środowiskowych.</li>
+        </ul>
+      </div>
+
+      <div class="article-section">
+        <h2>Uzależnienia behawioralne</h2>
+        <p>Oprócz uzależnień od substancji psychoaktywnych wyróżnia się uzależnienia behawioralne, w których przedmiotem uzależnienia jest określona czynność, a nie substancja. Do najczęściej opisywanych uzależnień behawioralnych należą:</p>
+        <ul>
+          <li><strong>Uzależnienie od hazardu</strong> – jedyne uzależnienie behawioralne ujęte w DSM-5 w kategorii zaburzeń związanych z substancjami i uzależnieniami.</li>
+          <li><strong>Uzależnienie od gier komputerowych</strong> – zaburzenie gier wideo (ang. Gaming Disorder) wpisane do ICD-11 w 2022 roku.</li>
+          <li><strong>Uzależnienie od internetu i mediów społecznościowych</strong> – narastający problem, szczególnie w grupie dzieci i młodzieży.</li>
+          <li><strong>Uzależnienie od pracy (pracoholizm)</strong> – kompulsywna potrzeba pracy kosztem innych obszarów życia.</li>
+          <li><strong>Uzależnienie od zakupów (oniomania)</strong> – impulsywne, niekontrolowane kupowanie przynoszące chwilową ulgę emocjonalną.</li>
+        </ul>
+        <p>Uzależnienia behawioralne cechują się podobnymi mechanizmami neurobiologicznymi jak uzależnienia od substancji. Towarzyszą im głód (ang. craving), wzrost tolerancji, utrata kontroli oraz objawy odstawienne w postaci drażliwości i niepokoju po zaprzestaniu zachowania.</p>
+      </div>
+
+      <div class="article-section">
+        <h2>Metody terapii uzależnień</h2>
+        <p>Leczenie uzależnień wymaga zwykle podejścia zintegrowanego, łączącego interwencje psychologiczne, farmakologiczne i społeczne. Do najskuteczniejszych metod psychologicznych zalicza się:</p>
+        <ul>
+          <li><strong>Terapia poznawczo-behawioralna (CBT)</strong> – pomaga zidentyfikować dysfunkcyjne myśli i przekonania wyzwalające zachowania uzależnieniowe, uczy strategii radzenia sobie z głodem i wyzwalaczami.</li>
+          <li><strong>Wywiad motywujący (MI)</strong> – techniki zwiększające wewnętrzną motywację do zmiany poprzez eksplorację i rozwiązywanie ambiwalencji wobec leczenia.</li>
+          <li><strong>Terapia zapobiegania nawrotom</strong> – identyfikacja sytuacji wysokiego ryzyka, planowanie strategii zaradczych oraz zmiana stylu życia sprzyjającego trzeźwości.</li>
+          <li><strong>Terapia schematów</strong> – praca z głębokimi, nieprzystosowawczymi schematami poznawczymi i emocjonalnymi ukształtowanymi we wczesnym dzieciństwie.</li>
+          <li><strong>Programy 12 kroków (AA, NA)</strong> – podejście grupowe oparte na wzajemnym wsparciu, odpowiedzialności i wymiarze duchowym procesu zdrowienia.</li>
+        </ul>
       </div>
 
       <div class="resources-section">
@@ -388,15 +497,11 @@
           </a></li>
           <li><a href="#">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Scenariusze badań
+            Kwestionariusze diagnostyczne
           </a></li>
           <li><a href="#">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Materiały do ćwiczeń
-          </a></li>
-          <li><a href="uzaleznienia.html">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-            Artykuł: Uzależnienia – aspekty psychologiczne
+            Materiały do ćwiczeń klinicznych
           </a></li>
           <li><a href="https://matpomgit.github.io/PsyHub/" target="_blank" rel="noopener noreferrer">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
