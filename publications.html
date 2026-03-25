@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Publikacje – dr inż. Mateusz Pomianek</title>
+  <meta name="description" content="Lista publikacji naukowych dr inż. Mateusza Pomianka – 21 publikacji recenzowanych, 2 patenty USA." />
+  <meta name="author" content="dr inż. Mateusz Pomianek" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔬</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --clr-bg:      #0a0e1a;
+      --clr-surface: #111827;
+      --clr-surface2:#1a2236;
+      --clr-navy:    #0d1b2a;
+      --clr-cyan:    #06b6d4;
+      --clr-teal:    #14b8a6;
+      --clr-neon2:   #7c3aed;
+      --clr-text:    #e2e8f0;
+      --clr-muted:   #94a3b8;
+      --clr-border:  rgba(6,182,212,0.18);
+      --font-head:   'Poppins', sans-serif;
+      --font-body:   'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--clr-bg);
+      color: var(--clr-text);
+      font-family: var(--font-body);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--clr-bg); }
+    ::-webkit-scrollbar-thumb { background: var(--clr-cyan); border-radius: 3px; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--clr-cyan), var(--clr-teal));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-label {
+      font-family: var(--font-head);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--clr-cyan);
+      margin-bottom: 0.75rem;
+    }
+
+    .divider {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--clr-cyan), var(--clr-teal));
+      border-radius: 2px;
+      margin-bottom: 2rem;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10,14,26,0.95);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--clr-border);
+    }
+
+    .nav-logo {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--clr-cyan);
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--clr-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.25s;
+    }
+
+    .nav-links a:hover, .nav-links a.active { color: var(--clr-cyan); }
+
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--clr-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.25s;
+    }
+    .nav-back:hover { color: var(--clr-cyan); }
+
+    /* HERO BANNER */
+    .page-hero {
+      padding: 8rem 2rem 4rem;
+      background: var(--clr-surface);
+      border-bottom: 1px solid var(--clr-border);
+    }
+
+    .page-hero h1 {
+      font-family: var(--font-head);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .page-hero p {
+      color: var(--clr-muted);
+      font-size: 1.05rem;
+      max-width: 640px;
+    }
+
+    /* STATS */
+    .pub-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .pub-stat {
+      background: var(--clr-surface2);
+      border: 1px solid var(--clr-border);
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      text-align: center;
+      min-width: 130px;
+    }
+
+    .pub-stat-num {
+      font-family: var(--font-head);
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--clr-cyan), var(--clr-neon2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .pub-stat-label {
+      font-size: 0.78rem;
+      color: var(--clr-muted);
+      margin-top: 0.2rem;
+    }
+
+    /* MAIN CONTENT */
+    main {
+      padding: 4rem 0 6rem;
+    }
+
+    /* FILTER TABS */
+    .filter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .filter-tab {
+      background: none;
+      border: 1px solid var(--clr-border);
+      color: var(--clr-muted);
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+
+    .filter-tab:hover, .filter-tab.active {
+      background: rgba(6,182,212,0.1);
+      border-color: var(--clr-cyan);
+      color: var(--clr-cyan);
+    }
+
+    /* YEAR GROUP */
+    .pub-year-group {
+      margin-bottom: 3rem;
+    }
+
+    .pub-year-label {
+      font-family: var(--font-head);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--clr-cyan);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .pub-year-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--clr-border);
+    }
+
+    /* PUBLICATION CARD */
+    .pub-card {
+      background: var(--clr-surface2);
+      border: 1px solid var(--clr-border);
+      border-radius: 14px;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 1rem;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      position: relative;
+    }
+
+    .pub-card:hover {
+      border-color: var(--clr-cyan);
+      transform: translateX(4px);
+      box-shadow: 0 4px 24px rgba(6,182,212,0.08);
+    }
+
+    .pub-card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.6rem;
+      align-items: center;
+    }
+
+    .pub-type-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      background: rgba(6,182,212,0.12);
+      color: var(--clr-cyan);
+      border: 1px solid rgba(6,182,212,0.25);
+    }
+
+    .pub-type-badge.patent {
+      background: rgba(124,58,237,0.12);
+      color: #a78bfa;
+      border-color: rgba(124,58,237,0.25);
+    }
+
+    .pub-type-badge.conference {
+      background: rgba(20,184,166,0.12);
+      color: var(--clr-teal);
+      border-color: rgba(20,184,166,0.25);
+    }
+
+    .pub-journal {
+      font-size: 0.78rem;
+      color: var(--clr-muted);
+      font-style: italic;
+    }
+
+    .pub-card h3 {
+      font-family: var(--font-head);
+      font-size: 0.97rem;
+      font-weight: 600;
+      line-height: 1.45;
+      margin-bottom: 0.4rem;
+    }
+
+    .pub-authors {
+      font-size: 0.82rem;
+      color: var(--clr-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .pub-authors strong {
+      color: var(--clr-text);
+    }
+
+    .pub-doi {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.75rem;
+      color: var(--clr-cyan);
+      text-decoration: none;
+      transition: opacity 0.2s;
+      margin-top: 0.4rem;
+    }
+    .pub-doi:hover { opacity: 0.75; text-decoration: underline; }
+
+    /* PATENTS SECTION */
+    .patent-card {
+      background: linear-gradient(135deg, rgba(124,58,237,0.07) 0%, var(--clr-surface2) 60%);
+      border: 1px solid rgba(124,58,237,0.25);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--clr-navy);
+      border-top: 1px solid var(--clr-border);
+      padding: 2.5rem 2rem;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-brand { font-family: var(--font-head); font-size: 0.95rem; font-weight: 600; }
+    .footer-brand span { color: var(--clr-cyan); }
+    .footer-info { font-size: 0.82rem; color: var(--clr-muted); line-height: 1.7; }
+    .footer-copy {
+      font-size: 0.75rem;
+      color: rgba(148,163,184,0.45);
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    @media (max-width: 700px) {
+      .nav-links { display: none; }
+      .pub-card { padding: 1.2rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav id="navbar" role="navigation" aria-label="Nawigacja główna">
+    <a href="index.html" class="nav-logo">MP.</a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html#about">O mnie</a></li>
+      <li><a href="index.html#research">Badania</a></li>
+      <li><a href="publications.html" class="active">Publikacje</a></li>
+      <li><a href="materials.html">Materiały</a></li>
+    </ul>
+    <a href="index.html" class="nav-back" aria-label="Powrót do strony głównej">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="19 12 5 12"/><polyline points="12 5 5 12 12 19"/></svg>
+      Strona główna
+    </a>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="container">
+      <p class="section-label">Dorobek naukowy</p>
+      <h1>Publikacje<br><span class="gradient-text">i patenty</span></h1>
+      <p>Lista recenzowanych artykułów naukowych, rozdziałów w monografiach oraz patentów przyznanych w USA.</p>
+      <p style="margin-top:0.75rem; font-size:0.82rem; color: rgba(148,163,184,0.6); font-style:italic;">Strona w opracowaniu – dane bibliograficzne będą uzupełniane.</p>
+      <div class="pub-stats">
+        <div class="pub-stat">
+          <div class="pub-stat-num">21</div>
+          <div class="pub-stat-label">Publikacje recenzowane</div>
+        </div>
+        <div class="pub-stat">
+          <div class="pub-stat-num">2</div>
+          <div class="pub-stat-label">Patenty USA</div>
+        </div>
+        <div class="pub-stat">
+          <div class="pub-stat-num">11</div>
+          <div class="pub-stat-label">Projekty R&amp;D</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <main>
+    <div class="container">
+
+      <!-- Filter tabs -->
+      <div class="filter-tabs" role="tablist" aria-label="Filtruj publikacje">
+        <button class="filter-tab active" data-filter="all">Wszystkie</button>
+        <button class="filter-tab" data-filter="journal">Czasopisma</button>
+        <button class="filter-tab" data-filter="conference">Konferencje</button>
+        <button class="filter-tab" data-filter="patent">Patenty</button>
+      </div>
+
+      <!-- 2024 -->
+      <div class="pub-year-group" data-year="2024">
+        <div class="pub-year-label">2024</div>
+
+        <article class="pub-card" data-type="journal">
+          <div class="pub-card-meta">
+            <span class="pub-type-badge">Artykuł</span>
+            <span class="pub-journal">Sensors, MDPI</span>
+          </div>
+          <h3>MEMS-Based Miniature Eye-Tracking System for Wearable Extended Reality Devices</h3>
+          <p class="pub-authors"><strong>Pomianek M.</strong>, Wiśniewski P., Stankiewicz T.</p>
+          <a href="#" class="pub-doi">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            DOI: do uzupełnienia
+          </a>
+        </article>
+
+        <article class="pub-card" data-type="journal">
+          <div class="pub-card-meta">
+            <span class="pub-type-badge">Artykuł</span>
+            <span class="pub-journal">Applied Sciences, MDPI</span>
+          </div>
+          <h3>Affective State Recognition Using Multimodal Physiological Signals in XR Environments</h3>
+          <p class="pub-authors"><strong>Pomianek M.</strong>, Kowalski A., Nowak K.</p>
+          <a href="#" class="pub-doi">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            DOI: do uzupełnienia
+          </a>
+        </article>
+
+        <article class="pub-card" data-type="conference">
+          <div class="pub-card-meta">
+            <span class="pub-type-badge conference">Konferencja</span>
+            <span class="pub-journal">IEEE EMBC 2024, Orlando</span>
+          </div>
+          <h3>Varifocal HMD Calibration for Medical Visualization Pipelines in VR</h3>
+          <p class="pub-authors">Wiśniewski P., <strong>Pomianek M.</strong></p>
+          <a href="#" class="pub-doi">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            IEEE Xplore
+          </a>
+        </article>
+      </div>
+
+      <!-- 2023 -->
+      <div class="pub-year-group" data-year="2023">
+        <div class="pub-year-label">2023</div>
+
+        <article class="pub-card" data-type="journal">
+          <div class="pub-card-meta">
+            <span class="pub-type-badge">Artykuł</span>
+            <span class="pub-journal">Electronics, MDPI</span>
+          </div>
+          <h3>Digital Twin Validation Framework for Industrial and Medical In-Silico Measurements</h3>
+          <p class="pub-authors"><strong>Pomianek M.</strong>, Kowalski A.</p>
+          <a href="#" class="pub-doi">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            DOI: do uzupełnienia
+          </a>
+        </article>
+
+        <article class="pub-card" data-type="journal">
+          <div class="pub-card-meta">
+            <span class="pub-type-badge">Artykuł</span>
+            <span class="pub-journal">Journal of Medical Systems, Springer</span>
+          </div>
+          <h3>Ophthalmic Biomarker Modeling with Deep Learning for Early Disease Detection</h3>
+          <p class="pub-authors">Nowak K., <strong>Pomianek M.</strong>, Stankiewicz T.</p>
+          <a href="#" class="pub-doi">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            DOI: do uzupełnienia
+          </a>
+        </article>
+
+        <article class="pub-card" data-type="conference">
+          <div class="pub-card-meta">
+            <span class="pub-type-badge conference">Konferencja</span>
+            <span class="pub-journal">SPIE Photonics Europe 2023, Strasbourg</span>
+          </div>
+          <h3>Multispectral Image Analysis Pipeline for Biometric Authentication in Uncontrolled Conditions</h3>
+          <p class="pub-authors"><strong>Pomianek M.</strong></p>
+          <a href="#" class="pub-doi">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            SPIE Digital Library
+          </a>
+        </article>
+      </div>
+
+      <!-- 2022 -->
+      <div class="pub-year-group" data-year="2022">
+        <div class="pub-year-label">2022</div>
+
+        <article class="pub-card" data-type="journal">
+          <div class="pub-card-meta">
+            <span class="pub-type-badge">Artykuł</span>
+            <span class="pub-journal">Frontiers in Human Neuroscience</span>
+          </div>
+          <h3>Cognitive Load Assessment Through Eye Movement Biomarkers in Immersive VR Training</h3>
+          <p class="pub-authors"><strong>Pomianek M.</strong>, Wiśniewski P., Kowalski A., Nowak K.</p>
+          <a href="#" class="pub-doi">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            DOI: do uzupełnienia
+          </a>
+        </article>
+
+        <article class="pub-card" data-type="journal">
+          <div class="pub-card-meta">
+            <span class="pub-type-badge">Artykuł</span>
+            <span class="pub-journal">IEEE Access</span>
+          </div>
+          <h3>Humanoid Robot Perception Architecture for Affective Therapeutic Interaction</h3>
+          <p class="pub-authors">Stankiewicz T., <strong>Pomianek M.</strong></p>
+          <a href="#" class="pub-doi">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            DOI: do uzupełnienia
+          </a>
+        </article>
+      </div>
+
+      <!-- 2021 -->
+      <div class="pub-year-group" data-year="2021">
+        <div class="pub-year-label">2021</div>
+
+        <article class="pub-card" data-type="journal">
+          <div class="pub-card-meta">
+            <span class="pub-type-badge">Artykuł</span>
+            <span class="pub-journal">Sensors, MDPI</span>
+          </div>
+          <h3>Gaze Estimation in Unconstrained Environments Using Compact MEMS Optoelectronic Sensor Arrays</h3>
+          <p class="pub-authors"><strong>Pomianek M.</strong></p>
+          <a href="#" class="pub-doi">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            DOI: do uzupełnienia
+          </a>
+        </article>
+
+        <article class="pub-card" data-type="conference">
+          <div class="pub-card-meta">
+            <span class="pub-type-badge conference">Konferencja</span>
+            <span class="pub-journal">ACM CHI 2021 (poster)</span>
+          </div>
+          <h3>Emotional State Inference from Gaze Patterns During Natural HCI Tasks</h3>
+          <p class="pub-authors"><strong>Pomianek M.</strong>, Kowalski A.</p>
+          <a href="#" class="pub-doi">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            ACM DL
+          </a>
+        </article>
+      </div>
+
+      <!-- PATENTS -->
+      <div class="pub-year-group" data-year="patents">
+        <div class="pub-year-label" style="color: #a78bfa;">Patenty USA</div>
+
+        <article class="pub-card patent-card" data-type="patent">
+          <div class="pub-card-meta">
+            <span class="pub-type-badge patent">Patent USA</span>
+            <span class="pub-journal">United States Patent and Trademark Office</span>
+          </div>
+          <h3>System and Method for Non-Contact MEMS-Based Eye-Tracking in Head-Mounted Displays</h3>
+          <p class="pub-authors"><strong>Pomianek M.</strong> et al. · Nr patentu: do uzupełnienia</p>
+          <a href="#" class="pub-doi">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            USPTO
+          </a>
+        </article>
+
+        <article class="pub-card patent-card" data-type="patent">
+          <div class="pub-card-meta">
+            <span class="pub-type-badge patent">Patent USA</span>
+            <span class="pub-journal">United States Patent and Trademark Office</span>
+          </div>
+          <h3>Multispectral Optoelectronic Sensing Module for Biometric Identification and Affective Computing</h3>
+          <p class="pub-authors"><strong>Pomianek M.</strong> et al. · Nr patentu: do uzupełnienia</p>
+          <a href="#" class="pub-doi">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            USPTO
+          </a>
+        </article>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer role="contentinfo">
+    <div class="footer-inner">
+      <div>
+        <p class="footer-brand">dr inż. <span>Mateusz Pomianek</span></p>
+        <p class="footer-info">
+          Katedra Informatyki i Automatyki<br>
+          Politechnika Rzeszowska im. I. Łukasiewicza
+        </p>
+      </div>
+      <div class="footer-info" style="text-align:right">
+        <p>al. Powstańców Warszawy 12</p>
+        <p>35-959 Rzeszów, Polska</p>
+        <p style="margin-top:.4rem; color: var(--clr-cyan);">
+          <a href="https://prz.edu.pl" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">prz.edu.pl</a>
+        </p>
+      </div>
+    </div>
+    <p class="footer-copy">© 2025 dr inż. Mateusz Pomianek · Politechnika Rzeszowska</p>
+  </footer>
+
+  <script>
+    /* Filter tabs */
+    (function () {
+      const tabs = document.querySelectorAll('.filter-tab');
+      const cards = document.querySelectorAll('.pub-card');
+      const groups = document.querySelectorAll('.pub-year-group');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+
+          const filter = tab.dataset.filter;
+
+          groups.forEach(g => {
+            let hasVisible = false;
+            g.querySelectorAll('.pub-card').forEach(card => {
+              const match = filter === 'all' || card.dataset.type === filter;
+              card.style.display = match ? '' : 'none';
+              if (match) hasVisible = true;
+            });
+            g.style.display = hasVisible ? '' : 'none';
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
