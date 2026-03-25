@@ -264,6 +264,44 @@
       margin-top: 1.5rem;
     }
 
+    /* SUBCATEGORY */
+    .subcategory {
+      margin-top: 3rem;
+    }
+
+    .subcategory-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .subcategory-badge {
+      font-family: var(--font-head);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--clr-bg);
+      background: linear-gradient(135deg, var(--clr-cyan), var(--clr-teal));
+      padding: 0.3rem 0.75rem;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    .subcategory-title {
+      font-family: var(--font-head);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--clr-text);
+    }
+
+    .subcategory-line {
+      flex: 1;
+      height: 1px;
+      background: var(--clr-border);
+    }
+
     @media (max-width: 700px) {
       .nav-links { display: none; }
       .subjects-grid { grid-template-columns: 1fr; }
@@ -300,45 +338,63 @@
   <main>
     <div class="container">
 
-      <div class="subjects-grid">
+      <!-- NdP subcategory: Narzędzia dla Programistów -->
+      <div class="subcategory">
+        <div class="subcategory-header">
+          <span class="subcategory-badge">NdP</span>
+          <span class="subcategory-title">Narzędzia dla Programistów</span>
+          <div class="subcategory-line"></div>
+        </div>
 
-        <!-- Bash -->
-        <a href="bash.html" class="subject-card">
-          <div class="subject-icon">🖥️</div>
-          <p class="subject-tag">Skryptowanie</p>
-          <h3>Bash</h3>
-          <p>Skryptowanie w powłoce Bash: podstawy systemu Linux, automatyzacja zadań, przetwarzanie tekstu, potoki i zmienne środowiskowe.</p>
-          <span class="subject-link">
-            Przejdź do materiałów
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </span>
-        </a>
+        <div class="subjects-grid">
 
-        <!-- LaTeX -->
-        <a href="latex.html" class="subject-card">
-          <div class="subject-icon">📄</div>
-          <p class="subject-tag">Skład tekstu</p>
-          <h3>LaTeX</h3>
-          <p>Skład dokumentów naukowych w systemie LaTeX: struktura dokumentu, wzory matematyczne, bibliografie, tabele, rysunki.</p>
-          <span class="subject-link">
-            Przejdź do materiałów
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </span>
-        </a>
+          <!-- Bash -->
+          <a href="bash.html" class="subject-card">
+            <div class="subject-icon">🖥️</div>
+            <p class="subject-tag">Skryptowanie</p>
+            <h3>Bash</h3>
+            <p>Skryptowanie w powłoce Bash: podstawy systemu Linux, automatyzacja zadań, przetwarzanie tekstu, potoki i zmienne środowiskowe.</p>
+            <span class="subject-link">
+              Przejdź do materiałów
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </a>
 
-        <!-- GIT -->
-        <a href="git.html" class="subject-card">
-          <div class="subject-icon">🔀</div>
-          <p class="subject-tag">Kontrola wersji</p>
-          <h3>GIT</h3>
-          <p>System kontroli wersji Git: inicjalizacja repozytorium, gałęzie, scalanie, konflikty, praca z GitHubem i GitLabem.</p>
-          <span class="subject-link">
-            Przejdź do materiałów
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </span>
-        </a>
+          <!-- LaTeX -->
+          <a href="latex.html" class="subject-card">
+            <div class="subject-icon">📄</div>
+            <p class="subject-tag">Skład tekstu</p>
+            <h3>LaTeX</h3>
+            <p>Skład dokumentów naukowych w systemie LaTeX: struktura dokumentu, wzory matematyczne, bibliografie, tabele, rysunki.</p>
+            <span class="subject-link">
+              Przejdź do materiałów
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </a>
 
-        <!-- Algorytmy -->
+          <!-- GIT -->
+          <a href="git.html" class="subject-card">
+            <div class="subject-icon">🔀</div>
+            <p class="subject-tag">Kontrola wersji</p>
+            <h3>GIT</h3>
+            <p>System kontroli wersji Git: inicjalizacja repozytorium, gałęzie, scalanie, konflikty, praca z GitHubem i GitLabem.</p>
+            <span class="subject-link">
+              Przejdź do materiałów
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </a>
+
+        </div>
+      </div>
+
+      <!-- Remaining subjects -->
+      <div class="subcategory">
+        <div class="subcategory-header">
+          <span class="subcategory-title">Przedmioty</span>
+          <div class="subcategory-line"></div>
+        </div>
+
+        <div class="subjects-grid">
         <a href="algorytmy.html" class="subject-card">
           <div class="subject-icon">⚙️</div>
           <p class="subject-tag">Algorytmika</p>
@@ -398,6 +454,7 @@
           </span>
         </a>
 
+        </div>
       </div>
     </div>
   </main>
