@@ -771,136 +771,6 @@
     }
 
     /* ==========================================
-       PAGE LOADER – orbit-star (Whirl)
-       https://whirl.netlify.app/
-    ========================================== */
-    #page-loader {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      background: var(--clr-bg);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 1.5rem;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
-    }
-
-    #page-loader.hidden {
-      opacity: 0;
-      visibility: hidden;
-    }
-
-    #page-loader .loader-label {
-      font-family: var(--font-head);
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--clr-cyan);
-      opacity: 0.7;
-    }
-
-    /* orbit-star variables */
-    .orbit-star {
-      --primary:   var(--clr-cyan);
-      --secondary: var(--clr-teal);
-    }
-
-    @keyframes orbit-star {
-      0%   { transform: rotate(0deg)    scale(var(--scale)); }
-      100% { transform: rotate(-360deg) scale(var(--scale)); }
-    }
-
-    .orbit-star,
-    .orbit-star > div {
-      --scale: 1;
-      height: 100px;
-      width: 100px;
-      position: relative;
-      animation: linear orbit-star 9s infinite;
-    }
-
-    .orbit-star::before,
-    .orbit-star > div::before {
-      content: '';
-      display: block;
-      height: 100px;
-      width: 50px;
-      background: transparent;
-      border-radius: 50px 0 0 50px;
-      border: none;
-      border-bottom: 5px solid var(--primary);
-      border-left: 2px solid var(--primary);
-      border-top: 0px solid var(--primary);
-      opacity: 0.3;
-    }
-
-    .orbit-star::after,
-    .orbit-star > div::after {
-      content: '';
-      position: absolute;
-      display: block;
-      top: 38px;
-      left: 38px;
-      height: 24px;
-      width: 24px;
-      background: var(--primary);
-      border-radius: 17px;
-    }
-
-    .orbit-star > div:nth-child(1) {
-      position: absolute;
-      top: 25px;
-      left: 25px;
-      width: 50px;
-      height: 50px;
-      animation: linear orbit-star 7s infinite;
-    }
-
-    .orbit-star > div:nth-child(1)::before {
-      height: 50px;
-      width: 25px;
-      border-bottom: 4px solid var(--primary);
-      border-left: 2px solid var(--primary);
-    }
-
-    .orbit-star > div:nth-child(1)::after {
-      top: 22px;
-      left: 11px;
-      width: 8px;
-      height: 8px;
-      background: var(--secondary);
-    }
-
-    .orbit-star > div:nth-child(2) {
-      --scale: 0.333;
-      top: -52.5%;
-    }
-
-    .orbit-star > div:nth-child(2)::before {
-      border-bottom: 13px solid var(--primary);
-      border-left: 3px solid var(--primary);
-    }
-
-    .orbit-star > div:nth-child(2)::after {
-      top: 29px;
-      left: 29px;
-      width: 42px;
-      height: 42px;
-      border-radius: 29px;
-      background: var(--secondary);
-    }
-
-    .orbit-star > div:nth-child(2) > div {
-      position: absolute;
-      background: var(--secondary);
-      width: 20px;
-      height: 20px;
-      bottom: -6px;
-      left: 40px;
-      border-radius: 10px;
        LANGUAGE TOGGLE
     ========================================== */
     .lang-toggle {
@@ -1029,17 +899,6 @@
 
   <!-- Scroll Progress Bar -->
   <div id="scroll-progress" aria-hidden="true"></div>
-
-  <!-- ==========================================
-       PAGE LOADER – orbit-star (Whirl)
-  ========================================== -->
-  <div id="page-loader" role="status" aria-label="Ładowanie strony">
-    <div class="orbit-star" aria-hidden="true">
-      <div></div>
-      <div><div></div></div>
-    </div>
-    <span class="loader-label">Ładowanie…</span>
-  </div>
 
   <!-- ==========================================
        NAVIGATION
@@ -1933,17 +1792,6 @@
           ? 'rgba(10,14,26,0.95)'
           : 'rgba(10,14,26,0.75)';
       }, { passive: true });
-    })();
-
-    /* ------------------------------------------
-       5. PAGE LOADER – hide on load
-    ------------------------------------------ */
-    (function () {
-      const loader = document.getElementById('page-loader');
-      if (!loader) return;
-      window.addEventListener('load', () => {
-        loader.classList.add('hidden');
-      });
     })();
   </script>
   <script src="shattering-text.js"></script>
