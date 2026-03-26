@@ -76,12 +76,12 @@
       /* Slide out – current page exits in the direction of travel */
       var tx = { left: '80px', right: '-80px', up: '0', down: '0' };
       var ty = { left: '0', right: '0', up: '80px', down: '-80px' };
-      document.body.style.transition = 'opacity 0.28s ease, transform 0.28s ease';
+      document.body.style.transition = 'opacity 0.14s ease, transform 0.14s ease';
       document.body.style.opacity    = '0';
       document.body.style.transform  =
         'translate(' + (tx[dir] || '0') + ', ' + (ty[dir] || '0') + ')';
 
-      setTimeout(function () { window.location.href = target; }, 290);
+      setTimeout(function () { window.location.href = target; }, 145);
     });
 
     return a;
@@ -159,7 +159,7 @@
 
     requestAnimationFrame(function () {
       requestAnimationFrame(function () {
-        document.body.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+        document.body.style.transition = 'opacity 0.175s ease, transform 0.175s ease';
         document.body.style.opacity    = '1';
         document.body.style.transform  = 'none';
       });
