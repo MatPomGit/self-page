@@ -305,10 +305,10 @@
     @media (max-width: 700px) {
       .nav-links { display: none; }
       .subjects-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+    </style>
+  <link rel="stylesheet" href="grid-nav.css" />
 </head>
-<body>
+<body data-grid-pos="right">
 
   <!-- NAVIGATION -->
   <nav id="navbar" role="navigation" aria-label="Nawigacja główna">
@@ -504,5 +504,6 @@
     <p class="footer-copy">© 2025 dr inż. Mateusz Pomianek · Politechnika Rzeszowska</p>
   </footer>
 
+  <script src="grid-nav.js" type="module"></script>
 </body>
 </html>
