@@ -1,3 +1,3 @@
-[matpomgit.github.io/MobileHub](MobileHub)
+matpomgit.github.io/MobileHub
 
 https://matpomgit.github.io/PsyHub/#__home__
