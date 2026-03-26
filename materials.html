@@ -302,13 +302,52 @@
       background: var(--clr-border);
     }
 
+    /* NdP accordion */
+    .subcategory-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: inherit;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+      text-align: left;
+      padding: 0;
+    }
+
+    .ndp-chevron {
+      margin-left: auto;
+      flex-shrink: 0;
+      color: var(--clr-muted);
+      transition: transform 0.3s ease, color 0.25s;
+    }
+
+    .subcategory-toggle[aria-expanded="true"] .ndp-chevron {
+      transform: rotate(180deg);
+      color: var(--clr-cyan);
+    }
+
+    .ndp-body {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                  opacity 0.3s ease;
+      opacity: 0;
+    }
+
+    .ndp-body.ndp-open {
+      max-height: 2000px;
+      opacity: 1;
+    }
+
     @media (max-width: 700px) {
       .nav-links { display: none; }
       .subjects-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+    </style>
+  <link rel="stylesheet" href="grid-nav.css" />
 </head>
-<body>
+<body data-grid-pos="right">
 
   <!-- NAVIGATION -->
   <nav id="navbar" role="navigation" aria-label="Nawigacja główna">
@@ -504,5 +543,6 @@
     <p class="footer-copy">© 2025 dr inż. Mateusz Pomianek · Politechnika Rzeszowska</p>
   </footer>
 
+  <script src="grid-nav.js" type="module"></script>
 </body>
 </html>
