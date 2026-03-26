@@ -123,4 +123,46 @@
     });
   }
 
+  /* ── 6. Fast anchor smooth scroll (150 ms) ──────────────── */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href^="#"]');
+    if (!a) { return; }
+    var hash = a.getAttribute('href');
+    var id   = hash.slice(1);
+    var el   = id ? document.getElementById(id) : document.documentElement;
+    if (!el) { return; }
+    e.preventDefault();
+    var targetY = el === document.documentElement
+      ? 0
+      : el.getBoundingClientRect().top + window.scrollY;
+
+    if (reducedMotion) {
+      window.scrollTo(0, targetY);
+      try { history.pushState(null, '', hash); } catch (_) {}
+      return;
+    }
+
+    var startY    = window.scrollY;
+    var diff      = targetY - startY;
+    var DURATION  = 150;
+    var startTs   = null;
+
+    function easeInOutCubic(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function step(ts) {
+      if (!startTs) { startTs = ts; }
+      var progress = Math.min((ts - startTs) / DURATION, 1);
+      window.scrollTo(0, startY + diff * easeInOutCubic(progress));
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        try { history.pushState(null, '', hash); } catch (_) {}
+      }
+    }
+
+    requestAnimationFrame(step);
+  });
+
 }());
