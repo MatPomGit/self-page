@@ -73,9 +73,9 @@
         sessionStorage.setItem('gn-from-dir', dir);
       } catch (_) {}
 
-      /* Slide out */
-      var tx = { left: '-80px', right: '80px', up: '0', down: '0' };
-      var ty = { left: '0', right: '0', up: '-80px', down: '80px' };
+      /* Slide out – current page exits in the direction of travel */
+      var tx = { left: '80px', right: '-80px', up: '0', down: '0' };
+      var ty = { left: '0', right: '0', up: '80px', down: '-80px' };
       document.body.style.transition = 'opacity 0.28s ease, transform 0.28s ease';
       document.body.style.opacity    = '0';
       document.body.style.transform  =
@@ -148,8 +148,8 @@
 
     var startTransform = null;
     if (fromDir) {
-      var tx = { left: '80px', right: '-80px', up: '0', down: '0' };
-      var ty = { left: '0', right: '0', up: '80px', down: '-80px' };
+      var tx = { left: '-80px', right: '80px', up: '0', down: '0' };
+      var ty = { left: '0', right: '0', up: '-80px', down: '80px' };
       startTransform =
         'translate(' + (tx[fromDir] || '0') + ', ' + (ty[fromDir] || '0') + ')';
     }
@@ -166,24 +166,108 @@
     });
   }
 
-  /* ── Keyboard navigation ─────────────────────────────────── */
-  function addKeyboard(dests) {
-    var KEY_DIR = { ArrowLeft: 'left', ArrowRight: 'right', ArrowDown: 'down', ArrowUp: 'up' };
+  /* ── Mouse-edge navigation ───────────────────────────────── */
+  function addMouseEdge(dests) {
+    var EDGE_PX    = 4;   /* px from viewport edge to trigger countdown */
+    var NEAR_PX    = 60;  /* px from edge to highlight the arrow        */
+    var EDGE_DELAY = 900; /* ms to hold at edge before navigating       */
+    var edgeTimer  = null;
 
-    document.addEventListener('keydown', function (e) {
-      /* Ignore if focus is in an input / textarea */
-      var tag = document.activeElement && document.activeElement.tagName;
-      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') { return; }
+    /* Track current highlight to avoid unnecessary DOM writes */
+    var curDir   = null; /* direction of currently highlighted arrow  */
+    var curState = null; /* 'near' | 'active'                         */
 
-      var dir = KEY_DIR[e.key];
-      if (!dir || !dests[dir]) { return; }
+    function getArrow(dir) {
+      return document.querySelector('.grid-nav-' + dir);
+    }
 
-      e.preventDefault();
+    function applyHighlight(dir, state) {
+      if (dir === curDir && state === curState) { return; }
+      if (curDir) {
+        var prev = getArrow(curDir);
+        if (prev) { prev.classList.remove('gna-edge-near', 'gna-edge-active'); }
+      }
+      curDir   = dir;
+      curState = state;
+      if (dir) {
+        var next = getArrow(dir);
+        if (next) { next.classList.add(state === 'active' ? 'gna-edge-active' : 'gna-edge-near'); }
+      }
+    }
 
-      /* Trigger the matching arrow's click */
-      var arrow = document.querySelector('.grid-nav-' + dir);
-      if (arrow) { arrow.click(); }
+    document.addEventListener('mousemove', function (e) {
+      clearTimeout(edgeTimer);
+
+      var w = window.innerWidth;
+      var h = window.innerHeight;
+      var x = e.clientX;
+      var y = e.clientY;
+
+      var atDir   = null;
+      var nearDir = null;
+
+      if      (x <= EDGE_PX       && dests.left)  { atDir   = 'left';  }
+      else if (x >= w - EDGE_PX   && dests.right) { atDir   = 'right'; }
+      else if (y >= h - EDGE_PX   && dests.down)  { atDir   = 'down';  }
+      else if (y <= EDGE_PX       && dests.up)    { atDir   = 'up';    }
+      else if (x <= NEAR_PX       && dests.left)  { nearDir = 'left';  }
+      else if (x >= w - NEAR_PX   && dests.right) { nearDir = 'right'; }
+      else if (y >= h - NEAR_PX   && dests.down)  { nearDir = 'down';  }
+      else if (y <= NEAR_PX       && dests.up)    { nearDir = 'up';    }
+
+      applyHighlight(atDir || nearDir || null, atDir ? 'active' : 'near');
+
+      if (atDir) {
+        edgeTimer = setTimeout(function () {
+          var a = getArrow(atDir);
+          if (a) { a.click(); }
+        }, EDGE_DELAY);
+      }
     });
+
+    document.addEventListener('mouseleave', function () {
+      clearTimeout(edgeTimer);
+      applyHighlight(null, null);
+    });
+  }
+
+  /* ── Touch-swipe navigation ──────────────────────────────── */
+  function addSwipe(dests) {
+    var MIN_DIST = 60; /* minimum swipe distance in px */
+    var startX = null;
+    var startY = null;
+
+    document.addEventListener('touchstart', function (e) {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }, { passive: true });
+
+    document.addEventListener('touchend', function (e) {
+      if (startX === null || startY === null) { return; }
+
+      var dx  = e.changedTouches[0].clientX - startX;
+      var dy  = e.changedTouches[0].clientY - startY;
+      var adx = Math.abs(dx);
+      var ady = Math.abs(dy);
+
+      startX = startY = null;
+
+      if (Math.max(adx, ady) < MIN_DIST) { return; }
+
+      /* Swipe left  → right page; swipe right → left page
+         Swipe up    → down page;  swipe down  → up page   */
+      var dir;
+      if (adx > ady) {
+        dir = dx < 0 ? 'right' : 'left';
+      } else {
+        dir = dy < 0 ? 'down' : 'up';
+      }
+
+      if (dests[dir]) {
+        var arrow = document.querySelector('.grid-nav-' + dir);
+        if (arrow) { arrow.click(); }
+      }
+    }, { passive: true });
   }
 
   /* ── Init ────────────────────────────────────────────────── */
@@ -203,8 +287,9 @@
     /* Add mini-map */
     document.body.appendChild(buildMinimap(pos, dests));
 
-    /* Keyboard support */
-    addKeyboard(dests);
+    /* Mouse-edge and touch-swipe support */
+    addMouseEdge(dests);
+    addSwipe(dests);
   });
 
 }());
