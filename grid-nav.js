@@ -23,68 +23,28 @@
     bottom: { up:    'index.html' },
   };
 
-  var ICONS = {
-    left:  '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 5 5 12 12 19"/></svg>',
-    right: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>',
-    down:  '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>',
-    up:    '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>',
-  };
-
-  /* Label is based on the destination page, not the direction */
-  var DEST_LABELS = {
-    'publications.html': 'Zainteresowania / Badania',
-    'materials.html':    'Materiały dydaktyczne',
-    'projects.html':     'Projekty / Klinika',
-    'index.html':        'Ekran główny',
-  };
-
   function getPos() {
     return document.body.getAttribute('data-grid-pos') || 'center';
   }
 
-  /* ── Build a single directional arrow ────────────────────── */
-  function buildArrow(dir, href) {
-    var a = document.createElement('a');
-    a.href = href;
-    a.className = 'grid-nav-arrow grid-nav-' + dir;
-    var label = DEST_LABELS[href] || href;
-    a.setAttribute('aria-label', label);
+  /* ── Navigate to an adjacent page ────────────────────────── */
+  function navigate(dir, dests) {
+    var target = dests[dir];
+    if (!target) { return; }
 
-    var icon = document.createElement('span');
-    icon.className = 'gna-icon';
-    icon.innerHTML = ICONS[dir];
+    try {
+      sessionStorage.setItem('gn-from-pos', getPos());
+      sessionStorage.setItem('gn-from-dir', dir);
+    } catch (_) {}
 
-    var labelEl = document.createElement('span');
-    labelEl.className = 'gna-label';
-    labelEl.textContent = label;
+    var tx = { left: '80px', right: '-80px', up: '0', down: '0' };
+    var ty = { left: '0', right: '0', up: '80px', down: '-80px' };
+    document.body.style.transition = 'opacity 0.14s ease, transform 0.14s ease';
+    document.body.style.opacity    = '0';
+    document.body.style.transform  =
+      'translate(' + (tx[dir] || '0') + ', ' + (ty[dir] || '0') + ')';
 
-    a.appendChild(icon);
-    a.appendChild(labelEl);
-
-    /* Slide-out transition on click */
-    a.addEventListener('click', function (e) {
-      e.preventDefault();
-      var target = a.href;
-
-      /* Persist current position + direction so the destination
-         page knows from which direction to slide in            */
-      try {
-        sessionStorage.setItem('gn-from-pos', getPos());
-        sessionStorage.setItem('gn-from-dir', dir);
-      } catch (_) {}
-
-      /* Slide out – current page exits in the direction of travel */
-      var tx = { left: '80px', right: '-80px', up: '0', down: '0' };
-      var ty = { left: '0', right: '0', up: '80px', down: '-80px' };
-      document.body.style.transition = 'opacity 0.14s ease, transform 0.14s ease';
-      document.body.style.opacity    = '0';
-      document.body.style.transform  =
-        'translate(' + (tx[dir] || '0') + ', ' + (ty[dir] || '0') + ')';
-
-      setTimeout(function () { window.location.href = target; }, 145);
-    });
-
-    return a;
+    setTimeout(function () { window.location.href = target; }, 145);
   }
 
   /* ── Build mini-map ──────────────────────────────────────── */
@@ -169,31 +129,8 @@
   /* ── Mouse-edge navigation ───────────────────────────────── */
   function addMouseEdge(dests) {
     var EDGE_PX    = 4;   /* px from viewport edge to trigger countdown */
-    var NEAR_PX    = 60;  /* px from edge to highlight the arrow        */
     var EDGE_DELAY = 900; /* ms to hold at edge before navigating       */
     var edgeTimer  = null;
-
-    /* Track current highlight to avoid unnecessary DOM writes */
-    var curDir   = null; /* direction of currently highlighted arrow  */
-    var curState = null; /* 'near' | 'active'                         */
-
-    function getArrow(dir) {
-      return document.querySelector('.grid-nav-' + dir);
-    }
-
-    function applyHighlight(dir, state) {
-      if (dir === curDir && state === curState) { return; }
-      if (curDir) {
-        var prev = getArrow(curDir);
-        if (prev) { prev.classList.remove('gna-edge-near', 'gna-edge-active'); }
-      }
-      curDir   = dir;
-      curState = state;
-      if (dir) {
-        var next = getArrow(dir);
-        if (next) { next.classList.add(state === 'active' ? 'gna-edge-active' : 'gna-edge-near'); }
-      }
-    }
 
     document.addEventListener('mousemove', function (e) {
       clearTimeout(edgeTimer);
@@ -203,31 +140,22 @@
       var x = e.clientX;
       var y = e.clientY;
 
-      var atDir   = null;
-      var nearDir = null;
+      var atDir = null;
 
-      if      (x <= EDGE_PX       && dests.left)  { atDir   = 'left';  }
-      else if (x >= w - EDGE_PX   && dests.right) { atDir   = 'right'; }
-      else if (y >= h - EDGE_PX   && dests.down)  { atDir   = 'down';  }
-      else if (y <= EDGE_PX       && dests.up)    { atDir   = 'up';    }
-      else if (x <= NEAR_PX       && dests.left)  { nearDir = 'left';  }
-      else if (x >= w - NEAR_PX   && dests.right) { nearDir = 'right'; }
-      else if (y >= h - NEAR_PX   && dests.down)  { nearDir = 'down';  }
-      else if (y <= NEAR_PX       && dests.up)    { nearDir = 'up';    }
-
-      applyHighlight(atDir || nearDir || null, atDir ? 'active' : 'near');
+      if      (x <= EDGE_PX       && dests.left)  { atDir = 'left';  }
+      else if (x >= w - EDGE_PX   && dests.right) { atDir = 'right'; }
+      else if (y >= h - EDGE_PX   && dests.down)  { atDir = 'down';  }
+      else if (y <= EDGE_PX       && dests.up)    { atDir = 'up';    }
 
       if (atDir) {
         edgeTimer = setTimeout(function () {
-          var a = getArrow(atDir);
-          if (a) { a.click(); }
+          navigate(atDir, dests);
         }, EDGE_DELAY);
       }
     });
 
     document.addEventListener('mouseleave', function () {
       clearTimeout(edgeTimer);
-      applyHighlight(null, null);
     });
   }
 
@@ -249,8 +177,7 @@
       if (!dir || !dests[dir]) { return; }
 
       e.preventDefault();
-      var arrow = document.querySelector('.grid-nav-' + dir);
-      if (arrow) { arrow.click(); }
+      navigate(dir, dests);
     });
   }
 
@@ -287,8 +214,7 @@
       }
 
       if (dests[dir]) {
-        var arrow = document.querySelector('.grid-nav-' + dir);
-        if (arrow) { arrow.click(); }
+        navigate(dir, dests);
       }
     }, { passive: true });
   }
@@ -301,11 +227,6 @@
 
     /* Apply slide-in */
     applySlidein();
-
-    /* Add directional arrows */
-    Object.keys(dests).forEach(function (dir) {
-      document.body.appendChild(buildArrow(dir, dests[dir]));
-    });
 
     /* Add mini-map */
     document.body.appendChild(buildMinimap(pos, dests));
