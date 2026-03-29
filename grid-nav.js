@@ -231,6 +231,29 @@
     });
   }
 
+  /* ── Keyboard arrow navigation ──────────────────────────── */
+  function addKeyboard(dests) {
+    var KEY_MAP = {
+      ArrowLeft:  'left',
+      ArrowRight: 'right',
+      ArrowDown:  'down',
+      ArrowUp:    'up',
+    };
+
+    document.addEventListener('keydown', function (e) {
+      /* Ignore when focus is inside a text input */
+      var tag = document.activeElement && document.activeElement.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') { return; }
+
+      var dir = KEY_MAP[e.key];
+      if (!dir || !dests[dir]) { return; }
+
+      e.preventDefault();
+      var arrow = document.querySelector('.grid-nav-' + dir);
+      if (arrow) { arrow.click(); }
+    });
+  }
+
   /* ── Touch-swipe navigation ──────────────────────────────── */
   function addSwipe(dests) {
     var MIN_DIST = 60; /* minimum swipe distance in px */
@@ -287,8 +310,9 @@
     /* Add mini-map */
     document.body.appendChild(buildMinimap(pos, dests));
 
-    /* Mouse-edge and touch-swipe support */
+    /* Mouse-edge, keyboard, and touch-swipe support */
     addMouseEdge(dests);
+    addKeyboard(dests);
     addSwipe(dests);
   });
 

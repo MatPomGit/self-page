@@ -237,6 +237,25 @@
 
     .subject-link:hover { gap: 0.55rem; }
 
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.4rem;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--clr-muted);
+      border-radius: 2px;
+      transition: background 0.25s;
+    }
+    .nav-toggle:hover span { background: var(--clr-cyan); }
+
     /* FOOTER */
     footer {
       background: var(--clr-navy);
@@ -342,8 +361,22 @@
     }
 
     @media (max-width: 700px) {
-      .nav-links { display: none; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(10,14,26,0.98);
+        padding: 1rem 2rem 1.5rem;
+        border-bottom: 1px solid var(--clr-border);
+        gap: 0.75rem;
+      }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: flex; }
       .subjects-grid { grid-template-columns: 1fr; }
+    }
     </style>
   <link rel="stylesheet" href="grid-nav.css" />
 </head>
@@ -352,7 +385,10 @@
   <!-- NAVIGATION -->
   <nav id="navbar" role="navigation" aria-label="Nawigacja główna">
     <a href="index.html" class="nav-logo">MP.</a>
-    <ul class="nav-links" role="list">
+    <button class="nav-toggle" id="navToggle" aria-label="Otwórz menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks" role="list">
       <li><a href="index.html#about">O mnie</a></li>
       <li><a href="index.html#research">Badania</a></li>
       <li><a href="publications.html">Publikacje</a></li>
@@ -556,5 +592,25 @@
   </footer>
 
   <script src="grid-nav.js" type="module"></script>
+  <script>
+    (function () {
+      const btn   = document.getElementById('navToggle');
+      const links = document.getElementById('navLinks');
+      if (!btn || !links) { return; }
+      btn.addEventListener('click', function () {
+        const open = links.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        btn.setAttribute('aria-label', open ? 'Zamknij menu' : 'Otwórz menu');
+      });
+      /* Close on outside click */
+      document.addEventListener('click', function (e) {
+        if (!btn.contains(e.target) && !links.contains(e.target)) {
+          links.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+          btn.setAttribute('aria-label', 'Otwórz menu');
+        }
+      });
+    }());
+  </script>
 </body>
 </html>
