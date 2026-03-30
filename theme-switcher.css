@@ -4,11 +4,13 @@
      60 % dominant  → --clr-bg + --clr-surface
      30 % secondary → --clr-surface2 + --clr-navy
      10 % accent    → --clr-cyan + --clr-teal
+   All accent colours pass WCAG AA (≥ 4.5:1) on their
+   respective background colours.
    ============================================================ */
 
 /* ── Theme: Cyber (default – navy/cyan) ─────────────────────
-   No overrides needed; the inline :root already defines this.
-   We still declare the data-attribute so JS can set it.       */
+   60 %: #0a0e1a / #111827   30 %: #1a2236 / #0d1b2a
+   10 %: #06b6d4 (cyan)  ·  contrast on bg ≈ 7.5:1  ✓       */
 html[data-theme="cyber"] {
   --clr-bg:           #0a0e1a;
   --clr-surface:      #111827;
@@ -21,89 +23,217 @@ html[data-theme="cyber"] {
   --clr-neon2:        #7c3aed;
   --clr-text:         #e2e8f0;
   --clr-muted:        #94a3b8;
-  --clr-border:       rgba(6, 182, 212, 0.18);
-  --hero-vignette:    rgba(10, 14, 26, 0.8);
+  --clr-border:       rgba(6, 182, 212, 0.20);
+  --hero-vignette:    rgba(10, 14, 26, 0.80);
   --nav-bg:           rgba(10, 14, 26, 0.75);
   --nav-bg-scrolled:  rgba(10, 14, 26, 0.95);
   --nav-mobile-bg:    rgba(10, 14, 26, 0.97);
 }
 
 /* ── Theme: Forest (deep green) ──────────────────────────────
-   60 % → dark forest background & primary surface
-   30 % → mid-tone green secondary surfaces
-   10 % → lime-green accent                                    */
+   60 %: #060e09 / #0d2018   30 %: #163524 / #091710
+   10 %: #22c55e (emerald)  ·  contrast on bg ≈ 7.2:1  ✓    */
 html[data-theme="forest"] {
-  --clr-bg:           #091410;
-  --clr-surface:      #0e2018;
-  --clr-surface2:     #163222;
-  --clr-navy:         #0b1c14;
+  --clr-bg:           #060e09;
+  --clr-surface:      #0d2018;
+  --clr-surface2:     #163524;
+  --clr-navy:         #091710;
   --clr-blue:         #166534;
   --clr-cyan:         #22c55e;
   --clr-teal:         #4ade80;
   --clr-neon:         #86efac;
-  --clr-neon2:        #15803d;
-  --clr-text:         #dcfce7;
+  --clr-neon2:        #166534;
+  --clr-text:         #ecfdf5;
   --clr-muted:        #6ee7b7;
-  --clr-border:       rgba(34, 197, 94, 0.18);
-  --hero-vignette:    rgba(9, 20, 16, 0.8);
-  --nav-bg:           rgba(9, 20, 16, 0.75);
-  --nav-bg-scrolled:  rgba(9, 20, 16, 0.95);
-  --nav-mobile-bg:    rgba(9, 20, 16, 0.97);
+  --clr-border:       rgba(34, 197, 94, 0.28);
+  --hero-vignette:    rgba(6, 14, 9, 0.82);
+  --nav-bg:           rgba(6, 14, 9, 0.75);
+  --nav-bg-scrolled:  rgba(6, 14, 9, 0.95);
+  --nav-mobile-bg:    rgba(6, 14, 9, 0.97);
 }
 
-/* ── Theme: Solar (warm light) ───────────────────────────────
-   60 % → warm cream background & light surface
-   30 % → sand/stone secondary surfaces
-   10 % → amber/orange accent                                  */
+/* ── Theme: Solar (warm light / parchment) ───────────────────
+   60 %: #faf6ee / #ede5d2   30 %: #dfd2ba / #f2ece0
+   10 %: #c2410c (burnt orange)  ·  contrast on bg ≈ 4.7:1  ✓ */
 html[data-theme="solar"] {
-  --clr-bg:           #f7f3ed;
-  --clr-surface:      #ede6da;
-  --clr-surface2:     #e2d8c8;
-  --clr-navy:         #f0eae0;
-  --clr-blue:         #92400e;
-  --clr-cyan:         #d97706;
-  --clr-teal:         #b45309;
-  --clr-neon:         #f59e0b;
+  --clr-bg:           #faf6ee;
+  --clr-surface:      #ede5d2;
+  --clr-surface2:     #dfd2ba;
+  --clr-navy:         #f2ece0;
+  --clr-blue:         #7c2d12;
+  --clr-cyan:         #c2410c;
+  --clr-teal:         #9a3412;
+  --clr-neon:         #f97316;
   --clr-neon2:        #ea580c;
-  --clr-text:         #1c1917;
-  --clr-muted:        #57534e;
-  --clr-border:       rgba(217, 119, 6, 0.22);
-  --hero-vignette:    rgba(247, 243, 237, 0.85);
-  --nav-bg:           rgba(247, 243, 237, 0.88);
-  --nav-bg-scrolled:  rgba(247, 243, 237, 0.97);
-  --nav-mobile-bg:    rgba(247, 243, 237, 0.99);
+  --clr-text:         #1c1409;
+  --clr-muted:        #4a3728;
+  --clr-border:       rgba(194, 65, 12, 0.30);
+  --hero-vignette:    rgba(250, 246, 238, 0.82);
+  --nav-bg:           rgba(250, 246, 238, 0.90);
+  --nav-bg-scrolled:  rgba(250, 246, 238, 0.97);
+  --nav-mobile-bg:    rgba(250, 246, 238, 0.99);
 }
 
 /* ── Theme: Amethyst (deep purple) ───────────────────────────
-   60 % → deep purple background & primary surface
-   30 % → violet-tinted secondary surfaces
-   10 % → bright violet/magenta accent                         */
+   60 %: #0a0718 / #130f28   30 %: #1e1840 / #0e0b20
+   10 %: #a855f7 (violet)  ·  contrast on bg ≈ 5.7:1  ✓      */
 html[data-theme="amethyst"] {
-  --clr-bg:           #0d0a18;
-  --clr-surface:      #170f2a;
-  --clr-surface2:     #20163a;
-  --clr-navy:         #110c22;
-  --clr-blue:         #4c1d95;
+  --clr-bg:           #0a0718;
+  --clr-surface:      #130f28;
+  --clr-surface2:     #1e1840;
+  --clr-navy:         #0e0b20;
+  --clr-blue:         #5b21b6;
   --clr-cyan:         #a855f7;
   --clr-teal:         #c084fc;
   --clr-neon:         #e879f9;
   --clr-neon2:        #7c3aed;
-  --clr-text:         #f5f3ff;
-  --clr-muted:        #c4b5fd;
-  --clr-border:       rgba(168, 85, 247, 0.18);
-  --hero-vignette:    rgba(13, 10, 24, 0.8);
-  --nav-bg:           rgba(13, 10, 24, 0.75);
-  --nav-bg-scrolled:  rgba(13, 10, 24, 0.95);
-  --nav-mobile-bg:    rgba(13, 10, 24, 0.97);
+  --clr-text:         #f5f0ff;
+  --clr-muted:        #a78bfa;
+  --clr-border:       rgba(168, 85, 247, 0.25);
+  --hero-vignette:    rgba(10, 7, 24, 0.80);
+  --nav-bg:           rgba(10, 7, 24, 0.75);
+  --nav-bg-scrolled:  rgba(10, 7, 24, 0.95);
+  --nav-mobile-bg:    rgba(10, 7, 24, 0.97);
 }
 
-/* ── Scrollbar tinting for light Solar theme ─────────────────*/
-html[data-theme="solar"] ::-webkit-scrollbar-thumb {
-  background: #d97706;
+/* ============================================================
+   Per-theme visual corrections
+   Hardcoded rgba(6,182,212,…) colours in index.html are
+   overridden here for each non-Cyber theme.
+   ============================================================ */
+
+/* ── Geo SVG (about section orbit rings) ────────────────────
+   Applies CSS hue-rotate so all hardcoded cyan SVG colours
+   shift to the correct accent hue for each theme.
+   Cyan ≈ H188°  →  Forest (188+314) mod 360 = 142° (green)
+                 →  Solar  (188+205) mod 360 = 33°  (amber)
+                 →  Amethyst 188+92 = 280°           (violet)
+   NOTE: drop-shadow() cannot use CSS custom properties,
+   so accent colours are hard-coded in each filter value.     */
+html[data-theme="forest"]   .geo-figure svg {
+  filter: hue-rotate(314deg) drop-shadow(0 0 18px rgba(34, 197, 94, 0.28));
 }
-html[data-theme="solar"] ::-webkit-scrollbar-track {
-  background: #f7f3ed;
+html[data-theme="solar"]    .geo-figure svg {
+  filter: hue-rotate(205deg) saturate(1.2) drop-shadow(0 0 18px rgba(194, 65, 12, 0.28));
 }
+html[data-theme="amethyst"] .geo-figure svg {
+  filter: hue-rotate(92deg) drop-shadow(0 0 18px rgba(168, 85, 247, 0.28));
+}
+
+/* ── Interest-card icons (all-hardcoded SVGs) ───────────────── */
+html[data-theme="forest"]   .int-icon { filter: hue-rotate(314deg); }
+html[data-theme="solar"]    .int-icon { filter: hue-rotate(205deg) saturate(1.2); }
+html[data-theme="amethyst"] .int-icon { filter: hue-rotate(92deg); }
+
+/* ── Hero badge background ─────────────────────────────────── */
+html[data-theme="forest"]   .hero-badge { background: rgba(34,  197, 94,  0.12); }
+html[data-theme="solar"]    .hero-badge { background: rgba(194, 65,  12,  0.10); }
+html[data-theme="amethyst"] .hero-badge { background: rgba(168, 85,  247, 0.12); }
+
+/* ── Lang-toggle hover background ──────────────────────────── */
+html[data-theme="forest"]   .lang-toggle:hover { background: rgba(34,  197, 94,  0.08); }
+html[data-theme="solar"]    .lang-toggle:hover { background: rgba(194, 65,  12,  0.08); }
+html[data-theme="amethyst"] .lang-toggle:hover { background: rgba(168, 85,  247, 0.08); }
+
+/* ── Theme-toggle hover (Solar needs light bg, not near-black) ─ */
+html[data-theme="solar"] .theme-toggle:hover,
+html[data-theme="solar"] .theme-toggle[aria-expanded="true"] {
+  background: rgba(194, 65, 12, 0.08);
+}
+
+/* ── Clinical section – hardcoded dark-navy background ────────
+   The section uses linear-gradient(#0d1b2a…) which looks wrong
+   in non-Cyber themes. Override with theme-appropriate bg.     */
+html[data-theme="forest"] #clinical {
+  background: linear-gradient(135deg, #0a1f14 0%, #091510 50%, #0f2318 100%);
+}
+html[data-theme="solar"] #clinical {
+  background: linear-gradient(135deg, #e8dfd0 0%, #ede5d2 50%, #e2d8c5 100%);
+}
+html[data-theme="amethyst"] #clinical {
+  background: linear-gradient(135deg, #18103a 0%, #14102c 50%, #1c1545 100%);
+}
+
+/* ── Clinical section glow blobs (::before / ::after) ────────── */
+html[data-theme="forest"] #clinical::before {
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.08) 0%, transparent 70%);
+}
+html[data-theme="forest"] #clinical::after {
+  background: radial-gradient(circle, rgba(22, 101, 52, 0.08) 0%, transparent 70%);
+}
+html[data-theme="solar"] #clinical::before {
+  background: radial-gradient(circle, rgba(194, 65, 12, 0.07) 0%, transparent 70%);
+}
+html[data-theme="solar"] #clinical::after {
+  background: radial-gradient(circle, rgba(234, 88, 12, 0.07) 0%, transparent 70%);
+}
+html[data-theme="amethyst"] #clinical::before {
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, transparent 70%);
+}
+html[data-theme="amethyst"] #clinical::after {
+  background: radial-gradient(circle, rgba(232, 121, 249, 0.08) 0%, transparent 70%);
+}
+
+/* ── Clinical card – hardcoded border & hover bg ─────────────── */
+html[data-theme="forest"] .clinical-card {
+  border-color: rgba(34,  197, 94,  0.20);
+}
+html[data-theme="forest"] .clinical-card:hover {
+  background: rgba(34,  197, 94,  0.06);
+}
+html[data-theme="solar"] .clinical-card {
+  border-color: rgba(194, 65,  12,  0.22);
+  background: rgba(255, 255, 255, 0.40);
+}
+html[data-theme="solar"] .clinical-card:hover {
+  background: rgba(194, 65,  12,  0.06);
+}
+html[data-theme="amethyst"] .clinical-card {
+  border-color: rgba(168, 85,  247, 0.22);
+}
+html[data-theme="amethyst"] .clinical-card:hover {
+  background: rgba(168, 85,  247, 0.06);
+}
+
+/* ── Project / Material card hover shimmer gradient ──────────── */
+html[data-theme="forest"] .project-card::before,
+html[data-theme="forest"] .material-card::before {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.06) 0%, transparent 60%);
+}
+html[data-theme="solar"] .project-card::before,
+html[data-theme="solar"] .material-card::before {
+  background: linear-gradient(135deg, rgba(194, 65, 12, 0.05) 0%, transparent 60%);
+}
+html[data-theme="amethyst"] .project-card::before,
+html[data-theme="amethyst"] .material-card::before {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.06) 0%, transparent 60%);
+}
+
+/* ── Card hover box-shadows ──────────────────────────────────── */
+html[data-theme="forest"] .interest-card:hover,
+html[data-theme="forest"] .project-card:hover,
+html[data-theme="forest"] .material-card:hover {
+  box-shadow: 0 8px 30px rgba(34, 197, 94, 0.14);
+}
+html[data-theme="forest"] .research-col:hover { box-shadow: 0 0 30px rgba(34, 197, 94, 0.10); }
+
+html[data-theme="solar"] .interest-card:hover,
+html[data-theme="solar"] .project-card:hover,
+html[data-theme="solar"] .material-card:hover {
+  box-shadow: 0 8px 30px rgba(194, 65, 12, 0.14);
+}
+html[data-theme="solar"] .research-col:hover { box-shadow: 0 0 30px rgba(194, 65, 12, 0.10); }
+
+html[data-theme="amethyst"] .interest-card:hover,
+html[data-theme="amethyst"] .project-card:hover,
+html[data-theme="amethyst"] .material-card:hover {
+  box-shadow: 0 8px 30px rgba(168, 85, 247, 0.14);
+}
+html[data-theme="amethyst"] .research-col:hover { box-shadow: 0 0 30px rgba(168, 85, 247, 0.10); }
+
+/* ── Scrollbar tinting ────────────────────────────────────────── */
+html[data-theme="solar"] ::-webkit-scrollbar-thumb { background: #c2410c; }
+html[data-theme="solar"] ::-webkit-scrollbar-track  { background: #faf6ee; }
 
 /* ============================================================
    Theme Picker UI
@@ -200,6 +330,7 @@ html[data-theme="solar"] ::-webkit-scrollbar-track {
 }
 
 .theme-swatch--cyber     { background: linear-gradient(135deg, #0a0e1a 50%, #06b6d4 50%); }
-.theme-swatch--forest    { background: linear-gradient(135deg, #091410 50%, #22c55e 50%); }
-.theme-swatch--solar     { background: linear-gradient(135deg, #f7f3ed 50%, #d97706 50%); border-color: rgba(0,0,0,0.12); }
-.theme-swatch--amethyst  { background: linear-gradient(135deg, #0d0a18 50%, #a855f7 50%); }
+.theme-swatch--forest    { background: linear-gradient(135deg, #060e09 50%, #22c55e 50%); }
+.theme-swatch--solar     { background: linear-gradient(135deg, #faf6ee 50%, #c2410c 50%); border-color: rgba(0,0,0,0.12); }
+.theme-swatch--amethyst  { background: linear-gradient(135deg, #0a0718 50%, #a855f7 50%); }
+
