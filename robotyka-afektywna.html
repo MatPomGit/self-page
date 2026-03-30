@@ -298,6 +298,8 @@
       .resources-section { padding: 1.5rem; }
     }
   </style>
+  <link rel="stylesheet" href="theme-switcher.css" />
+  <script src="theme-switcher.js"></script>
 </head>
 <body>
 
@@ -313,6 +315,12 @@
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="19 12 5 12"/><polyline points="12 5 5 12 12 19"/></svg>
       Materiały
     </a>
+    <div class="theme-picker">
+      <button class="theme-toggle" id="themeToggle" aria-haspopup="listbox" aria-expanded="false" aria-label="Motyw – kliknij aby zmienić">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 0 20C6.5 22 2 17 2 12"/><path d="M12 8v4l3 3"/></svg>
+        Motyw
+      </button>
+    </div>
   </nav>
 
   <div class="page-hero">

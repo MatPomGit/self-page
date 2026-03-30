@@ -22,6 +22,8 @@
   <link rel="stylesheet" href="scroll-animations.css" />
   <link rel="stylesheet" href="anime-animations.css" />
   <link rel="stylesheet" href="grid-nav.css" />
+  <link rel="stylesheet" href="theme-switcher.css" />
+  <script src="theme-switcher.js"></script>
 
   <style>
     /* ==========================================
@@ -140,7 +142,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(10, 14, 26, 0.75);
+      background: var(--nav-bg, rgba(10, 14, 26, 0.75));
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--clr-border);
@@ -202,7 +204,7 @@
         top: 100%;
         right: 0;
         left: 0;
-        background: rgba(10, 14, 26, 0.97);
+        background: var(--nav-mobile-bg, rgba(10, 14, 26, 0.97));
         padding: 1.5rem 2rem;
         border-bottom: 1px solid var(--clr-border);
       }
@@ -235,7 +237,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at center, transparent 40%, rgba(10,14,26,0.8) 100%);
+      background: radial-gradient(ellipse at center, transparent 40%, var(--hero-vignette, rgba(10,14,26,0.8)) 100%);
       pointer-events: none;
     }
 
@@ -919,6 +921,12 @@
       <li><a href="materials.html" data-i18n="nav.materials">Materiały</a></li>
     </ul>
     <button class="lang-toggle" id="langToggle" aria-label="Switch language / Zmień język">EN</button>
+    <div class="theme-picker">
+      <button class="theme-toggle" id="themeToggle" aria-haspopup="listbox" aria-expanded="false" aria-label="Motyw – kliknij aby zmienić">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 0 20C6.5 22 2 17 2 12"/><path d="M12 8v4l3 3"/></svg>
+        Motyw
+      </button>
+    </div>
   </nav>
 
   <!-- ==========================================
@@ -1415,6 +1423,20 @@
         H = canvas.height = canvas.offsetHeight;
       }
 
+      /* Helper: read a CSS hex variable → {r,g,b} */
+      function hexToRgb(hex) {
+        hex = hex.replace(/\s/g, '');
+        var m = hex.match(/^#([0-9a-f]{3,6})$/i);
+        if (!m) return { r: 6, g: 182, b: 212 };
+        var h = m[1];
+        if (h.length === 3) h = h[0]+h[0]+h[1]+h[1]+h[2]+h[2];
+        return { r: parseInt(h.slice(0,2),16), g: parseInt(h.slice(2,4),16), b: parseInt(h.slice(4,6),16) };
+      }
+      function getAccent()  { return hexToRgb(getComputedStyle(document.documentElement).getPropertyValue('--clr-cyan').trim()  || '#06b6d4'); }
+      function getAccent2() { return hexToRgb(getComputedStyle(document.documentElement).getPropertyValue('--clr-teal').trim()  || '#14b8a6'); }
+      function getNeon()    { return hexToRgb(getComputedStyle(document.documentElement).getPropertyValue('--clr-neon').trim()  || '#00f5ff'); }
+      function rgbStr(c)    { return c.r + ',' + c.g + ',' + c.b; }
+
       window.addEventListener('resize', () => { resize(); initParticles(); initGalaxies(); });
       resize();
 
@@ -1455,10 +1477,11 @@
         this.armTurns = Math.random() * 1.2 + 0.9;
         this.vx = (Math.random() - 0.5) * 0.12;
         this.vy = (Math.random() - 0.5) * 0.12;
+        var a1 = getAccent(), a2 = getAccent2(), n2 = getNeon();
         var palette = [
-          [6, 182, 212],
-          [20, 184, 166],
-          [124, 58, 237],
+          [a1.r, a1.g, a1.b],
+          [a2.r, a2.g, a2.b],
+          [n2.r, n2.g, n2.b],
         ];
         this.rgb = palette[Math.floor(Math.random() * palette.length)];
         this.stars = [];
@@ -1563,12 +1586,13 @@
         this.vx = (Math.random() - 0.5) * 0.35;
         this.vy = (Math.random() - 0.5) * 0.35;
         this.alpha = Math.random() * 0.5 + 0.15;
-        /* colour: mix of cyan/teal/neon */
+        /* colour: mix of accent colours read from current theme */
+        var a1 = getAccent(), a2 = getAccent2(), n = getNeon();
         const palette = [
-          'rgba(6,182,212,',
-          'rgba(20,184,166,',
-          'rgba(0,245,255,',
-          'rgba(56,189,248,'
+          'rgba(' + rgbStr(a1) + ',',
+          'rgba(' + rgbStr(a2) + ',',
+          'rgba(' + rgbStr(n)  + ',',
+          'rgba(' + rgbStr(a1) + ',',
         ];
         this.color = palette[Math.floor(Math.random() * palette.length)];
       };
@@ -1628,7 +1652,7 @@
               ctx.beginPath();
               ctx.moveTo(particles[i].x, particles[i].y);
               ctx.lineTo(particles[j].x, particles[j].y);
-              ctx.strokeStyle = `rgba(6,182,212,${alpha})`;
+              ctx.strokeStyle = `rgba(${rgbStr(getAccent())},${alpha})`;
               ctx.lineWidth   = 0.7;
               ctx.stroke();
             }
@@ -1651,21 +1675,21 @@
         /* Large outer hexagon */
         ctx.translate(W * 0.78 + offX * 0.4, H * 0.45 + offY * 0.4);
         ctx.rotate(geoAngle * 0.4);
-        drawHexagon(ctx, 0, 0, 160, 'rgba(6,182,212,0.06)', 'rgba(6,182,212,0.12)', 1);
+        drawHexagon(ctx, 0, 0, 160, `rgba(${rgbStr(getAccent())},0.06)`, `rgba(${rgbStr(getAccent())},0.12)`, 1);
         ctx.restore();
 
         ctx.save();
         /* Inner hexagon */
         ctx.translate(W * 0.78 + offX * 0.6, H * 0.45 + offY * 0.6);
         ctx.rotate(-geoAngle * 0.7);
-        drawHexagon(ctx, 0, 0, 90, null, 'rgba(20,184,166,0.18)', 1);
+        drawHexagon(ctx, 0, 0, 90, null, `rgba(${rgbStr(getAccent2())},0.18)`, 1);
         ctx.restore();
 
         ctx.save();
         /* Triangle */
         ctx.translate(W * 0.12 + offX * 0.3, H * 0.25 + offY * 0.3);
         ctx.rotate(geoAngle);
-        drawPolygon(ctx, 0, 0, 3, 60, null, 'rgba(0,245,255,0.12)', 1);
+        drawPolygon(ctx, 0, 0, 3, 60, null, `rgba(${rgbStr(getNeon())},0.12)`, 1);
         ctx.restore();
 
         ctx.save();
@@ -1673,12 +1697,12 @@
         ctx.translate(W * 0.88 + offX * 0.5, H * 0.75 + offY * 0.5);
         ctx.beginPath();
         ctx.arc(0, 0, 50, 0, Math.PI * 2);
-        ctx.strokeStyle = 'rgba(6,182,212,0.1)';
+        ctx.strokeStyle = `rgba(${rgbStr(getAccent())},0.1)`;
         ctx.lineWidth = 1;
         ctx.stroke();
         ctx.beginPath();
         ctx.arc(0, 0, 30, 0, Math.PI * 2);
-        ctx.strokeStyle = 'rgba(20,184,166,0.1)';
+        ctx.strokeStyle = `rgba(${rgbStr(getAccent2())},0.1)`;
         ctx.stroke();
         ctx.restore();
 
@@ -1690,7 +1714,7 @@
           ctx.beginPath();
           ctx.moveTo(i * 30, -60);
           ctx.lineTo(i * 30, 60);
-          ctx.strokeStyle = 'rgba(6,182,212,0.04)';
+          ctx.strokeStyle = `rgba(${rgbStr(getAccent())},0.04)`;
           ctx.lineWidth = 1;
           ctx.stroke();
           ctx.beginPath();
@@ -1731,11 +1755,13 @@
       function render() {
         ctx.clearRect(0, 0, W, H);
 
-        /* Subtle gradient background */
+        /* Subtle gradient background – reads current theme colour */
+        const bgClr = getComputedStyle(document.documentElement)
+                        .getPropertyValue('--clr-bg').trim() || '#0a0e1a';
         const grad = ctx.createLinearGradient(0, 0, W, H);
-        grad.addColorStop(0,   '#0a0e1a');
-        grad.addColorStop(0.5, '#0d1623');
-        grad.addColorStop(1,   '#0a0e1a');
+        grad.addColorStop(0,   bgClr);
+        grad.addColorStop(0.5, bgClr);
+        grad.addColorStop(1,   bgClr);
         ctx.fillStyle = grad;
         ctx.fillRect(0, 0, W, H);
 
@@ -1750,6 +1776,12 @@
       initParticles();
       initGalaxies();
       render();
+
+      /* Re-initialise particles/galaxies when theme changes */
+      document.addEventListener('themechange', function () {
+        initParticles();
+        initGalaxies();
+      });
     })();
 
     /* ------------------------------------------
@@ -1802,11 +1834,14 @@
     ------------------------------------------ */
     (function () {
       const nav = document.getElementById('navbar');
-      window.addEventListener('scroll', () => {
-        nav.style.background = window.scrollY > 40
-          ? 'rgba(10,14,26,0.95)'
-          : 'rgba(10,14,26,0.75)';
-      }, { passive: true });
+      function updateNavBg() {
+        const style = getComputedStyle(document.documentElement);
+        const scrolled = style.getPropertyValue('--nav-bg-scrolled').trim() || 'rgba(10,14,26,0.95)';
+        const idle     = style.getPropertyValue('--nav-bg').trim()          || 'rgba(10,14,26,0.75)';
+        nav.style.background = window.scrollY > 40 ? scrolled : idle;
+      }
+      window.addEventListener('scroll', updateNavBg, { passive: true });
+      document.addEventListener('themechange', updateNavBg);
     })();
   </script>
   <script src="shattering-text.js"></script>
