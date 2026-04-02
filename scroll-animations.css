@@ -178,6 +178,7 @@
   stroke:            var(--clr-cyan, #06b6d4);
   stroke-width:      3;
   stroke-linecap:    round;
+  /* circumference = 2π × 28 ≈ 175.93 px */
   stroke-dasharray:  175.93px;
   stroke-dashoffset: 175.93px;
 }

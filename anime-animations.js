@@ -61,6 +61,7 @@ import { animate, stagger, spring } from './anime.esm.min.js';
     /* Fires after the .hero-name shatter animation finishes.
        shatter: baseDelay=50, stagger=60, ~21 animated chars, duration=500ms
        → last char: 50 + 20×60 = 1250 ms starts, +500 ms = 1750 ms finishes  */
+    var SHATTER_ANIMATION_END_MS = 1850; /* 50 + 20×60 + 500 + 100ms buffer  */
     var heroTitle = document.querySelector('.hero-title');
     if (heroTitle) {
       heroTitle.classList.remove('fade-in');
@@ -92,7 +93,7 @@ import { animate, stagger, spring } from './anime.esm.min.js';
           duration: 280,
           ease:     'easeOutCubic',
         });
-      }, 1850);
+      }, SHATTER_ANIMATION_END_MS);
     }
 
     /* ── 3. Hero CTA pulsing glow + click ripple ─────────── */
@@ -224,29 +225,14 @@ import { animate, stagger, spring } from './anime.esm.min.js';
       });
     }
 
-    /* ── 9. Scroll-progress glow via anime.js pulse ──────── */
-    var progressBar = document.getElementById('scroll-progress');
-    if (progressBar) {
-      var glowAnim = null;
-      var mutObs = new MutationObserver(function () {
-        if (progressBar.classList.contains('sa-bar-glow')) {
-          if (!glowAnim) {
-            /* CSS keyframe handles the pulse – anime.js manages the transition in */
-            glowAnim = animate(progressBar, {
-              opacity:   [1, 1], /* keep visible; CSS animation does the glow */
-              duration:  1,
-            });
-          }
-        } else {
-          if (glowAnim) { glowAnim.pause(); glowAnim = null; }
-        }
-      });
-      mutObs.observe(progressBar, { attributes: true, attributeFilter: ['class'] });
-    }
+    /* ── 9. Scroll-progress glow is handled by CSS keyframe ─ */
+    /* scroll-animations.js adds/removes .sa-bar-glow when pct > 85;
+       the sa-bar-pulse @keyframe in scroll-animations.css drives the pulse. */
 
   }); /* end DOMContentLoaded */
 
   /* ── 4. Research list items stagger on scroll ─────────── */
+  var RESEARCH_ITEM_OFFSET = 22; /* px – alternating left/right slide */
   var researchObserver = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       if (!e.isIntersecting) { return; }
@@ -257,7 +243,7 @@ import { animate, stagger, spring } from './anime.esm.min.js';
       setTimeout(function () {
         /* Item 5: alternate slide directions – odd from left, even from right */
         items.forEach(function (li, idx) {
-          var fromX = idx % 2 === 0 ? -22 : 22;
+          var fromX = idx % 2 === 0 ? -RESEARCH_ITEM_OFFSET : RESEARCH_ITEM_OFFSET;
           animate(li, {
             opacity:    [0, 1],
             translateX: [fromX, 0],
@@ -276,7 +262,7 @@ import { animate, stagger, spring } from './anime.esm.min.js';
     /* Pre-hide list items – alternating initial offsets match animation */
     col.querySelectorAll('.research-list li').forEach(function (li, idx) {
       li.style.opacity   = '0';
-      li.style.transform = idx % 2 === 0 ? 'translateX(-22px)' : 'translateX(22px)';
+      li.style.transform = idx % 2 === 0 ? 'translateX(-' + RESEARCH_ITEM_OFFSET + 'px)' : 'translateX(' + RESEARCH_ITEM_OFFSET + 'px)';
     });
     researchObserver.observe(col);
   });

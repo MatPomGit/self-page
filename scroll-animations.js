@@ -64,7 +64,7 @@
     var duration = 1600;
     var startTs  = null;
     /* SVG ring: r=28, circumference = 2π×28 ≈ 175.93 */
-    var CIRC     = 175.93;
+    var CIRC     = 2 * Math.PI * 28;
     var ringWrap = el.closest ? el.closest('.stat-ring-wrap') : null;
     var ringFill = ringWrap ? ringWrap.querySelector('.stat-ring-fill') : null;
     if (ringFill) {
