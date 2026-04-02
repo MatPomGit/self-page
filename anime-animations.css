@@ -19,9 +19,6 @@
 }
 
 /* ── CTA ripple helper ────────────────────────────────────── */
-/* The .hero-cta already has position:relative (applied inline
-   by anime-animations.js). This rule keeps the ripple clipped
-   to the button boundary.                                      */
 .hero-cta {
   overflow: hidden;
 }
@@ -32,4 +29,21 @@
   background:    rgba(255, 255, 255, 0.45);
   pointer-events: none;
   transform:     scale(0);
+}
+
+/* ── Hero subtitle typewriter characters ─────────────────── */
+.tw-char {
+  display: inline-block;
+}
+
+.tw-space {
+  display: inline-block;
+  width:   0.28em;
+}
+
+/* ── CTA magnetic hover – override any residual transition ── */
+/* The magnetic effect sets transform directly; keep will-change
+   to hint the compositor and avoid transition fights.          */
+.hero-cta {
+  will-change: transform;
 }

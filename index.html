@@ -1229,19 +1229,43 @@
       <!-- Stats -->
       <div class="stats-row">
         <div class="stat-card fade-in" style="transition-delay:.1s">
-          <div class="stat-number" data-count="21">21</div>
+          <div class="stat-ring-wrap">
+            <svg class="stat-ring" viewBox="0 0 64 64" aria-hidden="true">
+              <circle class="stat-ring-bg"   cx="32" cy="32" r="28"/>
+              <circle class="stat-ring-fill" cx="32" cy="32" r="28"/>
+            </svg>
+            <div class="stat-number" data-count="21">21</div>
+          </div>
           <div class="stat-label" data-i18n="projects.stat1">Publikacje recenzowane</div>
         </div>
         <div class="stat-card fade-in" style="transition-delay:.15s">
-          <div class="stat-number" data-count="2">2</div>
+          <div class="stat-ring-wrap">
+            <svg class="stat-ring" viewBox="0 0 64 64" aria-hidden="true">
+              <circle class="stat-ring-bg"   cx="32" cy="32" r="28"/>
+              <circle class="stat-ring-fill" cx="32" cy="32" r="28"/>
+            </svg>
+            <div class="stat-number" data-count="2">2</div>
+          </div>
           <div class="stat-label" data-i18n="projects.stat2">Patenty USA</div>
         </div>
         <div class="stat-card fade-in" style="transition-delay:.2s">
-          <div class="stat-number" data-count="11">11</div>
+          <div class="stat-ring-wrap">
+            <svg class="stat-ring" viewBox="0 0 64 64" aria-hidden="true">
+              <circle class="stat-ring-bg"   cx="32" cy="32" r="28"/>
+              <circle class="stat-ring-fill" cx="32" cy="32" r="28"/>
+            </svg>
+            <div class="stat-number" data-count="11">11</div>
+          </div>
           <div class="stat-label" data-i18n="projects.stat3">Projekty R&amp;D</div>
         </div>
         <div class="stat-card fade-in" style="transition-delay:.25s">
-          <div class="stat-number" data-count="2">2</div>
+          <div class="stat-ring-wrap">
+            <svg class="stat-ring" viewBox="0 0 64 64" aria-hidden="true">
+              <circle class="stat-ring-bg"   cx="32" cy="32" r="28"/>
+              <circle class="stat-ring-fill" cx="32" cy="32" r="28"/>
+            </svg>
+            <div class="stat-number" data-count="2">2</div>
+          </div>
           <div class="stat-label" data-i18n="projects.stat4">Projekty jako kierownik</div>
         </div>
       </div>
@@ -1416,6 +1440,7 @@
       let W, H, mouse = { x: -9999, y: -9999 };
       let particles = [];
       let animId;
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       /* Resize handler */
       function resize() {
@@ -1580,12 +1605,13 @@
       }
 
       Particle.prototype.reset = function () {
+        this.depth = Math.random() * 0.8 + 0.2;          /* 0.2 = far, 1.0 = near */
         this.x  = Math.random() * W;
         this.y  = Math.random() * H;
-        this.r  = Math.random() * 1.8 + 0.4;
-        this.vx = (Math.random() - 0.5) * 0.35;
-        this.vy = (Math.random() - 0.5) * 0.35;
-        this.alpha = Math.random() * 0.5 + 0.15;
+        this.r  = (Math.random() * 1.8 + 0.4) * this.depth;
+        this.vx = (Math.random() - 0.5) * 0.35 * this.depth;
+        this.vy = (Math.random() - 0.5) * 0.35 * this.depth;
+        this.alpha = (Math.random() * 0.5 + 0.15) * (0.35 + this.depth * 0.65);
         /* colour: mix of accent colours read from current theme */
         var a1 = getAccent(), a2 = getAccent2(), n = getNeon();
         const palette = [
@@ -1625,8 +1651,12 @@
       };
 
       Particle.prototype.draw = function () {
+        /* Near particles shift less with mouse (they're close so parallax is subtle);
+           far particles shift more in the opposite direction for depth effect. */
+        const parallaxX = (mouse.x !== -9999) ? (mouse.x / W - 0.5) * 24 * (1 - this.depth) : 0;
+        const parallaxY = (mouse.y !== -9999) ? (mouse.y / H - 0.5) * 18 * (1 - this.depth) : 0;
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+        ctx.arc(this.x + parallaxX, this.y + parallaxY, this.r, 0, Math.PI * 2);
         ctx.fillStyle = this.color + this.alpha + ')';
         ctx.fill();
       };
@@ -1775,12 +1805,29 @@
 
       initParticles();
       initGalaxies();
-      render();
+
+      if (prefersReducedMotion) {
+        /* Single static frame – no animation loop */
+        ctx.clearRect(0, 0, W, H);
+        drawGeoShapes();
+        galaxies.forEach(g => g.draw());
+        drawConnections();
+        particles.forEach(p => p.draw());
+      } else {
+        render();
+      }
 
       /* Re-initialise particles/galaxies when theme changes */
       document.addEventListener('themechange', function () {
         initParticles();
         initGalaxies();
+        if (prefersReducedMotion) {
+          ctx.clearRect(0, 0, W, H);
+          drawGeoShapes();
+          galaxies.forEach(g => g.draw());
+          drawConnections();
+          particles.forEach(p => p.draw());
+        }
       });
     })();
 

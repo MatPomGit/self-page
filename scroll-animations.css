@@ -145,3 +145,86 @@
     0 0 36px rgba(6, 182, 212, 0.45);
   transition: text-shadow 0.3s ease;
 }
+
+/* ── Stat ring SVG wrapper ────────────────────────────────── */
+.stat-ring-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 0.5rem;
+}
+
+.stat-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+  overflow: visible;
+}
+
+.stat-ring-bg {
+  fill:         none;
+  stroke:       rgba(6, 182, 212, 0.12);
+  stroke-width: 3;
+}
+
+.stat-ring-fill {
+  fill:              none;
+  stroke:            var(--clr-cyan, #06b6d4);
+  stroke-width:      3;
+  stroke-linecap:    round;
+  stroke-dasharray:  175.93px;
+  stroke-dashoffset: 175.93px;
+}
+
+.stat-number {
+  position: relative;
+  z-index:  1;
+}
+
+/* ── Nav active-section indicator ────────────────────────── */
+.nav-links {
+  position: relative; /* anchor for the indicator span */
+}
+
+.nav-indicator {
+  position:      absolute;
+  bottom:        -4px;
+  left:          0;
+  height:        2px;
+  width:         40px;
+  background:    linear-gradient(90deg, var(--clr-cyan, #06b6d4), var(--clr-teal, #14b8a6));
+  box-shadow:    0 0 8px rgba(6, 182, 212, 0.7);
+  border-radius: 2px;
+  pointer-events: none;
+  opacity:       0;
+  transition:    opacity 0.3s ease, width 0.15s ease;
+}
+
+@media (max-width: 700px) {
+  .nav-indicator { display: none; }
+}
+
+/* ── Scroll-progress glow pulse when near 100% ───────────── */
+@keyframes sa-bar-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 10px rgba(6, 182, 212, 0.7),
+      0 0 24px rgba(6, 182, 212, 0.35);
+  }
+  50% {
+    box-shadow:
+      0 0 22px rgba(6, 182, 212, 1),
+      0 0 50px rgba(6, 182, 212, 0.7),
+      0 0 90px rgba(6, 182, 212, 0.3);
+  }
+}
+
+#scroll-progress.sa-bar-glow {
+  animation: sa-bar-pulse 0.9s ease-in-out infinite;
+}
