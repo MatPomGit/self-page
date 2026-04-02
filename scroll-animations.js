@@ -7,6 +7,8 @@
 
   /* Respect prefers-reduced-motion */
   var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* Export as global so anime-animations.js (module) can share the same check */
+  window.SA_REDUCED_MOTION = reducedMotion;
 
   /* ── 1. Scroll Progress Bar ──────────────────────────────── */
   var bar = document.getElementById('scroll-progress');
@@ -16,6 +18,12 @@
     var docH = document.documentElement.scrollHeight - window.innerHeight;
     var pct  = docH > 0 ? (window.scrollY / docH * 100) : 0;
     bar.style.width = pct.toFixed(2) + '%';
+    /* Item 9: reward user for nearing the end of the page */
+    if (pct > 85) {
+      bar.classList.add('sa-bar-glow');
+    } else {
+      bar.classList.remove('sa-bar-glow');
+    }
   }
 
   window.addEventListener('scroll', updateProgressBar, { passive: true });
@@ -55,24 +63,38 @@
     var target   = parseInt(el.getAttribute('data-count'), 10);
     var duration = 1600;
     var startTs  = null;
+    /* SVG ring: r=28, circumference = 2π×28 ≈ 175.93 */
+    var CIRC     = 2 * Math.PI * 28;
+    var ringWrap = el.closest ? el.closest('.stat-ring-wrap') : null;
+    var ringFill = ringWrap ? ringWrap.querySelector('.stat-ring-fill') : null;
+    if (ringFill) {
+      ringFill.style.strokeDasharray  = CIRC + 'px';
+      ringFill.style.strokeDashoffset = CIRC + 'px';
+    }
 
     el.classList.add('sa-counting');
 
     if (reducedMotion) {
       el.textContent = target;
       el.classList.remove('sa-counting');
+      if (ringFill) { ringFill.style.strokeDashoffset = '0px'; }
       return;
     }
 
     function step(ts) {
       if (!startTs) { startTs = ts; }
       var progress = Math.min((ts - startTs) / duration, 1);
-      el.textContent = Math.round(easeOutExpo(progress) * target);
+      var ease     = easeOutExpo(progress);
+      el.textContent = Math.round(ease * target);
+      if (ringFill) {
+        ringFill.style.strokeDashoffset = (CIRC * (1 - ease)).toFixed(2) + 'px';
+      }
       if (progress < 1) {
         requestAnimationFrame(step);
       } else {
         el.textContent = target;
         el.classList.remove('sa-counting');
+        if (ringFill) { ringFill.style.strokeDashoffset = '0px'; }
       }
     }
 
@@ -116,8 +138,14 @@
         });
 
         card.addEventListener('mouseleave', function () {
+          /* Spring-feel elastic snap back via a bouncy cubic-bezier */
+          card.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
           card.style.transform  = '';
-          card.style.transition = '';
+          var onEnd = function () {
+            card.style.transition = '';
+            card.removeEventListener('transitionend', onEnd);
+          };
+          card.addEventListener('transitionend', onEnd);
         });
       });
     });
