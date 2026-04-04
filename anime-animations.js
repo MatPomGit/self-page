@@ -28,9 +28,10 @@ import { animate, stagger, spring } from './anime.esm.min.js';
 
     animate('.nav-links li', {
       opacity:    [0, 1],
-      translateY: [-14, 0],
-      delay:      stagger(70, { start: 400 }),
-      duration:   500,
+      translateY: [-10, 0],
+      scale:      [0.92, 1],
+      delay:      stagger(60, { start: 350 }),
+      duration:   480,
       ease:       'easeOutCubic',
     });
 
@@ -49,11 +50,11 @@ import { animate, stagger, spring } from './anime.esm.min.js';
 
       animate(tagEls, {
         opacity:    [0, 1],
-        translateY: [12, 0],
-        scale:      [0.88, 1],
-        delay:      stagger(65, { start: 680 }),
-        duration:   600,
-        ease:       spring({ stiffness: 90, damping: 14, mass: 1 }),
+        translateY: [10, 0],
+        scale:      [0.82, 1],
+        delay:      stagger(55, { start: 650 }),
+        duration:   550,
+        ease:       spring({ stiffness: 110, damping: 13, mass: 0.9 }),
       });
     }
 
@@ -89,9 +90,9 @@ import { animate, stagger, spring } from './anime.esm.min.js';
       setTimeout(function () {
         animate(twChars, {
           opacity:  [0, 1],
-          delay:    stagger(40),
-          duration: 280,
-          ease:     'easeOutCubic',
+          delay:    stagger(35),
+          duration: 260,
+          ease:     'easeOutQuad',
         });
       }, SHATTER_ANIMATION_END_MS);
     }
@@ -102,10 +103,10 @@ import { animate, stagger, spring } from './anime.esm.min.js';
       ctaBtn.style.position = 'relative'; /* needed for ripple + magnetic */
 
       animate(ctaBtn, {
-        boxShadow: '0 4px 30px rgba(6,182,212,0.6)',
+        boxShadow: '0 4px 28px rgba(6,182,212,0.55)',
         alternate: true,
         loop:      true,
-        duration:  1400,
+        duration:  1800,
         ease:      'easeInOutSine',
       });
 
@@ -123,9 +124,9 @@ import { animate, stagger, spring } from './anime.esm.min.js';
 
         animate(ripple, {
           scale:      [0, 1],
-          opacity:    [0.6, 0],
-          duration:   620,
-          ease:       'easeOutCubic',
+          opacity:    [0.5, 0],
+          duration:   700,
+          ease:       'easeOutQuart',
           onComplete: function () { ripple.remove(); },
         });
       });
@@ -162,8 +163,8 @@ import { animate, stagger, spring } from './anime.esm.min.js';
           animate(ctaBtn, {
             translateX: [fromX, 0],
             translateY: [fromY, 0],
-            duration:   600,
-            ease:       spring({ stiffness: 200, damping: 15, mass: 1 }),
+            duration:   700,
+            ease:       spring({ stiffness: 220, damping: 18, mass: 0.9 }),
           });
         });
       }
@@ -201,8 +202,8 @@ import { animate, stagger, spring } from './anime.esm.min.js';
         } else {
           animate(indicator, {
             translateX: targetX,
-            duration:   300,
-            ease:       'easeOutCubic',
+            duration:   320,
+            ease:       'easeOutQuart',
           });
         }
         activeId = sectionId;
@@ -247,8 +248,9 @@ import { animate, stagger, spring } from './anime.esm.min.js';
           animate(li, {
             opacity:    [0, 1],
             translateX: [fromX, 0],
-            delay:      idx * 75 + 80,
-            duration:   500,
+            scale:      [0.95, 1],
+            delay:      idx * 70 + 60,
+            duration:   480,
             ease:       'easeOutCubic',
           });
         });
@@ -280,9 +282,10 @@ import { animate, stagger, spring } from './anime.esm.min.js';
       if (!children.length) { return; }
       animate(children, {
         opacity:    [0, 1],
-        translateY: [10, 0],
-        delay:      stagger(90, { start: 150 }),
-        duration:   550,
+        translateY: [12, 0],
+        scale:      [0.97, 1],
+        delay:      stagger(80, { start: 120 }),
+        duration:   520,
         ease:       'easeOutCubic',
       });
       sectionStaggerObs.unobserve(e.target);
@@ -317,8 +320,8 @@ import { animate, stagger, spring } from './anime.esm.min.js';
         rotateY:    0,
         translateY: 0,
         scale:      1,
-        duration:   600,
-        ease:       spring({ stiffness: 160, damping: 14, mass: 1 }),
+        duration:   700,
+        ease:       spring({ stiffness: 180, damping: 16, mass: 0.9 }),
         onComplete: function () { card.style.transform = ''; },
       });
     });
@@ -339,10 +342,10 @@ import { animate, stagger, spring } from './anime.esm.min.js';
       card.addEventListener('mouseenter', function () {
         if (floatAnim) { floatAnim.pause(); }
         floatAnim = animate(icon, {
-          translateY: -5,
+          translateY: -6,
           alternate:  true,
           loop:       true,
-          duration:   900,
+          duration:   1000,
           ease:       'easeInOutSine',
         });
       });
@@ -351,8 +354,8 @@ import { animate, stagger, spring } from './anime.esm.min.js';
         if (floatAnim) { floatAnim.pause(); floatAnim = null; }
         animate(icon, {
           translateY: 0,
-          duration:   300,
-          ease:       'easeOutCubic',
+          duration:   350,
+          ease:       spring({ stiffness: 200, damping: 16, mass: 0.8 }),
         });
       });
     });

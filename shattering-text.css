@@ -28,7 +28,7 @@
   display: inline-block;
   opacity: 0;
   will-change: transform, opacity, filter;
-  animation: shatter-char-in 0.50s cubic-bezier(0.215, 0.61, 0.355, 1) both;
+  animation: shatter-char-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 /* ── Keyframe ──────────────────────────────────────────────── */
@@ -39,17 +39,17 @@
       translate(var(--shatter-tx, 0px), var(--shatter-ty, -60px))
       rotate(var(--shatter-r,  0deg))
       scale(var(--shatter-s,   0.1));
-    filter: blur(8px);
+    filter: blur(10px);
   }
 
-  55% {
+  50% {
     opacity: 1;
     filter: blur(0);
   }
 
   /* Slight overshoot for a spring feel */
-  80% {
-    transform: translate(0, 0) rotate(0deg) scale(1.04);
+  78% {
+    transform: translate(0, 0) rotate(0deg) scale(1.03);
     filter: blur(0);
   }
 
