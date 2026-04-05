@@ -172,17 +172,17 @@
 
     var startY    = window.scrollY;
     var diff      = targetY - startY;
-    var DURATION  = 150;
+    var DURATION  = 520;
     var startTs   = null;
 
-    function easeInOutCubic(t) {
-      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    function easeInOutQuart(t) {
+      return t < 0.5 ? 8 * t * t * t * t : 1 - Math.pow(-2 * t + 2, 4) / 2;
     }
 
     function step(ts) {
       if (!startTs) { startTs = ts; }
       var progress = Math.min((ts - startTs) / DURATION, 1);
-      window.scrollTo(0, startY + diff * easeInOutCubic(progress));
+      window.scrollTo(0, startY + diff * easeInOutQuart(progress));
       if (progress < 1) {
         requestAnimationFrame(step);
       } else {

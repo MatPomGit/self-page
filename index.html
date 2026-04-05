@@ -112,8 +112,8 @@
     /* Fade-in animation */
     .fade-in {
       opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
     .fade-in.visible {
       opacity: 1;
@@ -146,7 +146,7 @@
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--clr-border);
-      transition: background 0.3s;
+      transition: background 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     .nav-logo {
@@ -169,7 +169,7 @@
       text-decoration: none;
       font-size: 0.875rem;
       font-weight: 500;
-      transition: color 0.25s;
+      transition: color 0.22s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     .nav-links a:hover {
@@ -192,7 +192,7 @@
       height: 2px;
       background: var(--clr-cyan);
       border-radius: 2px;
-      transition: transform 0.3s, opacity 0.3s;
+      transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     @media (max-width: 700px) {
@@ -309,7 +309,7 @@
       font-size: 0.8rem;
       font-weight: 500;
       letter-spacing: 0.03em;
-      transition: background 0.25s, border-color 0.25s;
+      transition: background 0.22s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.22s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     .tag:hover {
@@ -328,7 +328,7 @@
       padding: 0.75rem 1.8rem;
       border-radius: 8px;
       text-decoration: none;
-      transition: opacity 0.25s, transform 0.25s;
+      transition: opacity 0.22s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .hero-cta:hover {
@@ -362,8 +362,8 @@
     }
 
     @keyframes bounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50%       { transform: translateX(-50%) translateY(6px); }
+      0%, 100% { transform: translateX(-50%) translateY(0); animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); }
+      50%       { transform: translateX(-50%) translateY(8px); }
     }
 
     /* ==========================================
@@ -440,7 +440,7 @@
       display: flex;
       align-items: flex-start;
       gap: 1rem;
-      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      transition: border-color 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     .interest-card:hover {
@@ -489,7 +489,7 @@
       border: 1px solid var(--clr-border);
       border-radius: 16px;
       padding: 2rem;
-      transition: border-color 0.3s, box-shadow 0.3s;
+      transition: border-color 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     .research-col:hover {
@@ -569,7 +569,7 @@
       border-radius: 12px;
       padding: 1.5rem 1rem;
       text-align: center;
-      transition: border-color 0.3s, transform 0.3s;
+      transition: border-color 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .stat-card:hover {
@@ -605,7 +605,7 @@
       border: 1px solid var(--clr-border);
       border-radius: 14px;
       padding: 1.5rem;
-      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      transition: border-color 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       position: relative;
       overflow: hidden;
     }
@@ -619,7 +619,7 @@
       height: 2px;
       background: linear-gradient(90deg, var(--clr-cyan), var(--clr-teal));
       opacity: 0;
-      transition: opacity 0.3s;
+      transition: opacity 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     .project-card:hover {
@@ -703,7 +703,7 @@
       border: 1px solid rgba(6,182,212,0.15);
       border-radius: 14px;
       padding: 1.75rem 1.5rem;
-      transition: background 0.3s, border-color 0.3s, transform 0.3s;
+      transition: background 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .clinical-card:hover {
@@ -787,7 +787,7 @@
       padding: 0.28rem 0.65rem;
       border-radius: 6px;
       cursor: pointer;
-      transition: color 0.25s, border-color 0.25s, background 0.25s;
+      transition: color 0.22s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.22s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.22s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       flex-shrink: 0;
     }
 
@@ -819,7 +819,7 @@
       padding: 1.75rem 1.5rem;
       position: relative;
       overflow: hidden;
-      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     .material-card::before {
@@ -828,7 +828,7 @@
       inset: 0;
       background: linear-gradient(135deg, rgba(6,182,212,0.05) 0%, transparent 60%);
       opacity: 0;
-      transition: opacity 0.3s;
+      transition: opacity 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     .material-card:hover {
@@ -877,7 +877,7 @@
       font-weight: 600;
       color: var(--clr-cyan);
       text-decoration: none;
-      transition: gap 0.2s;
+      transition: gap 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     .material-link:hover { gap: 0.55rem; }
