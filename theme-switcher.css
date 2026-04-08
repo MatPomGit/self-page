@@ -346,3 +346,122 @@ html[data-theme="solar"] ::-webkit-scrollbar-track  { background: #faf6ee; }
 .theme-swatch--solar     { background: linear-gradient(135deg, #faf6ee 50%, #c2410c 50%); border-color: rgba(0,0,0,0.12); }
 .theme-swatch--amethyst  { background: linear-gradient(135deg, #0a0718 50%, #a855f7 50%); }
 
+/* ============================================================
+   Doxygen-Awesome-inspired polish
+   ------------------------------------------------------------
+   Inspired by:
+   https://github.com/jothepro/doxygen-awesome-css
+   (tokenized spacing, radii, elevation and subtle separators)
+   ============================================================ */
+
+html {
+  --ui-radius-sm: 6px;
+  --ui-radius-md: 10px;
+  --ui-radius-lg: 14px;
+  --ui-space-sm: 0.5rem;
+  --ui-space-md: 0.9rem;
+  --ui-space-lg: 1.4rem;
+  --ui-shadow-soft: 0 4px 18px rgba(0, 0, 0, 0.14);
+  --ui-shadow-pop: 0 10px 32px rgba(0, 0, 0, 0.24);
+  --ui-separator: color-mix(in srgb, var(--clr-border) 72%, transparent);
+}
+
+/* Solar has higher luminance and needs softer shadows. */
+html[data-theme="solar"] {
+  --ui-shadow-soft: 0 4px 16px rgba(25, 18, 10, 0.10);
+  --ui-shadow-pop: 0 10px 28px rgba(25, 18, 10, 0.14);
+}
+
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Better rhythm and narrower reading width in text-heavy sections. */
+main p,
+article p,
+.footer-info,
+.footer-info-right {
+  max-width: 72ch;
+}
+
+/* Uniform card system across all sections/pages. */
+.stat-card,
+.project-card,
+.material-card,
+.interest-card,
+.clinical-card,
+.research-col {
+  border-radius: var(--ui-radius-lg);
+  box-shadow: var(--ui-shadow-soft);
+  border-color: var(--ui-separator);
+}
+
+.stat-card:hover,
+.project-card:hover,
+.material-card:hover,
+.interest-card:hover,
+.clinical-card:hover,
+.research-col:hover {
+  box-shadow: var(--ui-shadow-pop);
+}
+
+/* Subtle top accent strip, matching doxygen-awesome style hierarchy. */
+.stat-card::before,
+.project-card::before,
+.material-card::before,
+.interest-card::before,
+.clinical-card::before {
+  height: 3px;
+}
+
+/* Cleaner tables for publications/materials-like listings. */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--ui-separator);
+  border-radius: var(--ui-radius-md);
+  overflow: hidden;
+  background: color-mix(in srgb, var(--clr-surface) 88%, transparent);
+}
+
+th,
+td {
+  border-bottom: 1px solid color-mix(in srgb, var(--clr-border) 52%, transparent);
+  padding: 0.66rem 0.82rem;
+}
+
+th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--clr-text);
+  background: color-mix(in srgb, var(--clr-surface2) 82%, transparent);
+}
+
+tr:last-child td { border-bottom: 0; }
+
+/* Better keyboard accessibility and visible focus states. */
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--clr-cyan);
+  outline-offset: 2px;
+  border-radius: var(--ui-radius-sm);
+}
+
+/* Link treatment similar to doxygen-awesome docs readability. */
+a:not(.nav-logo):not(.nav-back):not(.theme-toggle):not(.theme-option) {
+  text-underline-offset: 0.16em;
+  text-decoration-color: color-mix(in srgb, var(--clr-cyan) 52%, transparent);
+  transition: text-decoration-color 0.2s ease, color 0.2s ease;
+}
+
+a:not(.nav-logo):not(.nav-back):not(.theme-toggle):not(.theme-option):hover {
+  text-decoration-color: var(--clr-cyan);
+}
+
+/* Slightly stronger navbar depth for all pages. */
+nav {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
