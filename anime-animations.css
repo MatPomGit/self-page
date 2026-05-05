@@ -4,7 +4,7 @@
 
 /* ── Material cards spring-bounce entrance ────────────────── */
 /* Matches the entrance treatment applied to interest-card,
-   project-card, clinical-card and stat-card in
+   project-card and clinical-card in
    scroll-animations.css.                                       */
 .materials-grid .material-card.fade-in {
   transform: translateY(40px) scale(0.95);

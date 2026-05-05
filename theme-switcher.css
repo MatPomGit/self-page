@@ -386,7 +386,6 @@ article p,
 }
 
 /* Uniform card system across all sections/pages. */
-.stat-card,
 .project-card,
 .material-card,
 .interest-card,
@@ -397,7 +396,6 @@ article p,
   border-color: var(--ui-separator);
 }
 
-.stat-card:hover,
 .project-card:hover,
 .material-card:hover,
 .interest-card:hover,
@@ -407,7 +405,6 @@ article p,
 }
 
 /* Subtle top accent strip, matching doxygen-awesome style hierarchy. */
-.stat-card::before,
 .project-card::before,
 .material-card::before,
 .interest-card::before,

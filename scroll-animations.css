@@ -113,8 +113,7 @@
 /* ── Card grids – spring bounce entrance ─────────────────── */
 .interests-grid .interest-card.fade-in,
 .projects-grid  .project-card.fade-in,
-.clinical-grid  .clinical-card.fade-in,
-.stats-row      .stat-card.fade-in {
+.clinical-grid  .clinical-card.fade-in {
   transform: translateY(40px) scale(0.95);
   filter: blur(3px);
   transition:
@@ -125,8 +124,7 @@
 
 .interests-grid .interest-card.fade-in.visible,
 .projects-grid  .project-card.fade-in.visible,
-.clinical-grid  .clinical-card.fade-in.visible,
-.stats-row      .stat-card.fade-in.visible {
+.clinical-grid  .clinical-card.fade-in.visible {
   opacity: 1;
   transform: none;
   filter: blur(0);
@@ -157,55 +155,6 @@
   filter: blur(0);
 }
 
-/* ── Stat counter glow while animating ───────────────────── */
-.stat-number.sa-counting {
-  text-shadow:
-    0 0 18px rgba(6, 182, 212, 0.8),
-    0 0 36px rgba(6, 182, 212, 0.45);
-  transition: text-shadow 0.3s ease;
-}
-
-/* ── Stat ring SVG wrapper ────────────────────────────────── */
-.stat-ring-wrap {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 76px;
-  height: 76px;
-  margin: 0 auto 0.5rem;
-}
-
-.stat-ring {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transform: rotate(-90deg);
-  overflow: visible;
-}
-
-.stat-ring-bg {
-  fill:         none;
-  stroke:       rgba(6, 182, 212, 0.12);
-  stroke-width: 3;
-}
-
-.stat-ring-fill {
-  fill:              none;
-  stroke:            var(--clr-cyan, #06b6d4);
-  stroke-width:      3;
-  stroke-linecap:    round;
-  /* circumference = 2π × 28 ≈ 175.93 px */
-  stroke-dasharray:  175.93px;
-  stroke-dashoffset: 175.93px;
-}
-
-.stat-number {
-  position: relative;
-  z-index:  1;
-}
 
 /* ── Nav active-section indicator ────────────────────────── */
 .nav-links {
