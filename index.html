@@ -133,7 +133,7 @@
     .fade-in {
       opacity: 0;
       transform: translateY(24px);
-      transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: opacity 0.56s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.56s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     .fade-in.visible {
@@ -314,12 +314,29 @@
       }
     }
 
+    .hero-name-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-face {
+      width: clamp(58px, 8vw, 82px);
+      height: clamp(58px, 8vw, 82px);
+      border-radius: 50%;
+      border: 2px solid var(--clr-cyan);
+      object-fit: cover;
+      box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.15);
+      flex-shrink: 0;
+    }
+
     .hero-name {
       font-family: var(--font-head);
       font-size: clamp(2.4rem, 6vw, 4.2rem);
       font-weight: 700;
       line-height: 1.1;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0;
     }
 
     .hero-title {
@@ -513,7 +530,6 @@
       font-family: var(--font-head);
       font-size: 1rem;
       font-weight: 600;
-      margin-bottom: 0.3rem;
     }
 
     .interest-card p {
@@ -617,44 +633,6 @@
     #projects {
       padding: var(--section-pad);
       background: var(--clr-bg);
-    }
-
-    /* Stats row */
-    .stats-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 1rem;
-      margin-bottom: 3rem;
-    }
-
-    .stat-card {
-      background: var(--clr-surface2);
-      border: 1px solid var(--clr-border);
-      border-radius: 12px;
-      padding: 1.5rem 1rem;
-      text-align: center;
-      transition: border-color 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .stat-card:hover {
-      border-color: var(--clr-neon);
-      transform: translateY(-3px);
-    }
-
-    .stat-number {
-      font-family: var(--font-head);
-      font-size: 2.2rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--clr-cyan), var(--clr-neon2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .stat-label {
-      font-size: 0.78rem;
-      color: var(--clr-muted);
-      margin-top: 0.25rem;
     }
 
     /* Project cards grid */
@@ -1015,9 +993,12 @@
     <div class="hero-content container">
       <div class="hero-badge fade-in" data-i18n="hero.badge">Politechnika Rzeszowska · Adiunkt</div>
 
-      <h1 class="hero-name">
-        <span class="gradient-text" data-i18n="hero.degree">dr inż.</span><br>Mateusz Pomianek
-      </h1>
+      <div class="hero-name-wrap fade-in" style="transition-delay:.1s">
+        <img class="hero-face" src="docs/img3.png" alt="Portret dr inż. Mateusza Pomianka" loading="eager" decoding="async">
+        <h1 class="hero-name">
+          <span class="gradient-text" data-i18n="hero.degree">dr inż.</span><br>Mateusz Pomianek
+        </h1>
+      </div>
 
       <p class="hero-title fade-in" style="transition-delay:.2s" data-i18n="hero.subtitle">
         Informatyka afektywna &nbsp;·&nbsp; XR/AI &nbsp;·&nbsp; Wizja komputerowa
@@ -1585,6 +1566,7 @@
       let W, H, mouse = { x: -9999, y: -9999 };
       let particles = [];
       let animId;
+      let wheelImpulse = 0;
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       /* Resize handler */
@@ -1629,6 +1611,13 @@
         mouse.x = t.clientX - rect.left;
         mouse.y = t.clientY - rect.top;
       }, { passive: true });
+
+      /* Reakcja na kółko myszy: wzmacnia ruch cząstek i galaktyk podczas przewijania. */
+      if (!prefersReducedMotion) {
+        window.addEventListener('wheel', (e) => {
+          wheelImpulse += Math.max(-12, Math.min(12, e.deltaY * 0.03));
+        }, { passive: true });
+      }
 
       /* ── Galaxy constructor ──────────────────────────────── */
       function Galaxy() {
@@ -2000,9 +1989,10 @@
         ctx.fillRect(0, 0, W, H);
 
         drawGeoShapes();
-        galaxies.forEach(g => { g.update(); g.draw(); });
+        galaxies.forEach(g => { g.vy += wheelImpulse * 0.02; g.update(); g.draw(); });
         drawConnections();
-        particles.forEach(p => { p.update(); p.draw(); });
+        particles.forEach(p => { p.vy += wheelImpulse * 0.01; p.update(); p.draw(); });
+        wheelImpulse *= 0.86;
         updateAndDrawFallingStars(dt, ts || performance.now());
 
         animId = requestAnimationFrame(render);
@@ -2144,7 +2134,7 @@
           'interests.card2.title': 'Wizja komputerowa',
           'interests.card2.desc': 'Analiza i przetwarzanie obrazów, wykrywanie obiektów, segmentacja scen.',
           'interests.card3.title': 'Interakcja człowiek–komputer',
-          'interests.card3.desc': 'Naturalne interfejsy użytkownika, ergonomia systemów, badania użyteczności.',
+          'interests.card3.desc': 'Projektowanie i ewaluacja interfejsów HCI (HRI, NUI, multimodalność, UX), analiza sygnałów behawioralnych (mimika, gesty, gaze) oraz tworzenie adaptacyjnych systemów interakcyjnych opartych na AI.',
           'interests.card4.title': 'Śledzenie wzroku',
           'interests.card4.desc': 'Eye-tracking, MEMS gaze estimation, analiza fiksacji i sakkad.',
           'interests.card5.title': 'Systemy VR / AR / MR',
@@ -2167,10 +2157,6 @@
           /* PROJECTS */
           'projects.label': 'Dorobek naukowy',
           'projects.title': 'Projekty &amp;<br><span class="gradient-text">osiągnięcia</span>',
-          'projects.stat1': 'Publikacje recenzowane',
-          'projects.stat2': 'Patenty USA',
-          'projects.stat3': 'Projekty R&amp;D',
-          'projects.stat4': 'Projekty jako kierownik',
           'projects.card1.desc': 'Opracowanie miniaturowych systemów śledzenia wzroku opartych na mikroelektrycznych układach mechanicznych (MEMS).',
           'projects.card2.desc': 'Metody kalibracji wyświetlaczy nagłownych o zmiennej ogniskowej dla aplikacji rozszerzonej i wirtualnej rzeczywistości.',
           'projects.card3.desc': 'Walidacja cyfrowych bliźniaków w środowiskach przemysłowych i medycznych, pomiary in-silico.',
@@ -2242,7 +2228,7 @@
           'interests.card2.title': 'Computer Vision',
           'interests.card2.desc': 'Image analysis and processing, object detection, scene segmentation.',
           'interests.card3.title': 'Human–Computer Interaction',
-          'interests.card3.desc': 'Natural user interfaces, systems ergonomics, usability research.',
+          'interests.card3.desc': 'Design and evaluation of HCI interfaces (HRI, NUI, multimodality, UX), analysis of behavioral signals (facial expressions, gestures, gaze), and creation of adaptive interaction systems based on AI.',
           'interests.card4.title': 'Eye Tracking',
           'interests.card4.desc': 'Eye-tracking, MEMS gaze estimation, fixation and saccade analysis.',
           'interests.card5.title': 'VR / AR / MR Systems',
@@ -2265,10 +2251,6 @@
           /* PROJECTS */
           'projects.label': 'Academic output',
           'projects.title': 'Projects &amp;<br><span class="gradient-text">achievements</span>',
-          'projects.stat1': 'Peer-reviewed publications',
-          'projects.stat2': 'US Patents',
-          'projects.stat3': 'R&amp;D Projects',
-          'projects.stat4': 'Projects as PI',
           'projects.card1.desc': 'Development of miniature eye-tracking systems based on micro-electro-mechanical systems (MEMS).',
           'projects.card2.desc': 'Calibration methods for varifocal head-mounted displays for augmented and virtual reality applications.',
           'projects.card3.desc': 'Validation of digital twins in industrial and medical environments, in-silico measurements.',

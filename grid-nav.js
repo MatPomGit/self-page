@@ -39,7 +39,7 @@
 
     var tx = { left: '48px', right: '-48px', up: '0', down: '0' };
     var ty = { left: '0', right: '0', up: '48px', down: '-48px' };
-    document.body.style.transition = 'opacity 0.18s cubic-bezier(0.4, 0, 1, 1), transform 0.18s cubic-bezier(0.4, 0, 1, 1)';
+    document.body.style.transition = 'opacity 0.144s cubic-bezier(0.4, 0, 1, 1), transform 0.144s cubic-bezier(0.4, 0, 1, 1)';
     document.body.style.opacity    = '0';
     document.body.style.transform  =
       'translate(' + (tx[dir] || '0') + ', ' + (ty[dir] || '0') + ')';
@@ -119,7 +119,7 @@
 
     requestAnimationFrame(function () {
       requestAnimationFrame(function () {
-        document.body.style.transition = 'opacity 0.28s cubic-bezier(0.0, 0, 0.2, 1), transform 0.28s cubic-bezier(0.0, 0, 0.2, 1)';
+        document.body.style.transition = 'opacity 0.224s cubic-bezier(0.0, 0, 0.2, 1), transform 0.224s cubic-bezier(0.0, 0, 0.2, 1)';
         document.body.style.opacity    = '1';
         document.body.style.transform  = 'none';
       });
