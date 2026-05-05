@@ -46,7 +46,6 @@
     '.interests-grid  .interest-card.fade-in',
     '.projects-grid   .project-card.fade-in',
     '.clinical-grid   .clinical-card.fade-in',
-    '.stats-row       .stat-card.fade-in',
     '.materials-grid  .material-card.fade-in',
   ].forEach(function (sel) {
     document.querySelectorAll(sel).forEach(function (card, i) {
