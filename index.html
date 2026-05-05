@@ -1812,7 +1812,7 @@
             const dx = particles[i].x - particles[j].x;
             const dy = particles[i].y - particles[j].y;
             const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < maxDist && ((i + j) % 2 === 0)) {
+            if (((i + j) % 2 === 0) && dist < maxDist) {
               const alpha = (1 - dist / maxDist) * 0.22;
               ctx.beginPath();
               ctx.moveTo(particles[i].x, particles[i].y);
