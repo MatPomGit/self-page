@@ -133,7 +133,7 @@
     .fade-in {
       opacity: 0;
       transform: translateY(24px);
-      transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: opacity 0.56s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.56s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     .fade-in.visible {
@@ -314,12 +314,29 @@
       }
     }
 
+    .hero-name-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-face {
+      width: clamp(58px, 8vw, 82px);
+      height: clamp(58px, 8vw, 82px);
+      border-radius: 50%;
+      border: 2px solid var(--clr-cyan);
+      object-fit: cover;
+      box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.15);
+      flex-shrink: 0;
+    }
+
     .hero-name {
       font-family: var(--font-head);
       font-size: clamp(2.4rem, 6vw, 4.2rem);
       font-weight: 700;
       line-height: 1.1;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0;
     }
 
     .hero-title {
@@ -1015,9 +1032,12 @@
     <div class="hero-content container">
       <div class="hero-badge fade-in" data-i18n="hero.badge">Politechnika Rzeszowska · Adiunkt</div>
 
-      <h1 class="hero-name">
-        <span class="gradient-text" data-i18n="hero.degree">dr inż.</span><br>Mateusz Pomianek
-      </h1>
+      <div class="hero-name-wrap fade-in" style="transition-delay:.1s">
+        <img class="hero-face" src="docs/img3.png" alt="Portret dr inż. Mateusza Pomianka" loading="eager" decoding="async">
+        <h1 class="hero-name">
+          <span class="gradient-text" data-i18n="hero.degree">dr inż.</span><br>Mateusz Pomianek
+        </h1>
+      </div>
 
       <p class="hero-title fade-in" style="transition-delay:.2s" data-i18n="hero.subtitle">
         Informatyka afektywna &nbsp;·&nbsp; XR/AI &nbsp;·&nbsp; Wizja komputerowa
@@ -1585,6 +1605,7 @@
       let W, H, mouse = { x: -9999, y: -9999 };
       let particles = [];
       let animId;
+      let wheelImpulse = 0;
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       /* Resize handler */
@@ -1628,6 +1649,11 @@
         const t = e.touches[0];
         mouse.x = t.clientX - rect.left;
         mouse.y = t.clientY - rect.top;
+      }, { passive: true });
+
+      /* Reakcja na kółko myszy: wzmacnia ruch cząstek i galaktyk podczas przewijania. */
+      window.addEventListener('wheel', (e) => {
+        wheelImpulse += Math.max(-12, Math.min(12, e.deltaY * 0.03));
       }, { passive: true });
 
       /* ── Galaxy constructor ──────────────────────────────── */
@@ -1941,9 +1967,10 @@
         ctx.fillRect(0, 0, W, H);
 
         drawGeoShapes();
-        galaxies.forEach(g => { g.update(); g.draw(); });
+        galaxies.forEach(g => { g.vy += wheelImpulse * 0.02; g.update(); g.draw(); });
         drawConnections();
-        particles.forEach(p => { p.update(); p.draw(); });
+        particles.forEach(p => { p.vy += wheelImpulse * 0.01; p.update(); p.draw(); });
+        wheelImpulse *= 0.86;
 
         animId = requestAnimationFrame(render);
       }

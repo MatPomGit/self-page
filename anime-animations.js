@@ -30,8 +30,8 @@ import { animate, stagger, spring } from './anime.esm.min.js';
       opacity:    [0, 1],
       translateY: [-10, 0],
       scale:      [0.92, 1],
-      delay:      stagger(60, { start: 350 }),
-      duration:   480,
+      delay:      stagger(60, { start: 280 }),
+      duration:   384,
       ease:       'easeOutCubic',
     });
 
@@ -53,7 +53,7 @@ import { animate, stagger, spring } from './anime.esm.min.js';
         translateY: [10, 0],
         scale:      [0.82, 1],
         delay:      stagger(55, { start: 650 }),
-        duration:   550,
+        duration:   440,
         ease:       spring({ stiffness: 110, damping: 13, mass: 0.9 }),
       });
     }
@@ -91,7 +91,7 @@ import { animate, stagger, spring } from './anime.esm.min.js';
         animate(twChars, {
           opacity:  [0, 1],
           delay:    stagger(35),
-          duration: 260,
+          duration: 208,
           ease:     'easeOutQuad',
         });
       }, SHATTER_ANIMATION_END_MS);
@@ -106,7 +106,7 @@ import { animate, stagger, spring } from './anime.esm.min.js';
         boxShadow: '0 4px 28px rgba(6,182,212,0.55)',
         alternate: true,
         loop:      true,
-        duration:  1800,
+        duration:  1440,
         ease:      'easeInOutSine',
       });
 
@@ -125,7 +125,7 @@ import { animate, stagger, spring } from './anime.esm.min.js';
         animate(ripple, {
           scale:      [0, 1],
           opacity:    [0.5, 0],
-          duration:   700,
+          duration:   560,
           ease:       'easeOutQuart',
           onComplete: function () { ripple.remove(); },
         });
@@ -163,7 +163,7 @@ import { animate, stagger, spring } from './anime.esm.min.js';
           animate(ctaBtn, {
             translateX: [fromX, 0],
             translateY: [fromY, 0],
-            duration:   700,
+            duration:   560,
             ease:       spring({ stiffness: 220, damping: 18, mass: 0.9 }),
           });
         });
@@ -202,7 +202,7 @@ import { animate, stagger, spring } from './anime.esm.min.js';
         } else {
           animate(indicator, {
             translateX: targetX,
-            duration:   320,
+            duration:   256,
             ease:       'easeOutQuart',
           });
         }
@@ -250,7 +250,7 @@ import { animate, stagger, spring } from './anime.esm.min.js';
             translateX: [fromX, 0],
             scale:      [0.95, 1],
             delay:      idx * 70 + 60,
-            duration:   480,
+            duration:   384,
             ease:       'easeOutCubic',
           });
         });
@@ -285,7 +285,7 @@ import { animate, stagger, spring } from './anime.esm.min.js';
         translateY: [12, 0],
         scale:      [0.97, 1],
         delay:      stagger(80, { start: 120 }),
-        duration:   520,
+        duration:   416,
         ease:       'easeOutCubic',
       });
       sectionStaggerObs.unobserve(e.target);
@@ -299,7 +299,7 @@ import { animate, stagger, spring } from './anime.esm.min.js';
   /* ── 5. Material card 3-D tilt on hover ───────────────── */
   document.querySelectorAll('.material-card').forEach(function (card) {
     card.addEventListener('mouseenter', function () {
-      card.style.transition = 'transform 0.12s ease, box-shadow 0.12s ease';
+      card.style.transition = 'transform 0.096s ease, box-shadow 0.096s ease';
     });
 
     card.addEventListener('mousemove', function (e) {
@@ -320,7 +320,7 @@ import { animate, stagger, spring } from './anime.esm.min.js';
         rotateY:    0,
         translateY: 0,
         scale:      1,
-        duration:   700,
+        duration:   560,
         ease:       spring({ stiffness: 180, damping: 16, mass: 0.9 }),
         onComplete: function () { card.style.transform = ''; },
       });
@@ -345,7 +345,7 @@ import { animate, stagger, spring } from './anime.esm.min.js';
           translateY: -6,
           alternate:  true,
           loop:       true,
-          duration:   1000,
+          duration:   800,
           ease:       'easeInOutSine',
         });
       });
@@ -354,7 +354,7 @@ import { animate, stagger, spring } from './anime.esm.min.js';
         if (floatAnim) { floatAnim.pause(); floatAnim = null; }
         animate(icon, {
           translateY: 0,
-          duration:   350,
+          duration:   280,
           ease:       spring({ stiffness: 200, damping: 16, mass: 0.8 }),
         });
       });

@@ -61,7 +61,7 @@
 
   function runCounter(el) {
     var target   = parseInt(el.getAttribute('data-count'), 10);
-    var duration = 1600;
+    var duration = 1280;
     var startTs  = null;
     /* SVG ring: r=28, circumference = 2π×28 ≈ 175.93 */
     var CIRC     = 2 * Math.PI * 28;
@@ -123,7 +123,7 @@
     ].forEach(function (sel) {
       document.querySelectorAll(sel).forEach(function (card) {
       card.addEventListener('mouseenter', function () {
-          card.style.transition = 'transform 0.12s ease, box-shadow 0.12s ease';
+          card.style.transition = 'transform 0.096s ease, box-shadow 0.096s ease';
         });
 
         card.addEventListener('mousemove', function (e) {
@@ -139,7 +139,7 @@
 
         card.addEventListener('mouseleave', function () {
           /* Spring-feel elastic snap back via a bouncy cubic-bezier */
-          card.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
+          card.style.transition = 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
           card.style.transform  = '';
           var onEnd = function () {
             card.style.transition = '';
@@ -172,7 +172,7 @@
 
     var startY    = window.scrollY;
     var diff      = targetY - startY;
-    var DURATION  = 520;
+    var DURATION  = 416;
     var startTs   = null;
 
     function easeInOutQuart(t) {
