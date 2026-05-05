@@ -124,44 +124,6 @@
       border-bottom: 1px solid var(--clr-border);
     }
 
-    /* ── Stats ─────────────────────────────────────────────── */
-    .stats-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 1rem;
-      margin-bottom: 3rem;
-    }
-
-    .stat-card {
-      background: var(--clr-surface2);
-      border: 1px solid var(--clr-border);
-      border-radius: 12px;
-      padding: 1.5rem 1rem;
-      text-align: center;
-      transition: border-color 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .stat-card:hover {
-      border-color: var(--clr-neon);
-      transform: translateY(-3px);
-    }
-
-    .stat-number {
-      font-family: var(--font-head);
-      font-size: 2.2rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--clr-cyan), var(--clr-neon2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .stat-label {
-      font-size: 0.78rem;
-      color: var(--clr-muted);
-      margin-top: 0.25rem;
-    }
-
     /* ── Projects ──────────────────────────────────────────── */
     #projects {
       padding: 5rem 2rem;
