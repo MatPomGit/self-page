@@ -1652,9 +1652,11 @@
       }, { passive: true });
 
       /* Reakcja na kółko myszy: wzmacnia ruch cząstek i galaktyk podczas przewijania. */
-      window.addEventListener('wheel', (e) => {
-        wheelImpulse += Math.max(-12, Math.min(12, e.deltaY * 0.03));
-      }, { passive: true });
+      if (!prefersReducedMotion) {
+        window.addEventListener('wheel', (e) => {
+          wheelImpulse += Math.max(-12, Math.min(12, e.deltaY * 0.03));
+        }, { passive: true });
+      }
 
       /* ── Galaxy constructor ──────────────────────────────── */
       function Galaxy() {
