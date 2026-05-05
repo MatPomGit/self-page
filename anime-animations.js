@@ -30,7 +30,7 @@ import { animate, stagger, spring } from './anime.esm.min.js';
       opacity:    [0, 1],
       translateY: [-10, 0],
       scale:      [0.92, 1],
-      delay:      stagger(60, { start: 280 }),
+      delay:      stagger(48, { start: 280 }),
       duration:   384,
       ease:       'easeOutCubic',
     });
