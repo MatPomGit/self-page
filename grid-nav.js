@@ -128,8 +128,8 @@
 
   /* ── Mouse-edge navigation ───────────────────────────────── */
   function addMouseEdge(dests) {
-    var EDGE_PX    = 4;   /* px from viewport edge to trigger countdown */
-    var EDGE_DELAY = 900; /* ms to hold at edge before navigating       */
+    var EDGE_PX    = 24;  /* larger edge area so navigation is easier to trigger */
+    var EDGE_DELAY = 550; /* ms to hold at edge before navigating       */
     var edgeTimer  = null;
 
     document.addEventListener('mousemove', function (e) {
