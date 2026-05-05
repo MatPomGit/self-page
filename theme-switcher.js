@@ -25,9 +25,11 @@
     /* Notify canvas and other listeners */
     document.dispatchEvent(new CustomEvent('themechange', { detail: { theme: safe } }));
 
-    /* Update active state in open panel (if any) */
+    /* Aktualizacja stanu wizualnego i a11y opcji motywu. */
     document.querySelectorAll('.theme-option').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.themeId === safe);
+      const isActive = btn.dataset.themeId === safe;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
     });
 
     /* Keep the toggle button aria-label in sync */
@@ -78,10 +80,6 @@
       btn.addEventListener('click', function () {
         applyTheme(t.id);
         closePanel();
-        /* Update aria-selected */
-        panel.querySelectorAll('.theme-option').forEach(b => {
-          b.setAttribute('aria-selected', b.dataset.themeId === t.id ? 'true' : 'false');
-        });
       });
 
       panel.appendChild(btn);
