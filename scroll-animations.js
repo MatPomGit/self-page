@@ -53,7 +53,67 @@
     });
   });
 
-  /* ── 4. 3-D tilt on card hover ───────────────────────────── */
+  /* ── 4. Counter animation for [data-count] ───────────────── */
+  function easeOutExpo(t) {
+    return t >= 1 ? 1 : 1 - Math.pow(2, -10 * t);
+  }
+
+  function runCounter(el) {
+    var target   = parseInt(el.getAttribute('data-count'), 10);
+    var duration = 1280;
+    var startTs  = null;
+    /* SVG ring: r=28, circumference = 2π×28 ≈ 175.93 */
+    var CIRC     = 2 * Math.PI * 28;
+    var ringWrap = el.closest ? el.closest('.stat-ring-wrap') : null;
+    var ringFill = ringWrap ? ringWrap.querySelector('.stat-ring-fill') : null;
+    if (ringFill) {
+      ringFill.style.strokeDasharray  = CIRC + 'px';
+      ringFill.style.strokeDashoffset = CIRC + 'px';
+    }
+
+    el.classList.add('sa-counting');
+
+    if (reducedMotion) {
+      el.textContent = target;
+      el.classList.remove('sa-counting');
+      if (ringFill) { ringFill.style.strokeDashoffset = '0px'; }
+      return;
+    }
+
+    function step(ts) {
+      if (!startTs) { startTs = ts; }
+      var progress = Math.min((ts - startTs) / duration, 1);
+      var ease     = easeOutExpo(progress);
+      el.textContent = Math.round(ease * target);
+      if (ringFill) {
+        ringFill.style.strokeDashoffset = (CIRC * (1 - ease)).toFixed(2) + 'px';
+      }
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        el.textContent = target;
+        el.classList.remove('sa-counting');
+        if (ringFill) { ringFill.style.strokeDashoffset = '0px'; }
+      }
+    }
+
+    requestAnimationFrame(step);
+  }
+
+  var counterObs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        runCounter(e.target);
+        counterObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.6 });
+
+  document.querySelectorAll('[data-count]').forEach(function (el) {
+    counterObs.observe(el);
+  });
+
+  /* ── 5. 3-D tilt on card hover ───────────────────────────── */
   if (!reducedMotion) {
     [
       '.interest-card',
@@ -62,7 +122,7 @@
     ].forEach(function (sel) {
       document.querySelectorAll(sel).forEach(function (card) {
       card.addEventListener('mouseenter', function () {
-          card.style.transition = 'transform 0.12s ease, box-shadow 0.12s ease';
+          card.style.transition = 'transform 0.096s ease, box-shadow 0.096s ease';
         });
 
         card.addEventListener('mousemove', function (e) {
@@ -78,7 +138,7 @@
 
         card.addEventListener('mouseleave', function () {
           /* Spring-feel elastic snap back via a bouncy cubic-bezier */
-          card.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
+          card.style.transition = 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
           card.style.transform  = '';
           var onEnd = function () {
             card.style.transition = '';
@@ -111,7 +171,7 @@
 
     var startY    = window.scrollY;
     var diff      = targetY - startY;
-    var DURATION  = 520;
+    var DURATION  = 416;
     var startTs   = null;
 
     function easeInOutQuart(t) {
