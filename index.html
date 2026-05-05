@@ -480,7 +480,7 @@
 
     .interests-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.2rem;
       margin-top: 2rem;
     }
@@ -489,7 +489,7 @@
       background: var(--clr-surface2);
       border: 1px solid var(--clr-border);
       border-radius: 12px;
-      padding: 1.5rem 1.25rem;
+      padding: 1.6rem 1.4rem;
       display: flex;
       align-items: flex-start;
       gap: 1rem;
@@ -511,15 +511,22 @@
 
     .interest-card h3 {
       font-family: var(--font-head);
-      font-size: 0.9rem;
+      font-size: 1rem;
       font-weight: 600;
       margin-bottom: 0.3rem;
     }
 
     .interest-card p {
-      font-size: 0.78rem;
+      font-size: 0.9rem;
       color: var(--clr-muted);
-      line-height: 1.5;
+      line-height: 1.65;
+      max-width: 42ch;
+    }
+
+    .interest-card > div {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
     }
 
     /* ==========================================
@@ -1210,11 +1217,9 @@
           </svg>
           <div>
             <h3 data-i18n="interests.card3.title">Interakcja człowiek–komputer</h3>
-            <p data-i18n="interests.card3.desc">Projektowanie i analiza interfejsów człowiek–komputer: HRI, NUI,
-              interakcje multimodalne,
-              UX oraz metody ewaluacji użyteczności. Ergonomia poznawcza i fizyczna, przetwarzanie sygnałów
-              behawioralnych (mimika, gesty, gaze),
-              komunikacja niewerbalna oraz adaptacyjne systemy interakcyjne oparte na AI.</p>
+            <p data-i18n="interests.card3.desc">Projektowanie i ewaluacja interfejsów HCI (HRI, NUI, multimodalność, UX),
+              analiza sygnałów behawioralnych (mimika, gesty, gaze) oraz tworzenie adaptacyjnych systemów
+              interakcyjnych opartych na AI.</p>
           </div>
         </article>
 
@@ -1370,50 +1375,6 @@
         Projekty &amp;<br><span class="gradient-text">osiągnięcia</span>
       </h2>
       <div class="divider fade-in" style="transition-delay:.1s"></div>
-
-      <!-- Stats -->
-      <div class="stats-row">
-        <div class="stat-card fade-in" style="transition-delay:.1s">
-          <div class="stat-ring-wrap">
-            <svg class="stat-ring" viewBox="0 0 64 64" aria-hidden="true">
-              <circle class="stat-ring-bg" cx="32" cy="32" r="28" />
-              <circle class="stat-ring-fill" cx="32" cy="32" r="28" />
-            </svg>
-            <div class="stat-number" data-count="21">21</div>
-          </div>
-          <div class="stat-label" data-i18n="projects.stat1">Publikacje recenzowane</div>
-        </div>
-        <div class="stat-card fade-in" style="transition-delay:.15s">
-          <div class="stat-ring-wrap">
-            <svg class="stat-ring" viewBox="0 0 64 64" aria-hidden="true">
-              <circle class="stat-ring-bg" cx="32" cy="32" r="28" />
-              <circle class="stat-ring-fill" cx="32" cy="32" r="28" />
-            </svg>
-            <div class="stat-number" data-count="2">2</div>
-          </div>
-          <div class="stat-label" data-i18n="projects.stat2">Patenty USA</div>
-        </div>
-        <div class="stat-card fade-in" style="transition-delay:.2s">
-          <div class="stat-ring-wrap">
-            <svg class="stat-ring" viewBox="0 0 64 64" aria-hidden="true">
-              <circle class="stat-ring-bg" cx="32" cy="32" r="28" />
-              <circle class="stat-ring-fill" cx="32" cy="32" r="28" />
-            </svg>
-            <div class="stat-number" data-count="11">11</div>
-          </div>
-          <div class="stat-label" data-i18n="projects.stat3">Projekty R&amp;D</div>
-        </div>
-        <div class="stat-card fade-in" style="transition-delay:.25s">
-          <div class="stat-ring-wrap">
-            <svg class="stat-ring" viewBox="0 0 64 64" aria-hidden="true">
-              <circle class="stat-ring-bg" cx="32" cy="32" r="28" />
-              <circle class="stat-ring-fill" cx="32" cy="32" r="28" />
-            </svg>
-            <div class="stat-number" data-count="2">2</div>
-          </div>
-          <div class="stat-label" data-i18n="projects.stat4">Projekty jako kierownik</div>
-        </div>
-      </div>
 
       <!-- Project cards -->
       <div class="projects-grid">
