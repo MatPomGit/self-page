@@ -62,7 +62,7 @@
 
 - M. Piszczek, M. Maciejewski, M. Pomianek, i M. Szustakowski, „Designing and testing components of biometric information system using virtual reality", Przeglad Elektrotechniczny, t. 93, nr 10, s. 95–98, 2017, doi: 10.15199/48.2017.10.22. Punkty MEiN: 40 pkt.
 
-- M. Piszczek, M. Maciejewski, i M. Pomianek, „Shooting trainning system in Virtual Reality – metrological aspects.", Przeglad Elektrotechniczny, t. 93, nr 10, s. 45–48, 2017, doi: 10.15199/48.2017.10.10. Punkty MEiN: 40 pkt.
+- M. Piszczek, M. Maciejewski, i M. Pomianek, „Shooting training system in Virtual Reality – metrological aspects.", Przeglad Elektrotechniczny, t. 93, nr 10, s. 45–48, 2017, doi: 10.15199/48.2017.10.10. Punkty MEiN: 40 pkt.
 
 ## 2016
 
